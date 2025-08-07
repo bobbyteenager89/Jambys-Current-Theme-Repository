@@ -1,0 +1,226 @@
+{% assign section_blocks_size = section.blocks | size %}
+{% if section_blocks_size > 0 %}
+  {% style %}
+    .color-swatch-img {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+      background-position: center;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 1;
+    }
+    .swatch-category-title {
+      font-weight: bold;
+      flex: 0 0 100% !important;
+    }
+    .swatch-category-title[swatch-category-2] {
+      order: 2000;
+    }
+    .swatch-category-title[swatch-category-3] {
+      order: 3000;
+    }
+    .swatch-category-title[swatch-category-4] {
+      order: 4000;
+    }
+  {% endstyle %}
+
+  <template id="color-swatches">
+    {% assign category_2 = false %}
+    {% assign category_3 = false %}
+    {% assign category_4 = false %}
+    {% for block in section.blocks %}
+      {% case block.settings.category %}
+        {% when "" %}
+        {% assign category_index = 1000 %}
+        {% when "Classics" %}
+        {% assign category_2 = true %}
+        {% assign category_index = 2000 %}
+        {% when "Prints" %}
+        {% assign category_3 = true %}
+        {% assign category_index = 3000 %}
+        {% when "Limited" %}
+        {% assign category_4 = true %}
+        {% assign category_index = 4000 %}
+      {% endcase %}
+      <a
+        href="{% if product.handle != null %} {{ collection_product.url }} {% endif %}"
+        class="color-swatch js-builder-color-swatch"
+        data-color-swatch="{{ block.settings.title }}"
+        data-swatch-category="{{ block.settings.category }}"
+        data-category-order="{{ forloop.index | plus: category_index | plus: 100 }}"
+        data-swatch-order="{{ forloop.index | plus: 100 }}"
+        data-product-id-swatch
+        data-js-product-color="{{ block.settings.title }}">
+
+        {% if block.settings.primary_image != blank %}
+
+          <img class="color-swatch-img" src="{{ block.settings.primary_image | img_url }}">
+
+        {% else %}
+
+          {% if block.settings.secondary_color_code != '' %}
+            <div class="h-1-4" style="background-color: {{ block.settings.secondary_color_code }};"></div>
+          {% else %}
+            <div class="h-1-4" style="background-color: {{ block.settings.primary_color_code }};"></div>
+          {% endif %}
+
+          <div class="h-3-4" style="background-color: {{ block.settings.primary_color_code }};"></div>
+
+        {% endif %}
+      </a>
+    {% endfor %}
+  </template>
+  <script>
+    function cloneElement(element) {
+      return element.cloneNode(true);
+    }
+    async function initSwatches() {
+      if (document.getElementById('color-swatches')) {
+        let swatchNodes = document.getElementById('color-swatches').cloneNode(true);
+        let container = document.createElement("div");
+        container.innerHTML = swatchNodes.innerHTML;
+        container.querySelectorAll('[data-color-swatch]').forEach(element => {
+          let swatchName = element.dataset.colorSwatch;
+          let swatchOrder;
+          if (window.sessionStorage.getItem("JMBY-73") == "v1") {
+            swatchOrder = element.dataset.categoryOrder;
+          } else {
+            swatchOrder = element.dataset.swatchOrder;
+          }
+
+// update collection selectors
+          if (document.querySelector('.cc-product-filter')) {
+            document.querySelectorAll(`input[value="${swatchName}"]`).forEach(input => {
+              let clonedElement = element.cloneNode(true);
+              input.parentElement.insertAdjacentElement('afterBegin', clonedElement);
+              input
+                .parentNode
+                .parentNode
+                .style
+                .order = swatchOrder;
+            })
+          }
+          if (document.querySelector(`[data-color-swatch="${swatchName}"]`)) { // update product page selectors
+            document.querySelectorAll(`[data-color-swatch="${swatchName}"]`).forEach(swatch => {
+              if (swatch.nodeName === 'LI') {
+                let clonedElement = element.cloneNode(true);
+                clonedElement.dataset.productIdSwatch = swatch.dataset.productIdSwatch;
+
+                clonedElement.dataset.jsProductHandle = swatch.dataset.jsProductHandle;
+                clonedElement.dataset.jsProductId = swatch.dataset.jsProductId;
+                clonedElement.dataset.jsProductType = swatch.dataset.jsProductType;
+                clonedElement.dataset.jsProductTitle = swatch.dataset.jsProductTitle;
+                clonedElement.dataset.jsProductFeatImg = swatch.dataset.jsProductFeatImg;
+
+                // If the href attribute is empty, set it to the data-js-product-url attribute from the swatch element
+                if (clonedElement.getAttribute('href') === '') {
+                  clonedElement.setAttribute('href', swatch.dataset.jsProductUrl);
+                }
+
+                if ('isSelected' in clonedElement.dataset) {
+                  clonedElement.classList.add('is-selected');
+                }
+
+                swatch.removeAttribute('data-product-id-swatch');
+                swatch.removeAttribute('data-color-swatch');
+                swatch.insertAdjacentElement('afterBegin', clonedElement);
+                //swatch.style.order = swatchOrder;
+              }
+            })
+          }
+        })
+        if (window.sessionStorage.getItem("JMBY-73") == "v1") {
+          {% if category_2 == true %}
+            if (!document.querySelector("[swatch-category-2]")) {
+              const categoryTitle2 = document.createElement("li");
+              categoryTitle2.classList.add("swatch-category-title");
+              categoryTitle2.setAttribute("swatch-category-2", "");
+              categoryTitle2.innerHTML = "Classics";
+              document.querySelector(".cc-swatches").appendChild(categoryTitle2);
+            }
+          {% endif %}
+          {% if category_3 == true %}
+            if (!document.querySelector("[swatch-category-3]")) {
+              const categoryTitle3 = document.createElement("li");
+              categoryTitle3.classList.add("swatch-category-title");
+              categoryTitle3.setAttribute("swatch-category-3", "");
+              categoryTitle3.innerHTML = "Prints";
+              document.querySelector(".cc-swatches").appendChild(categoryTitle3);
+            }
+          {% endif %}
+          {% if category_4 == true %}
+            if (!document.querySelector("[swatch-category-4]")) {
+              const categoryTitle4 = document.createElement("li");
+              categoryTitle4.classList.add("swatch-category-title");
+              categoryTitle4.setAttribute("swatch-category-4", "");
+              categoryTitle4.innerHTML = "Limited";
+              document.querySelector(".cc-swatches").appendChild(categoryTitle4);
+            }
+          {% endif %}
+        }
+      }
+    }
+
+    initSwatches();
+  </script>
+
+{% endif %}
+{% schema %}
+  {
+    "name": "Color Swatches",
+    "blocks": [
+      {
+        "type": "swatch",
+        "name": "Swatch",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Swatch Name"
+          },
+          {
+            "type": "select",
+            "id": "category",
+            "label": "Swatch Category",
+            "options": [
+              {
+                "value": "",
+                "label": "None"
+              }, {
+                "value": "Classics",
+                "label": "Classics"
+              }, {
+                "value": "Prints",
+                "label": "Prints"
+              }, {
+                "value": "Limited",
+                "label": "Limited"
+              }
+            ],
+            "default": ""
+          },
+          {
+            "type": "color",
+            "id": "primary_color_code",
+            "label": "Primary Color"
+          },
+          {
+            "type": "color",
+            "id": "secondary_color_code",
+            "label": "Secondary Color",
+            "info": "If there is only 1 color, this field can be left blank"
+          }, {
+            "type": "image_picker",
+            "id": "primary_image",
+            "label": "Use an image instead"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

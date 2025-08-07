@@ -1,0 +1,35 @@
+{% capture backorder_message %}{{ 'products.product.backorder' | t }}{% endcapture %}
+{% unless backorder_message == blank %}
+
+
+{% if variant.inventory_management == 'shopify' and variant.inventory_quantity < 1 %}
+  <p style="text-align:center;margin: 12px 0;">
+    <span class="backorder__variant">
+      {{ product.title }}
+      {% unless variant.title contains 'Default' %} - {{ variant.title }}{% endunless %}
+    </span>
+  </p>
+{% else %}
+  <p style="text-align:center;margin: 12px 0;">
+    <span class="backorder__variant">
+      {{ product.selected_or_first_available_variant.metafields.custom.backorder }}
+    </span>
+  </p>
+{% endif %}
+
+  {% if variant.inventory_management == 'shopify' and variant.inventory_quantity < 1 %}
+    <div class="backorder">
+      {% if template contains 'cart' %}
+        <p>{{ 'cart.general.backorder' | t }}</p>
+      {% else %}
+        {{ product_backorder_message }}
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="backorder hidden">
+      {{ product_backorder_message }}
+    </div>
+  {% endif %}
+{% endunless %}
+
+<input type="hidden" value="{{ product.metafields.custom.backorder_message }}" id="metafield">

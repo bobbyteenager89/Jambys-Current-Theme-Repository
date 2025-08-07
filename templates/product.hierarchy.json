@@ -1,0 +1,785 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "afb777d8-797e-4f8d-a4be-87c5b68d6c73": {
+          "type": "breadcrumbs",
+          "settings": {
+            "root_url": "shopify://collections/bestsellers-2",
+            "root_label": "Shop All",
+            "product_collection": "",
+            "include_product": true
+          }
+        },
+        "vendor_and_type": {
+          "type": "vendor_and_type",
+          "settings": {
+            "show_vendor": false,
+            "show_type": false
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_h1": true
+          }
+        },
+        "4c4dd824-7743-4ca0-807e-e7fbf76c9f5c": {
+          "type": "shopify://apps/junip/blocks/junip-product-summary/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_style": "underlined",
+            "show_realtime_availability": true,
+            "show_size_chart": true,
+            "size_chart_variant": "Size",
+            "size_chart_page": "faq"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_tax_and_shipping": false,
+            "show_quantity_selector": true,
+            "enable_payment_button": false,
+            "show_pickup_availability": false
+          }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "custom_bullet_point_icon": "https://cdn.shopify.com/s/files/1/0090/4128/1109/files/checkmark.svg?v=1668019869",
+            "show_product_description": true,
+            "description_page": "{{ product.metafields.product.basics_page.value }}",
+            "product_description_icon": "<svg class=\" fill-current\" width=\"100%\" height=\"100%\" viewbox=\"0 0 24 24\" fill=\"none\" ecl=\"true\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M4 2.5C3.73463 2.5 3.51549 2.70731 3.50077 2.97227L3.09919 10.2007L3.09038 10.2133L3.09819 10.2187L2.50077 20.9723C2.49315 21.1095 2.54233 21.2438 2.63677 21.3436C2.73121 21.4434 2.86258 21.5 3 21.5H10.5C10.7383 21.5 10.9435 21.3318 10.9903 21.0981L12 16.0495L13.0097 21.0981C13.0565 21.3318 13.2617 21.5 13.5 21.5H21C21.1374 21.5 21.2688 21.4434 21.3632 21.3436C21.4577 21.2438 21.5069 21.1095 21.4992 20.9723L20.9018 10.2187L20.9096 10.2133L20.9008 10.2007L20.4992 2.97227C20.4845 2.70731 20.2654 2.5 20 2.5H4ZM19.8129 8.64657L19.6659 6H17.9603L19.8129 8.64657ZM16.7397 6H7.26033L4.08184 10.5407L3.52855 20.5H10.0901L11.5097 13.4019C11.5565 13.1682 11.7617 13 12 13C12.2383 13 12.4435 13.1682 12.4903 13.4019L13.9099 20.5H20.4715L19.9182 10.5407L16.7397 6ZM4.18707 8.64657L6.03967 6H4.33411L4.18707 8.64657ZM4.38966 5L4.47299 3.5H19.527L19.6103 5H4.38966Z\" ecl=\"true\"></path></svg>",
+            "show_product_reviews": false,
+            "tab_2_page": "{{ product.metafields.global.size_chart.value }}",
+            "tab_2_icon": "<svg class=\" fill-current\" width=\"100%\" height=\"100%\" viewbox=\"0 0 24 24\" fill=\"none\" ecl=\"true\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M1.86816 6.26563C1.67289 6.4609 1.67289 6.77748 1.86816 6.97274L3.73503 8.83962C3.74065 8.84582 3.74645 8.85192 3.75243 8.8579C3.75842 8.86389 3.76452 8.86969 3.77072 8.8753L5.62335 10.7279C5.628 10.733 5.63278 10.738 5.63769 10.7429C5.64259 10.7478 5.64757 10.7525 5.65262 10.7572L7.50595 12.6105C7.51129 12.6164 7.51679 12.6222 7.52245 12.6278C7.52812 12.6335 7.53388 12.639 7.53975 12.6443L9.39469 14.4993C9.39893 14.5038 9.40327 14.5083 9.40771 14.5128C9.41215 14.5172 9.41665 14.5216 9.42121 14.5258L11.2771 16.3817C11.2821 16.3871 11.2872 16.3925 11.2925 16.3977C11.2977 16.403 11.3031 16.4081 11.3085 16.4131L13.166 18.2706C13.1698 18.2747 13.1737 18.2787 13.1777 18.2827C13.1817 18.2867 13.1858 18.2906 13.1899 18.2945L15.0482 20.1527C15.0528 20.1578 15.0576 20.1628 15.0625 20.1677C15.0674 20.1726 15.0724 20.1774 15.0774 20.182L16.9478 22.0524C17.1431 22.2477 17.4597 22.2477 17.6549 22.0524L22.0532 17.6542C22.2485 17.4589 22.2485 17.1423 22.0532 16.9471L6.9735 1.86739C6.77824 1.67213 6.46166 1.67213 6.2664 1.86739L1.86816 6.26563ZM14.2386 17.929L15.4163 19.1067L16.4767 18.0464C16.672 17.8511 16.9886 17.8511 17.1838 18.0464C17.3791 18.2416 17.3791 18.5582 17.1838 18.7535L16.1235 19.8138L17.3014 20.9918L20.9925 17.3006L6.61995 2.92805L2.92882 6.61919L4.10643 7.7968L5.16665 6.73658C5.36191 6.54132 5.67849 6.54132 5.87375 6.73658C6.06902 6.93184 6.06902 7.24843 5.87375 7.44369L4.81354 8.50391L5.99154 9.68191L7.75901 7.91444C7.95427 7.71918 8.27085 7.71918 8.46611 7.91444C8.66138 8.1097 8.66138 8.42628 8.46611 8.62155L6.69864 10.389L7.8764 11.5668L8.93667 10.5065C9.13193 10.3112 9.44851 10.3112 9.64377 10.5065C9.83904 10.7018 9.83904 11.0184 9.64377 11.2136L8.58351 12.2739L9.7615 13.4519L11.529 11.6844C11.7243 11.4891 12.0409 11.4891 12.2361 11.6844C12.4314 11.8796 12.4314 12.1962 12.2361 12.3915L10.4686 14.159L11.6464 15.3367L12.7067 14.2764C12.9019 14.0812 13.2185 14.0812 13.4138 14.2764C13.6091 14.4717 13.6091 14.7883 13.4138 14.9835L12.3535 16.0438L13.5315 17.2218L15.299 15.4543C15.4943 15.259 15.8109 15.259 16.0062 15.4543C16.2014 15.6495 16.2014 15.9661 16.0062 16.1614L14.2386 17.929Z\" ecl=\"true\"></path></svg>",
+            "tab_2_title": "Sizing",
+            "tab_2_content": "",
+            "tab_3_page": "",
+            "tab_3_icon": "",
+            "tab_3_title": "",
+            "tab_3_content": "<p>You've got a 77-day guarantee on your first pair of Jambys. You can wear 'em risk-free for 11 whole Sundays. And if you don't love 'em by then, we'll process your return and pay for the shipping, too. (Spoiler: doesn't happen very often!)</p>",
+            "tab_4_page": "",
+            "tab_4_icon": "",
+            "tab_4_title": "",
+            "tab_4_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "afb777d8-797e-4f8d-a4be-87c5b68d6c73",
+        "vendor_and_type",
+        "title",
+        "4c4dd824-7743-4ca0-807e-e7fbf76c9f5c",
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "tabs"
+      ],
+      "settings": {
+        "media_style": "two-column",
+        "sizing_info": "Sizing is unisex.\n<a class=\"link sizing-link\" href=\"#tab-sizing\">More info here.</a>",
+        "minimal_sizes": true,
+        "cart_type": "add_in_modal",
+        "full_width": true,
+        "sticky_product_form": false,
+        "enable_mobile_sticky_cart": false,
+        "show_backorder_text": true,
+        "show_inventory_notice": false,
+        "inventory_notice_threshold": 10,
+        "slide_nav_style": "dots",
+        "show_thumbnails": true,
+        "enable_zoom": true,
+        "enable_video_looping": true,
+        "scroll_to_variant_media": false
+      }
+    },
+    "fd7602f2-bebf-49d8-885f-e0865ea704cc": {
+      "type": "dtc-featured-collection",
+      "settings": {
+        "title": "",
+        "title_alignment": "left",
+        "body_text": "",
+        "collection": "long-jambys",
+        "product_type_collection": false,
+        "related_products_metafield": true,
+        "layout": "rows",
+        "show_vendor": false,
+        "grid": 2,
+        "rows": 1,
+        "grid_mobile": "1",
+        "max_products": 1,
+        "hide_swatches": false,
+        "alternate_bg_color": false,
+        "show_view_all": false,
+        "wave": "none",
+        "color_bg": "#f3f4f9"
+      }
+    },
+    "d822a325-eaac-46e3-8968-d2bad101f5a4": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Complete Your Housefit",
+        "title_alignment": "center",
+        "body_text": "",
+        "collection": "long-jambys",
+        "product_type_collection": false,
+        "related_products_metafield": true,
+        "layout": "rows",
+        "show_vendor": false,
+        "grid": 4,
+        "rows": 2,
+        "grid_mobile": "2",
+        "max_products": 4,
+        "hide_swatches": false,
+        "alternate_bg_color": false,
+        "show_view_all": false,
+        "wave": "none",
+        "color_bg": "#f3f4f9"
+      }
+    },
+    "16452214644e6e10c3": {
+      "type": "press-slider",
+      "blocks": {
+        "4801d142-6eeb-417e-8489-ec73fce37a67": {
+          "type": "select",
+          "settings": {
+            "text": "<p>“These are the softest, stretchiest, comfiest boxer-style shorts you're likely to find anywhere.”</p>",
+            "image": "shopify://shop_images/wired_x110_c01e2476-cc5b-4d48-9f69-b2a40434542f.png",
+            "link": "",
+            "collection": ""
+          }
+        },
+        "4516b1f5-9eb1-46f7-baaf-1c061638595b": {
+          "type": "select",
+          "settings": {
+            "text": "<p>\"Right out of the package, they’re supersoft and somehow feel even better on. Seriously, I could wear them for days.\"</p>",
+            "image": "shopify://shop_images/strategist_x110_10a58d34-f403-413e-9e41-826d1ea3d0a4.png",
+            "link": "",
+            "collection": ""
+          }
+        },
+        "835e5349-3017-47a9-b3bc-6c32cb57b238": {
+          "type": "select",
+          "settings": {
+            "text": "<p>\"I asked why boxers needed pockets. Then I wore a pair. Boxers need pockets. Buy your Jambys today.\"</p>",
+            "image": "shopify://shop_images/Vector.png",
+            "link": "",
+            "collection": ""
+          }
+        },
+        "a3f13984-67dc-49cc-abab-fcf2db9f335f": {
+          "type": "select",
+          "settings": {
+            "text": "<p>“They’re literally the perfect lounge short. And they’re thick enough to wear around people or out to the mailbox. Add to cart.”</p>",
+            "image": "shopify://shop_images/skimm.png",
+            "link": "",
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "4801d142-6eeb-417e-8489-ec73fce37a67",
+        "4516b1f5-9eb1-46f7-baaf-1c061638595b",
+        "835e5349-3017-47a9-b3bc-6c32cb57b238",
+        "a3f13984-67dc-49cc-abab-fcf2db9f335f"
+      ],
+      "settings": {
+        "wave": "both",
+        "color_bg": "#fffefc"
+      }
+    },
+    "e2979492-61c8-4468-a9d0-4c604ab17678": {
+      "type": "icon-text-strip",
+      "disabled": true,
+      "settings": {
+        "icon": "shopify://shop_images/77_days.png",
+        "text": "<p>Comfort Guarantee: Wear your Jambys for 77 days, and get free returns if they're not the softest clothing you own.</p>",
+        "icon_width": "20%",
+        "icon_max_width": "80px",
+        "text_size_mobile": 18,
+        "text_size_desktop": 22,
+        "text_max_width_mobile": 360,
+        "text_max_width_desktop": 420,
+        "background_color": "#fffefc",
+        "text_color": "#36409a",
+        "padding_y_mobile": 32,
+        "padding_y_desktop": 61,
+        "wave": "both"
+      }
+    },
+    "1645216287bcbf6e49": {
+      "type": "reviews-marquee",
+      "blocks": {
+        "465dbb83-e5fc-49ee-a443-3305c7322e34": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Comfiest shorts I own!</p>",
+            "name_1": "Emma D.",
+            "classname_1": "row-span-4 col-span-3 row-start-2 col-start-3",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>So comfy. Just get them</p>",
+            "name_2": "Thomas D.",
+            "classname_2": "row-span-5 col-span-4 row-start-7 col-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-start"
+          }
+        },
+        "0e9005ba-6f85-48ce-8518-96ca4b29bb7f": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": false,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-3 col-span-3 col-start-1 row-start-12",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Customer service rocked</p>",
+            "name_2": "Gabrielle S.",
+            "classname_2": "row-span-4 col-span-4 row-start-14 col-start-4",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "8388f93f-79a4-4bbd-b3af-2fbf33daff5e": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>Best customer service EVER!</p>",
+            "name_1": "Stephanie C.",
+            "classname_1": "row-span-4 col-span-4 col-start-6 row-start-3",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>LIKE RUBBING YOUR FACE IN A CLOUD</p>",
+            "name_2": "Paul H.",
+            "classname_2": "row-span-5 col-span-4 col-start-7 row-start-8",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "37d81ea8-7ccc-4cbd-83b2-75873b01f08d": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>So comfortable, absolutely loving them</p>",
+            "name_1": "Michael L.",
+            "classname_1": "row-span-5 col-span-4 row-start-15 col-start-8",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Gods greatest gift to earth and man kind</p>",
+            "name_2": "Kevin F.",
+            "classname_2": "row-span-4 col-span-5 row-start-1 col-start-10",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "51bbad9e-caec-46be-aaf8-f73859b3e07c": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I may never wear any other pants ever again.</p>",
+            "name_1": "Brianna W.",
+            "classname_1": "row-span-5 col-span-4 row-start-6 col-start-11",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": true,
+            "points_right_2": false,
+            "title_2": "",
+            "name_2": "",
+            "classname_2": "row-span-4 col-span-2 row-start-12 col-start-12",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "e9d5d270-a418-471a-a456-270ea5f49231": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Even comfier than you’d think they’d be</p>",
+            "name_1": "Kirby Z.",
+            "classname_1": "row-span-4 col-span-5 row-start-16 col-start-13",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>Perfect for all genders!</p>",
+            "name_2": "Susan B.",
+            "classname_2": "row-span-4 col-span-4 row-start-2 col-start-15",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "00aa470c-7bef-49ab-8572-e649466af352": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I didn't believe the hype could be real. You forget you're wearing clothes!</p>",
+            "name_1": "Samantha R.",
+            "classname_1": "row-span-5 col-span-5 col-start-15 row-start-9",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Drunk ordered these for my boyfriend and he loves em!</p>",
+            "name_2": "Lindsey Q.",
+            "classname_2": "row-span-6 col-span-5 col-start-19 row-start-3",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "4adf3911-cff1-48a3-83ff-9ad20320d47f": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": false,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-4 col-span-3 row-start-16 col-start-18",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>The perfect lounge shorts.</p>",
+            "name_2": "Timothy J.",
+            "classname_2": "row-span-4 col-span-4 row-start-11 col-start-20",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "43366c3e-442d-42e5-ad2f-d990cdbd1c54": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>These are a complete revelation.</p>",
+            "name_1": "Nicolas C.",
+            "classname_1": "row-span-4 col-span-5 row-start-16 col-start-22",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>I think the material might literally be the softest fabric I've ever felt.</p>",
+            "name_2": "Emma",
+            "classname_2": "row-span-5 col-span-5 col-start-24 row-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "8fd4fd91-d60f-4758-b8a1-6822122dca2a": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": true,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-4 col-span-3 row-start-9 col-start-24",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>WFH FTW</p>",
+            "name_2": "Nathan",
+            "classname_2": "row-span-3 col-span-3 row-start-17 col-start-27",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "b92dd2bf-a2a6-44f8-a950-d2c2d3b156f4": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I'm obsessed with these - and so is my girlfriend</p>",
+            "name_1": "Jacob",
+            "classname_1": "row-span-5 col-span-5 row-start-12 col-start-26 mb-2",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>My boys have not taken these off since they opened them!</p>",
+            "name_2": "Scott S.",
+            "classname_2": "row-span-6 col-span-5 col-start-29 ml-5 row-start-1",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "f5b564e6-a2c8-4400-827e-eec6bcf20cba": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Like being continuously hugged by an angel. Cute too.</p>",
+            "name_1": "Susanna P.",
+            "classname_1": "row-span-5 col-span-5 row-start-8 col-start-32 ml-4",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>Most comfortable shorts I've ever worn.</p>",
+            "name_2": "Julia C.",
+            "classname_2": "row-span-5 col-span-5 row-start-7 col-start-27",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "e783667f-0769-4cfc-b370-137d7229e839": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Fast shipping. Affordable pricing. Unmatched comfort.</p>",
+            "name_1": "Kevin F.",
+            "classname_1": "row-span-5 col-span-5 row-start-14 col-start-31",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>These are the best loungewear / sleep shorts out there!</p>",
+            "name_2": "Stephen W.",
+            "classname_2": "row-span-5 col-span-5 mr-6 col-start-34 row-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "17192308-2f07-4fac-a799-f8273a6fb0b7": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>SOOO SOFT!!</p>",
+            "name_1": "Sarah M.",
+            "classname_1": "row-span-4 col-span-3 col-start-36 row-start-16",
+            "bubble_classname_1": "",
+            "attributes_1": "style=\"width: 180px;\"",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": true,
+            "points_right_2": true,
+            "title_2": "<p>this is</p>",
+            "name_2": "",
+            "classname_2": "col-span-4 row-span-4",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-start",
+            "justified_2": "justify-self-start"
+          }
+        }
+      },
+      "block_order": [
+        "465dbb83-e5fc-49ee-a443-3305c7322e34",
+        "0e9005ba-6f85-48ce-8518-96ca4b29bb7f",
+        "8388f93f-79a4-4bbd-b3af-2fbf33daff5e",
+        "37d81ea8-7ccc-4cbd-83b2-75873b01f08d",
+        "51bbad9e-caec-46be-aaf8-f73859b3e07c",
+        "e9d5d270-a418-471a-a456-270ea5f49231",
+        "00aa470c-7bef-49ab-8572-e649466af352",
+        "4adf3911-cff1-48a3-83ff-9ad20320d47f",
+        "43366c3e-442d-42e5-ad2f-d990cdbd1c54",
+        "8fd4fd91-d60f-4758-b8a1-6822122dca2a",
+        "b92dd2bf-a2a6-44f8-a950-d2c2d3b156f4",
+        "f5b564e6-a2c8-4400-827e-eec6bcf20cba",
+        "e783667f-0769-4cfc-b370-137d7229e839",
+        "17192308-2f07-4fac-a799-f8273a6fb0b7"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "<p>People Love Jambys</p>",
+        "reviews_badge_link_text": "",
+        "wave": "both",
+        "color_bg": "#ecebff"
+      }
+    },
+    "16454156039e48f72b": {
+      "type": "product-diagram",
+      "settings": {
+        "wave": "none",
+        "color_bg": "#f3f4f9",
+        "mobile_color_bg": "#f3f4f9"
+      }
+    },
+    "16452356058189ebb7": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "1645235605b854c6c6-0": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "video": "",
+            "image_width": 120,
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "1645235605b854c6c6-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "video": "",
+            "image_width": 120,
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        },
+        "1645235605b854c6c6-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "video": "",
+            "image_width": 120,
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1645235605b854c6c6-0",
+        "1645235605b854c6c6-1",
+        "1645235605b854c6c6-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "text_alignment": "center",
+        "button_style": "primary",
+        "media_shape": "natural",
+        "alternate_bg_color": false,
+        "full_width": false,
+        "wave": "bottom",
+        "color_bg": "#fffefc",
+        "font_size": 18,
+        "font_weight": 600
+      }
+    },
+    "1645216836c2399369": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Complete Your Housefit",
+        "title_alignment": "center",
+        "body_text": "",
+        "collection": "long-jambys",
+        "product_type_collection": false,
+        "related_products_metafield": false,
+        "layout": "rows",
+        "show_vendor": false,
+        "grid": 3,
+        "rows": 1,
+        "grid_mobile": "2",
+        "max_products": 100,
+        "hide_swatches": false,
+        "alternate_bg_color": false,
+        "show_view_all": false,
+        "wave": "none",
+        "color_bg": "#f3f4f9"
+      }
+    },
+    "164521688270b6ec0f": {
+      "type": "apps",
+      "blocks": {
+        "339e571a-be0f-4544-9f8f-71e288aba1dd": {
+          "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "339e571a-be0f-4544-9f8f-71e288aba1dd"
+      ],
+      "settings": {
+        "skip_container": false
+      }
+    },
+    "1645216863f651ccbb": {
+      "type": "accordions",
+      "blocks": {
+        "1645216863c78e8865-2": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "How do I wash and care for my Jambys?",
+            "text": "<p>Care instructions: cold wash, dry on low heat. For bonus points, make sure the Jambys aren't inside out before placing in the laundry to avoid other garments catching on the French Terry loops inside.</p>",
+            "open": false
+          }
+        },
+        "1645216863c78e8865-0": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Can I return my Jambys?",
+            "text": "<p>You can access our sizing portal here: <a href=\"https://jambys.happyreturns.com/\" target=\"_blank\" title=\"https://jambys.happyreturns.com/\">Returns Portal</a>. Instead of a standard 30-day returns window where you can't wash or wear the clothing, your Jambys order has a 77 day, no-questions-asked guarantee.</p><p>It's hard to feel how unique a fabric is over the internet, so we make it as easy as possible to see for yourself, risk free. So go ahead. Spend 77 days feeling them for yourself. If they aren't after 11 super-relaxing Sundays, they're not for you, we'll even pay for your return shipping.</p>",
+            "open": false
+          }
+        },
+        "1645216863c78e8865-1": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Where do you ship to?",
+            "text": "<p>We currently ship to all 50 states, and our goal is to sell Jambys all over the world. If you're not in the states, email us (<a href=\"mailto:hello@jambys.com\" target=\"_blank\">hello@jambys.com</a>) so we know where to go next. And you'll be like, the first person in that country with Jambys.</p>",
+            "open": false
+          }
+        },
+        "b1e1fb8c-d9d1-4afc-842c-c4fb835ffa2c": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Where are Jambys made?",
+            "text": "<p>Jambys are made in China and designed in Brooklyn and Scotland.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "1645216863c78e8865-2",
+        "1645216863c78e8865-0",
+        "1645216863c78e8865-1",
+        "b1e1fb8c-d9d1-4afc-842c-c4fb835ffa2c"
+      ],
+      "settings": {
+        "title": "FAQ",
+        "title_alignment": "center",
+        "alternate_bg_color": false,
+        "view_all_page": "",
+        "wave": "none",
+        "color_bg": "#f3f4f9"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "show_product_recommendations": true,
+        "title": "You may also like",
+        "hide_swatches": false,
+        "show_vendor": false,
+        "grid": 4
+      }
+    },
+    "1648567536a943befb": {
+      "type": "custom-liquid",
+      "settings": {
+        "no_margins": false,
+        "custom_liquid": "<script type=\"text/javascript\">\n  var _learnq = _learnq || [];\n  var item = {\n    Name: {{ product.title|json }},\n    ProductID: {{ product.id|json }},\n    Categories: {{ product.collections|map:'title'|json }},\n    ImageURL: \"https:{{ product.featured_image.src|img_url:'grande' }}\",\n    URL: \"{{ shop.secure_url }}{{ product.url }}\",\n    Brand: {{ product.vendor|json }},\n    Price: {{ product.price|money|json }},\n    CompareAtPrice: {{ product.compare_at_price_max|money|json }}\n  };\n  _learnq.push(['track', 'Viewed Product', item]);\n  _learnq.push(['trackViewedItem', {\n    Title: item.Name,\n    ItemId: item.ProductID,\n    Categories: item.Categories,\n    ImageUrl: item.ImageURL,\n    Url: item.URL,\n    Metadata: {\n      Brand: item.Brand,\n      Price: item.Price,\n      CompareAtPrice: item.CompareAtPrice\n    }\n  }]);\n</script>"
+      }
+    },
+    "1648567523d42bb851": {
+      "type": "custom-liquid",
+      "settings": {
+        "no_margins": false,
+        "custom_liquid": "<script type=\"text/javascript\">\nvar _learnq = _learnq || [];\n  var classname = document.getElementsByClassName(\"button hover-grow\");\nvar addToCart = function() {\n_learnq.push(['track', 'Added to Cart', item]);\n}; for (var i = 0; i < classname.length; i++) {\nclassname[i].addEventListener('click', addToCart, false);\n}\n</script>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "fd7602f2-bebf-49d8-885f-e0865ea704cc",
+    "d822a325-eaac-46e3-8968-d2bad101f5a4",
+    "16452214644e6e10c3",
+    "e2979492-61c8-4468-a9d0-4c604ab17678",
+    "1645216287bcbf6e49",
+    "16454156039e48f72b",
+    "16452356058189ebb7",
+    "1645216836c2399369",
+    "164521688270b6ec0f",
+    "1645216863f651ccbb",
+    "product-recommendations",
+    "1648567536a943befb",
+    "1648567523d42bb851"
+  ]
+}

@@ -1,0 +1,131 @@
+<style>
+    .dtc-checkout-reviews__mobile{
+        margin-left: -1em;
+        margin-right: -1em;
+        background: #F3F4FA;
+        padding: 24px 16px;
+        margin-top: 24px;
+    }
+    .dtc-checkout-reviews__title{
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        font-family: 'sofia-pro', sans-serif;
+        color: #36409A!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+    .dtc-checkout-reviews__title span {
+        height: 2px;
+        background-color: #BDBAF6;
+        flex: 1;
+    }
+    .dtc-checkout-reviews__container{
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .dtc-checkout-review{
+        box-shadow: 0px 0px 0px 4px #ECEBFF inset;
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        background-color: white;
+        font-family: 'sofia-pro', sans-serif;
+    }
+    .dtc-checkout-review__client{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .dtc-checkout-review__client h4, .dtc-checkout-review__title{
+        font-size: 14px;
+        font-weight: 600;
+        color: #36409A;
+    }
+    .dtc-checkout-review__client span{
+        color: #5B67D6;
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        font-family: 'sofia-pro', sans-serif;
+    }
+    .dtc-checkout-review__text{
+        font-size: 14px;
+        font-weight: 400;
+        color: #5B67D6;
+        opacity: .8;
+    }
+</style>
+
+<div class="dtc-checkout-reviews">
+    <h3 class="dtc-checkout-reviews__title">
+        <span></span>
+            OVER 8,000 5-STAR REVIEWS
+        <span></span>
+    </h3>
+    <div class="dtc-checkout-reviews__container">
+        <div class="dtc-checkout-review">
+            <div class="dtc-checkout-review__client">
+                <h4>Greg W.</h4>
+                <span>
+                    <img src="{{ 'check_circle.svg' |  asset_img_url }}"/>
+                    Verified Reviewer
+                </span>
+            </div>
+            <div class="dtc-checkout-review__stars">
+                <img src="{{ 'review-stars.svg' | asset_img_url }}"/>
+            </div>
+            <div class="dtc-checkout-review__title">
+                Buy these, you won’t regret it.
+            </div>
+            <div class="dtc-checkout-review__text">
+                Purchased a pair for the wife for Christmas. She absolutely loves them. They are unfathomably soft.
+            </div>
+        </div>
+        <div class="dtc-checkout-review">
+            <div class="dtc-checkout-review__client">
+                <h4>Layla G.</h4>
+                <span>
+                    <img src="{{ 'check_circle.svg' |  asset_img_url }}"/>
+                    Verified Reviewer
+                </span>
+            </div>
+            <div class="dtc-checkout-review__stars">
+                <img src="{{ 'review-stars.svg' | asset_img_url }}"/>
+            </div>
+            <div class="dtc-checkout-review__title">
+                Hands down...THE BEST!
+            </div>
+            <div class="dtc-checkout-review__text">
+                The best EVER!!! Loved my husbands so much, I bought a couple of pairs for myself!
+            </div>
+        </div>
+        <div class="dtc-checkout-review">
+            <div class="dtc-checkout-review__client">
+                <h4>Jessica F.</h4>
+                <span>
+                    <img src="{{ 'check_circle.svg' |  asset_img_url }}"/>
+                    Verified Reviewer
+                </span>
+            </div>
+            <div class="dtc-checkout-review__stars">
+                <img src="{{ 'review-stars.svg' | asset_img_url }}"/>
+            </div>
+            <div class="dtc-checkout-review__title">
+                Deserves the hype!
+            </div>
+            <div class="dtc-checkout-review__text">
+                Real Simple magazine listed Jambys as the best pajamas in their 2022 sleep awards. I needed new pajamas, so I decided to give them a try. Since receiving them I have ordered another pair for myself and one for my husband. They are so very soft and comfortable.
+            </div>
+        </div>
+    </div>
+</div>

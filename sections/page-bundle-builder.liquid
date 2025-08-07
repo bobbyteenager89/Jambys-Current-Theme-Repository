@@ -1,0 +1,921 @@
+{{ 'lity.css' | asset_url | stylesheet_tag }}
+{{ 'bundle-builder.css' | asset_url | stylesheet_tag }}
+
+<section class="bundle-builder product-area">
+
+  {% comment %} START {% endcomment %}
+  <div class="step-start js-start bundle-builder-step">
+      <div class="bundle-builder-picture js-bundle-builder-picture desktop-only"  style="background-color:{{section.settings.start_bg_color}};">
+      <div class="bundle-single-picture">
+        <div class="bundle-builder-savings">
+          <div class="savings-layout">
+            <span class="discount-value">{{section.settings.discount_value}}</span>
+            <span class="discount-label">{{section.settings.discount_label}}</span>
+          </div>
+        </div>
+        <img src="{{section.settings.start_image | img_url: 'master'}}" alt="{{section.settings.start_image.alt}}" class="desktop-only" />
+      </div>
+    </div>
+    <div class="bundle-builder-details step-start js-start">
+      <div class="bundle-start-title bundle-title">
+        <h1>{{section.settings.start_title}}</h1>
+        <div class="start-text">{{section.settings.start_text}}</div>
+      </div>
+      <div class="bundle-start-info">
+        <div class="start-steps">
+          <div class="start-step">
+            <div class="step-item">
+              <div class="step-details">
+                <div class="pills">
+                  {% if section.settings.show_must_popular_1 %}
+                    <div class="pill red whitespace-no-wrap">Most popular</div>
+                  {% endif %}
+                  <div class="pill yellow whitespace-no-wrap">ONLY ${{section.settings.pack_individual_price_1}} A PAIR</div>
+                </div>
+                <h2 class="h2">{{section.settings.pack_size_1}} Pack</h2>
+                <div class="pack-price">
+                  <span class="old-price" style="">${{section.settings.pack_old_price_1}}</span>
+                  <span class="new-price">${{section.settings.pack_new_price_1}}</span>
+                </div>
+              </div>
+              <p class="js-build-bundle build-bundle-link" data-picked-quantity="{{section.settings.pack_size_1}}">
+                <span class="desktop-only-flex">
+                  {{section.settings.start_txt_desktop_1}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+                <span class="mobile-only-flex whitespace-no-wrap">
+                  {{section.settings.start_txt_mobile_1}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+              </p>
+            </div>
+            <div class="step-item">
+              <div class="step-details">
+                <div class="pills">
+                  {% if section.settings.show_must_popular_2 %}
+                    <div class="pill red whitespace-no-wrap">Most popular</div>
+                  {% endif %}
+                  <div class="pill yellow whitespace-no-wrap">ONLY ${{section.settings.pack_individual_price_2}} A PAIR</div>
+                </div>
+                <h2 class="h2">{{section.settings.pack_size_2}} Pack</h2>
+                <div class="pack-price">
+                  <span class="old-price" style="">${{section.settings.pack_old_price_2}}</span>
+                  <span class="new-price">${{section.settings.pack_new_price_2}}</span>
+                </div>
+              </div>
+              <p class="js-build-bundle build-bundle-link" data-picked-quantity="{{section.settings.pack_size_2}}">
+                <span class="desktop-only-flex">
+                  {{section.settings.start_txt_desktop_2}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+                <span class="mobile-only-flex whitespace-no-wrap">
+                  {{section.settings.start_txt_mobile_2}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+              </p>
+            </div>
+            <div class="step-item">
+              <div class="step-details">
+                <div class="pills">
+                  {% if section.settings.show_must_popular_3 %}
+                    <div class="pill red whitespace-no-wrap">Most popular</div>
+                  {% endif %}
+                  <div class="pill yellow whitespace-no-wrap">ONLY ${{section.settings.pack_individual_price_3}} A PAIR</div>
+                </div>
+                <h2 class="h2">{{section.settings.pack_size_3}} Pack</h2>
+                <div class="pack-price">
+                  <span class="old-price" style="">${{section.settings.pack_old_price_3}}</span>
+                  <span class="new-price">${{section.settings.pack_new_price_3}}</span>
+                </div>
+              </div>
+              <p class="js-build-bundle build-bundle-link" data-picked-quantity="{{section.settings.pack_size_3}}">
+                <span class="desktop-only-flex">
+                  {{section.settings.start_txt_desktop_3}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+                <span class="mobile-only-flex whitespace-no-wrap">
+                  {{section.settings.start_txt_mobile_3}}
+                  <i class="bundle-back bundle-forward" ecl="true"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+{% comment %} CHOOSE PAIR {% endcomment %}
+  <div class="step-choose-pair js-choose-pair bundle-builder-step">
+    <div class="bundle-builder-picture js-bundle-builder-picture">
+      <div class="mobile-only mobile-breadcrumb">
+        <div class="back js-back-to-start"></div>
+        <div class="mobile-breadcrumb-text js-mobile-breadcrumb-text">Choose <span class="js-bundle-qty-title">X</span> Pair</div>
+        <div class="close"></div>
+      </div>
+      <div class="bundle-gallery">
+        {% assign feature_product_handle = section.settings.product %}
+        {% assign product = all_products[feature_product_handle] %}
+        {% assign current_variant = product.selected_or_first_available_variant %}
+        <div class="content-gallery bottom">
+          {% render 'bundle-images-slider', product: product %}
+        </div>
+        <div class="bundle-gallery-preview">
+          <div class="bundle-item-filled">
+            <img
+              class="bundle-item-filled__img"
+              src=""
+            />
+            <img class="bundle-item-closed" src="{{ 'icon-close-black.svg' | file_url }}" />
+          </div>
+          <div class="bundle-item-empty"></div>
+        </div>
+      </div>
+    </div>
+    <div class="bundle-builder-details js-bundle-builder-details">
+
+      <div class="bundle-single-details">
+        <div class="bundle-tops-title bundle-title">
+          <div class="title-wrap">
+            <i class="js-bundle-back js-back-to-start bundle-back"></i>
+              <h2>Choose Pair <span class="js-bundle-qty-title">X</span></h2>
+          </div>
+
+        </div>
+      </div>
+      <div class="bundle-content bundle-form bundle-form-top js-form-top">
+        {% include 'bundle-pair' %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %} REVIEW {% endcomment %}
+  <div class="step-review js-review  bundle-builder-step">
+     <div class="review-bundle">
+
+        <div class="bundle-review-title bundle-title text-center">
+          <h1>{{section.settings.review_title}}</h1>
+          <div class="review-subtitle">{{section.settings.review_subtitle}}</div>
+        </div>
+
+        <div class="bundle-review-info">
+          <div class="review-item review-item-bottom js-review-item-bottom">
+            <div class="review-item-details">
+              <div class="review-item-picture bottom">
+                <img src="{{ 'bundle-mint-temp.png' | file_url}}" alt="Bottom Selection" />
+              </div>
+              <div class="review-item-specific">
+                <h3 class="js-bottom-title bottom-title">Mint/Navy</h3>
+
+                <span class="review-size js-review-bottom-size">Size: M</span>
+              </div>
+            </div>
+            <div class="review-item-change js-review-bottom-change">Reselect</div>
+          </div>
+        </div>
+        <div class="add-to-cart {% if section.settings.mobile_sticky_add %}sticky{% endif %}">
+          <button class="button js-add-to-cart mx-auto">
+            <span class="atc">Add to Cart</span>
+            <span>
+              <span class="old-price js-old-price">$125</span>
+              <span class="new-price js-new-price">$105</span>
+            </span>
+          </button>
+          <div class="savings js-savings">
+            Amazing!&nbsp;You Saved&nbsp;<span id="js-total-savings">$20</span>!
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // document.querySelector('.js-builder-color-swatch').click();
+  let bundle_links = document.querySelectorAll('.js-build-bundle.build-bundle-link');
+  for(let i = 0; i < bundle_links.length; i++){
+    bundle_links[i].addEventListener("click", () => {
+      document.querySelector('.js-builder-color-swatch').click();
+    });
+  }
+
+  if(window.innerWidth < 768){
+
+    init_experiment("JMBY-16", "v0.01", "v1");
+    let jmby16_styles = ``;
+
+    document.body.insertAdjacentHTML("afterbegin", jmby16_styles);
+
+    waitForElement('.bundle-builder-details.step-start.js-start').then(() => {
+
+      // step 1
+
+      let start_btns = document.querySelectorAll('.mobile-only-flex.whitespace-no-wrap.underline');
+      for (let i = 0; i < start_btns.length; i++) {
+        start_btns[i].classList.value = "mobile-only-flex whitespace-no-wrap button";
+        start_btns[i].querySelector('i').remove();
+        start_btns[i].insertAdjacentHTML("beforeend", `&rarr;`);
+        start_btns[i].addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
+      }
+
+      waitForElement(".step-item .pill.red").then(pill => {
+        pill.parentNode.parentNode.parentNode.querySelector(".build-bundle-link .mobile-only-flex").insertAdjacentHTML("afterend", `
+          <div class="pill red whitespace-no-wrap" style="display: inline-block;">Most popular</div>
+        `);
+        pill.remove();
+      }).catch();
+
+    }).catch();
+
+    waitForElement('.step-choose-pair.js-choose-pair').then(step_2 => {
+
+      // step 2
+
+      let bundle_gallery = step_2.querySelector('.bundle-gallery');
+      let bundle_title = step_2.querySelector('h1');
+      let bundle_element = step_2.querySelector('.product');
+      let bundle_color = step_2.querySelector('.product-selections .product-colors');
+      let bundle_size = step_2.querySelector('.product-selections .product-size');
+
+      bundle_title.style.textAlign = "center";
+
+      bundle_gallery.insertAdjacentElement("beforebegin", bundle_title);
+      bundle_element.insertAdjacentElement("afterbegin", bundle_size);
+      bundle_element.insertAdjacentElement("afterbegin", bundle_color);
+
+    }).catch();
+
+    waitForElement('.step-review.js-review').then(step_3 => {
+
+      //step 3
+
+      step_3.querySelector('.savings.js-savings').insertAdjacentHTML("afterend", `
+        <div class="savings js-savings" style="padding-top: 0;">Enjoy the free shipping :)</div>
+      `);
+
+    }).catch();
+
+  }
+
+});
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ 'lity.js' | asset_url }}" async="true"></script>
+<script>
+  window.colorSwatchCollection = {{ color_collection | json }};
+</script>
+<script src="{{ 'outfit-builder.js' | asset_url }}" defer="defer"></script>
+
+
+<script>
+  window.selected_items = [];
+
+  var itemTemplate = `
+    <div class="review-item review-item-bottom js-review-item-bottom">
+      <div class="review-item-details">
+        <div class="review-item-picture bottom">
+          <img src="[{image}]" alt="[{image-alt}]" />
+        </div>
+        <div class="review-item-specific">
+          <h3 class="js-bottom-title bottom-title">[{title}]</h3>
+          <span class="review-size js-review-bottom-size">Size: [{size}]</span>
+        </div>
+      </div>
+      <div class="review-item-change js-review-bottom-change underline" data-index="[{index}]" data-id="[{id}]">Reselect</div>
+    </div>`;
+
+  var previewItemTemplate = `
+    <div class="bundle-item-filled" data-variant-id="[{id}]">
+      <img class="bundle-item-filled__img" src="[{image}]" />
+      <img class="bundle-item-closed js-bundle-item-closed" data-index="[{index}]" src="{{ 'icon-close-black.svg' | file_url }}" />
+    </div>`;
+
+  var previewItemEmptyTemplate = `<div class="bundle-item-empty"></div>`;
+
+  function calculateSavings(quantity) {
+    var packOne = {{section.settings.pack_size_1}};
+    var packTwo = {{section.settings.pack_size_2}};
+    var packThree = {{section.settings.pack_size_3}};
+    switch(quantity) {
+      case packOne:
+        return {
+          price : {{section.settings.pack_old_price_1 | times: 100}},
+          discount: {{section.settings.pack_new_price_1 | times: 100}},
+          individual: {{section.settings.pack_individual_price_1 | times: 100}},
+        }
+      case packTwo:
+        return {
+          price : {{section.settings.pack_old_price_2 | times: 100}},
+          discount: {{section.settings.pack_new_price_2 | times: 100}},
+          individual: {{section.settings.pack_individual_price_2 | times: 100}}
+        }
+      case packThree:
+        return {
+          price : {{section.settings.pack_old_price_3 | times: 100}},
+          discount: {{section.settings.pack_new_price_3 | times: 100}},
+          individual: {{section.settings.pack_individual_price_3 | times: 100}},
+        }
+    }
+  }
+
+  function renderItemReview() {
+    var template = "";
+    var total = 0;
+    selected_items.forEach(function({ id, size, color, img, price }, index) {
+      var item = itemTemplate;
+      item = item.replace("[{image}]", img);
+      item = item.replace("[{size}]", size);
+      item = item.replace("[{index}]", index);
+      item = item.replace("[{title}]", color);
+      item = item.replace("[{id}]", id);
+      template += item;
+      total += price;
+    });
+
+    $(".bundle-review-info").html(template);
+    var campaignPrices = calculateSavings(selected_items.length);
+    var $addToCart = $(".js-add-to-cart");
+    var $oldPrice = $addToCart.find(".js-old-price");
+    var $newPrice = $addToCart.find(".js-new-price");
+
+    $oldPrice.html(window.formatMoney(campaignPrices.price, {% raw %}"${{amount_no_decimals}}"{% endraw %}));
+    $newPrice.html(window.formatMoney(campaignPrices.discount));
+
+    $("#js-total-savings").text(window.formatMoney(campaignPrices.price - campaignPrices.discount));
+  }
+
+  function renderMobileTitle(pickedQty, itemTotal) {
+    var numeric = [
+      "First",
+      "Second",
+      "Third",
+      "Fourth",
+      "Fifth",
+      "Sixth",
+      "Seventh",
+      "Eighth",
+      "Ninth",
+      "Tenth"
+    ];
+
+    // var totalItem = itemTotal ? itemTotal : 1;
+    var totalItem = itemTotal;
+
+    var initTitle = 'Choose ' + numeric[itemTotal] + ' Pair (' + totalItem + '/'+ pickedQty + ')';
+    var $breadCrumb = $(".js-mobile-breadcrumb-text");
+    var finalTitle = 'Choose Last Pair (' + totalItem + '/'+ pickedQty + ')';
+    var textTitle = itemTotal >= (pickedQty - 1) ? finalTitle : initTitle;
+    $breadCrumb.text(textTitle);
+    $(".js-bundle-qty-title").text(itemTotal + 1);
+  }
+
+  function renderItemPreview(pickedQty) {
+    var totalItems = pickedQty || +$(".js-bundle-qty").text();
+    var $galleryContainer =  $(".bundle-gallery-preview");
+
+    var previewItemMockup = "";
+
+    window.selected_items.forEach(function({ id, img }, index) {
+      var item = previewItemTemplate;
+      item = item.replace("[{image}]", img);
+      item = item.replace("[{id}]", id);
+      item = item.replace("[{index}]", index);
+      previewItemMockup += item;
+    });
+
+    var previewEmptyMockup = previewItemEmptyTemplate.repeat(totalItems - window.selected_items.length);
+
+    $galleryContainer.html(previewItemMockup + previewEmptyMockup);
+  }
+
+  $(document).ready(function() {
+    $(".js-start").show();
+    $(".js-choose-pair").hide();
+    $(".js-review").hide();
+
+    $(".js-back-to-start").on("click", function() {
+      $(".js-start").show();
+      $(".js-choose-pair").hide();
+      $(".js-review").hide();
+    });
+
+    $(".js-build-bundle").on("click", function() {
+      var $this = $(this);
+      var pickedQty = $this.data("picked-quantity");
+
+      $(".js-start").hide();
+      $(".js-choose-pair").show();
+      $(".js-review").hide();
+
+      $(".js-bundle-qty").text(pickedQty);
+      $(".js-builder-color-swatch.is-selected").click();
+
+      if(window.selected_items.length > pickedQty) {
+        window.selected_items.length = pickedQty - 1;
+        $(".js-current-qty").text(pickedQty - 1);
+      }
+
+      renderItemPreview(pickedQty);
+      renderMobileTitle(pickedQty, window.selected_items.length);
+      $(".js-builder-color-swatch[data-js-product-selected-first]").click()
+    });
+
+    $(".js-builder-color-swatch").on("click", function(e) {
+      e.preventDefault();
+      //window.scrollTo({top: 0, behavior: 'smooth'});
+      var $this = $(this);
+      var productHandle = $this.data("js-product-handle");
+      var productId = $this.data("js-product-id");
+      var productColor = $this.data("js-product-color");
+      var $parentContainer = $this.parents(".builder-panel");
+      var galleryType = $parentContainer.data("apparel-type");
+      var $grandParentContainer = $this.parents(".bundle-builder-step");
+      var $colorContainer = $this.parents(".product-colors");
+      var $toChooseBottom = $(".js-to-choose-bottom");
+      var $textColor = $parentContainer.find(".js-option-color-txt");
+
+      // Getting mockup and variant data
+      var identifier = "#" + productHandle + "-" + productId;
+      var sizeMockup = $(identifier + "-size-mockup").html();
+      var galleryMockup = $(identifier + "-gallery-mockup").html();
+      var variantDetails = JSON.parse($(identifier + "-variants-details").html());
+
+      // Color swatches visual changes
+      var $selectedColor = $parentContainer.find(".is-selected");
+
+      $selectedColor.removeClass("is-selected");
+      $this.addClass("is-selected");
+
+      $textColor.text(productColor);
+
+      // Size swatches replace with new sets of sizes
+      var $selectedSizeSwatch = $parentContainer.find('[type="radio"]:checked');
+      var sizeSwatchContainer = $parentContainer.find(".product-options-wrapper.rel");
+      var previousSelectedSize = $selectedSizeSwatch.val();
+
+      sizeSwatchContainer.html(sizeMockup);
+      $parentContainer.find('[type="radio"][value="' + previousSelectedSize + '"]').click();
+
+      $(".content-gallery." + galleryType).html(galleryMockup);
+      window.Carousel($grandParentContainer.get(0));
+      $toChooseBottom.prop("disabled", false);
+    });
+
+    $(".js-to-choose-bottom").on("click", function() {
+      var pickedQuantity = $(".js-bundle-qty").text();
+
+      var $this = $(this);
+      var resetText = $('.choose-bottom-txt').text();
+      var $parentContainer = $this.parents(".builder-panel");
+
+      var $selectedColorSwatch = $parentContainer.find(".is-selected");
+      var $selectedSizeSwatch = $parentContainer.find('[type="radio"]:checked');
+
+      var productHandle = $selectedColorSwatch.data("js-product-handle");
+      var productId = $selectedColorSwatch.data("js-product-id");
+      var productTitle = $selectedColorSwatch.data("js-product-title").split(" ");
+      var productType = $selectedColorSwatch.data("js-product-type");
+      var productFeatImg = $selectedColorSwatch.data("js-product-feat-img");
+
+      var identifier = "#" + productHandle + "-" + productId;
+      var variantDetails = JSON.parse($(identifier + "-variants-details").html());
+
+      var selectedSize = $selectedSizeSwatch.val();
+
+      if(productTitle.includes("New")) {
+        productTitle.pop();
+        productTitle = productTitle.join(" ");
+      }
+      else {
+        productTitle = productTitle.shift()
+      }
+
+      window.selected_items.push({
+        id: variantDetails[selectedSize].variantId,
+        size: selectedSize,
+        color: productTitle,
+        img: productFeatImg,
+        type: productType,
+        price: variantDetails[selectedSize].price,
+      });
+
+      $(".js-current-qty").text(window.selected_items.length);
+
+      if(window.selected_items.length == pickedQuantity) {
+        $(".choose-bottom-txt").text("Complete Selection");
+      }
+
+      renderItemPreview(pickedQuantity);
+      renderMobileTitle(pickedQuantity, window.selected_items.length);
+
+
+      if(window.selected_items.length == pickedQuantity) {
+        $(".js-start").hide();
+        $(".js-choose-pair").hide();
+        $(".js-review").show();
+        renderItemReview();
+        return;
+      }
+      $this.css('background-color', '#349a47');
+      $this.css('border-color', '#349a47');
+      $(".choose-bottom-txt").text("Selection added");
+      setTimeout(function(){
+        window.scrollTo({top: 0, behavior: 'smooth'});
+		$this.removeAttr("style");
+        $(".choose-bottom-txt").text(resetText);
+      }, 1000);
+	  
+    });
+
+    $(document).on("click", ".js-review-bottom-change, .js-bundle-item-closed", function() {
+      var $this = $(this);
+      var index = $this.data("index");
+      selected_items.splice(index, 1);
+      $(".js-start").hide();
+      $(".js-choose-pair").show();
+      $(".js-review").hide();
+
+      $(".js-current-qty").text(window.selected_items.length);
+      $(".choose-bottom-txt").text("Add to Selection");
+      renderItemPreview();
+
+      var pickedQuantity = $(".js-bundle-qty").text();
+      renderMobileTitle(pickedQuantity, window.selected_items.length);
+    });
+
+    $(".js-add-to-cart").on("click", function() {
+
+      var combinedItems = window.selected_items.reduce(function(allItems, item) {
+        var id = item.id
+        if(id in allItems) {
+          allItems[id]++;
+        }
+        else {
+          allItems[id] = 1;
+        }
+        return allItems
+      }, {});
+
+      var items = [];
+
+      for (const id in combinedItems) {
+        items.push({
+          quantity: combinedItems[id],
+          id: id,
+          properties: {
+            "_bundle": "Bundle Builder"
+          }
+        })
+      }
+
+      $.post('/cart/add.js', {
+          items: items
+        })
+        .done(function(data) {
+          console.log("Success: ", data);
+          toggleCart();
+
+          getCart().then(response => {
+            document.querySelectorAll('.cart-count').forEach(element => element.innerHTML = response.item_count);
+            document.querySelectorAll('[data-toggle-cart] .text-link').forEach(element => element.innerHTML = response.item_count);
+          });
+
+        })
+        .catch(function(err) {
+          console.log("Error: ", err);
+        });
+    });
+
+  });
+
+</script>
+
+{% schema %}
+{
+   "name":"Bundle Builder",
+   "settings":[
+      {
+         "type":"header",
+         "content":"Global"
+      },
+      {
+         "type":"textarea",
+         "id":"guarantee",
+         "label":"Guarantee",
+         "default":"Jambys has a 77-day no-question-guarantee on your first product."
+      },
+      {
+         "type":"text",
+         "id":"discount_value",
+         "label":"Discount Value"
+      },
+      {
+         "type":"text",
+         "id":"discount_label",
+         "label":"Discount Label"
+      },
+      {
+         "type":"header",
+         "content":"Start"
+      },
+      {
+         "type":"image_picker",
+         "id":"start_image",
+         "label":"Start Image"
+      },
+			{
+        "type": "color",
+        "id": "start_bg_color",
+        "label": "Background Color Gap",
+        "default": "#7983E2",
+        "info": "To fill gap from end of photo to footer"
+      },
+      {
+         "type":"textarea",
+         "id":"start_title",
+         "label":"Start Title",
+         "default":"Build Your Bundle"
+      },
+      {
+         "type":"textarea",
+         "id":"start_text",
+         "label":"Start Text",
+         "default":"Build your own Jambys bundle pack in 3, 5, or 7 pairs and get discount up to $70."
+      },
+      {
+        "type": "header",
+        "content": "Pack 1"
+      },
+      {
+        "type": "text",
+        "id": "pack_size_1",
+        "label": "Pack Size",
+        "default": "3",
+        "info": "Don't include the word Pack"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_must_popular",
+        "label": "Show most popular 1",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "pack_old_price_1",
+        "label": "Pack Old Price 1",
+        "default": "105"
+      },
+      {
+        "type": "text",
+        "id": "pack_new_price_1",
+        "label": "Pack New Price 1",
+        "default": "89.25"
+      },
+      {
+        "type": "text",
+        "id": "pack_individual_price_1",
+        "label": "Pack Individual Price 1",
+        "default": "29.75"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_desktop_1",
+        "label": "Desktop Start Building Text",
+        "default": "Build Your Bundle"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_mobile_1",
+        "label": "Mobile Start Building Text",
+        "default": "Start Building"
+      },
+      {
+        "type": "header",
+        "content": "Pack 2"
+      },
+      {
+        "type": "text",
+        "id": "pack_size_2",
+        "label": "Pack Size 2",
+        "default": "5",
+        "info": "Don't include the word Pack"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_must_popular_2",
+        "label": "Show most popular 2",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "pack_individual_price_2",
+        "label": "Pack Individual Price 2",
+        "default": "28"
+      },
+      {
+        "type": "text",
+        "id": "pack_old_price_2",
+        "label": "Pack Old Price 2",
+        "default": "175"
+      },
+      {
+        "type": "text",
+        "id": "pack_new_price_2",
+        "label": "Pack New Price 2",
+        "default": "140"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_desktop_2",
+        "label": "Desktop Start Building Text 2",
+        "default": "Build Your Bundle"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_mobile_2",
+        "label": "Mobile Start Building Text 2",
+        "default": "Start Building"
+      },
+      {
+        "type": "header",
+        "content": "Pack 3"
+      },
+      {
+        "type": "text",
+        "id": "pack_size_3",
+        "label": "Pack Size 3",
+        "default": "7",
+        "info": "Don't include the word Pack"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_must_popular_3",
+        "label": "Show most popular 3",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "pack_individual_price_3",
+        "label": "Pack Individual Price 3",
+        "default": "26.25"
+      },
+      {
+        "type": "text",
+        "id": "pack_old_price_3",
+        "label": "Pack Old Price 3",
+        "default": "245"
+      },
+      {
+        "type": "text",
+        "id": "pack_new_price_3",
+        "label": "Pack New Price 3",
+        "default": "183.75"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_desktop_3",
+        "label": "Desktop Start Building Text 3",
+        "default": "Build Your Bundle"
+      },
+      {
+        "type": "text",
+        "id": "start_txt_mobile_3",
+        "label": "Mobile Start Building Text 3",
+        "default": "Start Building"
+      },
+      {
+         "type":"header",
+         "content":"Choose Pair"
+      },
+       {
+         "type":"product",
+         "id":"product",
+         "label":"Product"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_sticky_add",
+        "label": "Mobile Add Sticky",
+        "default": true
+      },
+      {
+         "type":"textarea",
+         "id":"top_text",
+         "label":"Text (short)"
+      },
+      {
+         "type":"textarea",
+         "id":"top_text_long",
+         "label":"Text (long)"
+      },
+
+
+      {
+         "type":"header",
+         "content":"Review"
+      },
+      {
+         "type":"textarea",
+         "id":"review_title",
+         "label":"Review Title"
+      },
+      {
+         "type":"textarea",
+         "id":"review_subtitle",
+         "label":"Review Subtitle"
+      },
+			{
+				"type": "header",
+				"content": "Size Guide"
+			},
+			{
+        "type": "richtext",
+        "id": "size_bottom_desktop",
+        "label": "Bottom sizing desktop",
+        "default": "<p>If you're in doubt between sizes, size down for a feel closer to boxers, and size up for a feel closer to shorts. Don't worry: we make exchanges super easy. Still not sure or gifting? Just <a href=\"mailto:hello@jambys.com\">email us</a>&nbsp;some more info or <a title=\"Jambys Instagram\" href=\"https://www.instagram.com/jambys/\" target=\"_blank\" rel=\"noopener\">DM us an Instagram screenshot</a>. Whatever works. We don't rest until you have the perfect Jambys.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "size_bottom_mobile",
+        "label": "Bottom sizing mobile",
+        "default": "<p>Still not sure or gifting? Just email us some more info or DM us an Instagram screenshot.</p>"
+      }
+   ],
+	 "blocks": [
+		{
+			"type": "tops-generic",
+			"name": "Tops Guide",
+			"settings": [
+				{
+					"type": "text",
+					"id": "col_1",
+					"label": "Column 1"
+				},
+				{
+					"type": "text",
+					"id": "col_2",
+					"label": "Column 2"
+				},
+				{
+					"type": "text",
+					"id": "col_3",
+					"label": "Column 3"
+				},
+				{
+					"type": "text",
+					"id": "col_4",
+					"label": "Column 4"
+				},
+				{
+					"type": "text",
+					"id": "col_5",
+					"label": "Column 5"
+				}
+			]
+		},
+		{
+			"type": "bottom-generic",
+			"name": "Bottoms Guid",
+			"settings": [
+				{
+					"type": "text",
+					"id": "col_1",
+					"label": "Column 1"
+				},
+				{
+					"type": "text",
+					"id": "col_2",
+					"label": "Column 2"
+				},
+				{
+					"type": "text",
+					"id": "col_3",
+					"label": "Column 3"
+				},
+				{
+					"type": "text",
+					"id": "col_4",
+					"label": "Column 4"
+				},
+				{
+					"type": "text",
+					"id": "col_5",
+					"label": "Column 5"
+				}
+			]
+		}
+	 ]
+}
+{% endschema %}

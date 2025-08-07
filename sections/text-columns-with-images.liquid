@@ -1,0 +1,354 @@
+{% style %}
+  {% unless section.settings.color_bg == blank %}
+     .section-id-{{ section.id }} {
+        background-color: {{ section.settings.color_bg }};
+     }
+  {% endunless %}
+
+  .section-id-{{ section.id }} {
+     font-weight: {{ section.settings.font_weight}};
+     font-size: {{ section.settings.font_size }}px;
+  }
+
+  .cc-animate-enabled .shopify-section {
+    position: relative;
+    overflow: visible;
+  }
+{% endstyle %}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+    wave_position: section.settings.wave, 
+    section_id: section.id,
+    fill_color: section.settings.color_bg -%}
+{%- endif -%}
+{% assign product_type = product.type | handleize %}
+{% if product.type == 'House Hoodie' %}
+  {% assign product_type = 'House Hoodies' | handleize %}
+{% endif %}
+{% if product.type == 'JamTee' %}
+  {% assign product_type = 'JamTees' | handleize %}
+{% endif %}
+{% assign has_product_switcher = false %}
+{% if product.type == 'Double Cozy Cloak' or product.type == 'Cozy Cloak' %}
+  {% assign has_product_switcher = true %}
+{% endif %}
+{% assign collection = collections[product_type] %}
+
+<div id="section-id-{{ section.id }}" class="text-columns-with-images section-id-{{ section.id }} half-gutter section-spacing {% if section.settings.alternate_bg_color %}use-alt-bg{% endif %}" data-cc-animate>
+  {% style %}
+    {%- for block in section.blocks -%}
+    #section-id-{{ section.id }} #block-id-{{ block.id }} .text-column__image {
+      max-width: {{ block.settings.image_width }}px;
+    }
+    {%- endfor -%}
+  {% endstyle %}
+
+  {% if section.settings.title != blank %}
+    <div class="section-heading section-heading--with-spacing
+      align-{{ section.settings.text_alignment }}
+      {% if section.settings.full_width %}
+          wide-container
+      {% else %}
+        container container--large
+      {% endif %}"
+         data-cc-animate>
+      <h2 class="h2">{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+
+  {% if section.settings.full_width %}
+    <div class="wide-container">
+  {% else %}
+    <div class="container container--large">
+  {% endif %}
+
+    <div class="flexible-layout flexible-layout--variable-columns flexible-layout--columns-{{ section.blocks.size }} align-{{ section.settings.text_alignment }}">
+      {% for block in section.blocks %}
+        <div id="block-id-{{ block.id }}" class="column text-column align-{{ section.settings.text_alignment }}" {{ block.shopify_attributes }}
+             data-cc-animate="cc-fade-in-up" data-cc-animate-delay="{{ forloop.index | times: 0.15 }}s">
+          
+          {% assign metafield_image = blank %}
+          {% if forloop.index == 1 %}
+            {% assign metafield_image = collection.metafields.product.column_1_image | image_url %}
+            {% assign metafield_text = collection.metafields.product.column_1_caption %}
+          {% elsif forloop.index == 2 %}
+            {% assign metafield_image = collection.metafields.product.column_2_image | image_url %}
+            {% assign metafield_text = collection.metafields.product.column_2_caption %}
+          {% elsif forloop.index == 3 %}
+            {% assign metafield_image = collection.metafields.product.column_3_image | image_url %}
+            {% assign metafield_text = collection.metafields.product.column_3_caption %}
+          {% endif %}
+          
+          {% if block.settings.enable_image %}
+            <div class="text-column__image text-column__image--shape-{{ section.settings.media_shape }}">
+              {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" {% if block.settings.title %}aria-label="{{ block.settings.title | escape }}"{% endif %}>{%- endif -%}
+
+              {%- if block.settings.image == blank and block.settings.video == blank and collection.metafields.product.column_1_image == blank -%}
+                {% style %}
+                  .section-id-{{ section.id }} {
+                    height: 1rem;
+                    padding: 0;
+                  }
+                {% endstyle %}
+              {%- elsif metafield_image != blank -%}
+                {%- render 'responsive-image', image: metafield_image -%}
+              {%- elsif block.settings.video == blank -%}
+                {%- render 'responsive-image', image: block.settings.image -%}
+              {%- else -%}
+                {% render 'inline-video', video: block.settings.video, image: block.settings.image %}
+              {%- endif -%}
+
+              {%- if block.settings.link != blank -%}</a>{% endif -%}
+            </div>
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+            <h3 class="text-column__title align-{{ section.settings.text_alignment }}">{{ block.settings.title }}</h3>
+          {% endif %}
+
+          {% if metafield_text != blank %}
+          <div class="text-column__text rte align-{{ section.settings.text_alignment }}">{{  metafield_text }}</div>
+          {% elsif block.settings.text != blank %}
+            <div class="text-column__text rte align-{{ section.settings.text_alignment }}">{{ block.settings.text }}</div>
+          {% endif %}
+
+          {% if block.settings.button_label != blank %}
+            <div class="button-row inherit-colors align-{{ section.settings.text_alignment }}">
+              <a data-cc-animate-click
+                 class="{% if section.settings.button_style == 'link' %}link-display {% else %}button {% if section.settings.button_style == 'secondary' %}alt{% endif %}{% endif %}"
+                 href="{{ block.settings.link }}">
+                {{ block.settings.button_label | escape }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Text columns with media",
+  "class": "section-text-columns-with-images",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Text columns with media"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "default": "primary",
+      "options": [
+        {
+          "label": "Button - primary",
+          "value": "primary"
+        },
+        {
+          "label": "Button - secondary",
+          "value": "secondary"
+        },
+        {
+          "label": "Link",
+          "value": "link"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "media_shape",
+      "label": "Media shape",
+      "options": [
+        {
+          "value": "natural",
+          "label": "Natural"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape (3:2)"
+        },
+        {
+          "value": "square",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait (2:3)"
+        },
+        {
+          "value": "portrait_tall",
+          "label": "Portrait (4:5)"
+        },
+        {
+          "value": "portrait_taller",
+          "label": "Portrait (9:16)"
+        }
+      ],
+      "default": "natural"
+    },
+    {
+      "id": "alternate_bg_color",
+      "type": "checkbox",
+      "label": "Use alternate section color",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Wide display",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "id": "color_bg",
+      "type": "color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font weight",
+      "default": 600
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Column",
+      "settings": [
+        {
+          "id": "enable_image",
+          "type": "checkbox",
+          "label": "Enable media",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "If you're using an mp4 video, it's recommended to also add an image, which will be shown while the video loads"
+        },
+        {
+          "id": "video",
+          "type": "text",
+          "label": "MP4 video URL",
+          "info": "E.g. https://example.com/video.mp4 - will not work with YouTube or Vimeo. [Learn more](https://cleancanvas.co.uk/support/showcase/sections/#inner-anchor-5)"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 60,
+          "max": 700,
+          "step": 10,
+          "label": "Media width",
+          "unit": "px",
+          "default": 700
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Add a title or tagline"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share blog posts, products, or promotions with your customers. Use this text to describe products, share details on availability and style, or as a space to display recent reviews or FAQs.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text columns with media",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

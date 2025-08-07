@@ -1,0 +1,284 @@
+<style>
+.dtc-best-sellers{
+  display:none; 
+  background:#fff;
+}
+.dtc-best-sellers__sliders{
+  overflow:hidden;
+}
+.dtc-best-sellers.wide-container{
+  padding-right:0;
+}
+
+.dtc-best-sellers__labels{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.dtc-best-sellers__labels{
+  display:flex;
+  background: #ECEBFF;
+  width:627px;
+  margin:0 auto;
+  padding:20px;
+  gap:20px;
+  box-sizing:content-box;
+  border-radius: 100px;
+}
+.dtc-best-sellers__labels h4{
+  background:#fff;
+  padding:16px 24px;
+  border-radius: 100px;
+  min-width:185px;
+  font-size:16px;
+  font-family: sofia-pro,Avenir,sans-serif;
+}
+.dtc-best-sellers__labels h4.active{
+  background:#5B67D6;
+  color:#fff;
+  cursor:pointer;
+}
+.dtc-best-seller-slider{
+  height:0;
+  visibility: hidden;
+  opacity: 0;
+}
+.dtc-best-seller-slider .slider-images{
+  position:relative;
+}
+.dtc-best-seller-slider .image{
+  display:none;
+}
+.dtc-best-seller-slider.active{
+  height:auto;
+  visibility: visible;
+  opacity: 1;
+}
+.dtc-best-seller-slider .cc-quick-buy-btn-container{
+  display:none;
+}
+
+.junip-product-summary-stars-wrapper{
+  display:none;
+}
+.dtc-best-sellers h2  {
+  text-align:center;
+  padding:0;
+  width:100%;
+}
+.dtc-best-sellers__labels h4{
+  cursor:pointer;
+}
+.dtc-best-sellers__labels {
+  margin-top:40px;
+  margin-bottom:40px;
+}
+.dtc-best-seller-slider .swiper-slide img{
+  border-radius:24px;
+}
+.dtc-best-sellers__shop-all{
+  width:100%;
+  max-width:328px;
+  border-radius: 100px;
+  display:flex;
+  color:#36409A;
+  border:1px solid #BDBAF6;
+  padding:20px 32px;
+  margin:0 auto;
+  justify-content:center;
+
+}
+.dtc-best-seller-slider .swiper-button-prev, .dtc-best-seller-slider .swiper-button-next{
+  background:#fff;
+  border-radius: 0;
+  width:40px;
+  height:40px;
+}
+.dtc-best-seller-slider .swiper-button-prev svg, .dtc-best-seller-slider .swiper-button-next svg{
+  max-width:20px;
+}
+.dtc-best-seller-slider .swiper-button-prev:after{
+  display:none;
+}
+.dtc-best-seller-slider .price{
+  font-size:16px;
+}
+.dtc-best-seller-slider .slider-images .swiper-button-prev, .dtc-best-seller-slider .slider-images .swiper-button-next{
+  display:none;
+}
+
+
+.slider-images .swiper-pagination-bullets{
+  bottom:10px;
+}
+.dtc-best-seller-slider .dtc-collection-swatches__container{
+  margin-top:-10px;
+}
+html .slider-images .swiper-pagination-bullet {
+  margin:0 2px !important;
+  width:10px;
+  height:10px;
+  background:#DADADA !important;
+  opacity:1 !important;
+}
+html .slider-images .swiper-pagination-bullet-active{
+  background:#36409A !important;
+}
+.dtc-best-seller-slider .swiper-button-next:after{
+  display:none;
+}
+.dtc-best-seller-slider .swiper-button-next svg{
+  transform: rotate(180deg);
+}
+.dtc-best-sellers .swipper-wrapper{
+  position:initial;
+}
+
+@media (max-width: 767px){
+.dtc-best-sellers__labels{
+  max-width: fit-content;
+}
+.dtc-best-sellers__labels h4{
+  
+  padding:8px 16px;
+  width:auto;
+  min-width: auto;
+}
+
+}
+@media (min-width: 1300px){
+    .dtc-best-seller-slider .swiper-button-next{
+  right:6.3rem;
+}
+.dtc-best-seller-slider .swiper-button-prev{
+  left:4.3rem;
+}
+}
+</style>
+<div class="dtc-best-sellers wide-container half-gutter section-spacing">      
+<h2 class="h2">
+    {{ section.settings.section_title }}
+</h2>
+<div class="dtc-best-sellers__labels">
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'block_0' -%}
+    <h4 data-label-item="label-item-{{forloop.index}}" class="{% if forloop.index == 1 %}active{% endif %}">{{ block.settings.collection_label }}</h4>
+  {%- endcase -%}
+{%- endfor -%}
+</div>
+
+<div class="dtc-best-sellers__sliders">
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'block_0' -%}
+      <div class="dtc-best-seller-slider {% if forloop.index == 1 %}active {% endif %}" data-slider-item="slider-item-{{forloop.index}}">
+      {%- assign block_collection = block.settings.collection -%}
+      {%- for collection in block_collection -%}
+        <div class="swiper-wrapper">
+          {%- for product in collection.products , limit:10 -%}
+            <div class="swiper-slide">
+              {% render 'product-block-collection', product:product %}
+            </div>
+          {% endfor %}
+        </div>
+          <div class="wide-container">
+          <a class="dtc-best-sellers__shop-all" href="collections/{{collection.handle}}" class="btn btn--secondary">{{block.settings.link_label}}  </a>
+          </div>
+        {%- endfor -%}
+            <div class="swiper-button-prev swiper-button-prev-{{ forloop.index }}">
+              {% render "best-seller-unisex-slider-arrow" %}
+            </div>
+            <div class="swiper-button-next swiper-button-next-{{ forloop.index }}">
+              {% render "best-seller-unisex-slider-arrow" %}
+            </div>
+      </div>
+  {%- endcase -%}
+{%- endfor -%}
+</div>
+</div>
+
+{% schema %}
+  {
+  "name": "unisex categories select",
+  "class": "unisex-categories-select",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "block_0",
+      "settings": [
+      {
+        "type": "text",
+        "id": "collection_label",
+        "label": "Collection Label"
+      },
+      {
+          "type": "collection_list",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+        "type": "text",
+        "id": "link_label",
+        "label": "Shop all Link Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "unisex categories select"
+    }
+  ]
+}  
+{% endschema %}
+
+<script>
+document.querySelectorAll('.dtc-best-sellers__labels h4').forEach((label, index) => {
+  label.addEventListener('click', () => {
+    document.querySelectorAll('.dtc-best-sellers__labels h4').forEach((label) => {
+      label.classList.remove('active');
+    });
+    label.classList.add('active');
+    document.querySelectorAll('.dtc-best-seller-slider').forEach((slider) => {
+      slider.classList.remove('active');
+    });
+    document.querySelector(`.dtc-best-seller-slider[data-slider-item="slider-item-${index + 1}"]`).classList.add('active');
+  });
+});
+
+  var unisex_sliders = document.querySelectorAll('.dtc-best-seller-slider');
+  unisex_sliders.forEach(function(unisex_slider, index) {
+    var unisex_sliders_swiper = new Swiper(unisex_slider, {
+      direction: 'horizontal',
+      slidesPerView: 1.5,
+      spaceBetween: 20,    
+      navigation: {
+        nextEl: unisex_slider.parentElement.querySelector(`.swiper-button-next-${index + 1}`),
+        prevEl: unisex_slider.parentElement.querySelector(`.swiper-button-prev-${index + 1}`),
+      },
+ breakpoints: {
+        960: {
+          slidesPerView: 3.2,
+        },
+        1024: {
+          slidesPerView: 4.2,
+          spaceBetween: 20,
+          allowTouchMove: false,
+        },
+      },
+    });
+  });
+
+
+</script>
+
+

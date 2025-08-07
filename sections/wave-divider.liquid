@@ -1,0 +1,88 @@
+{%- if section.settings.wave != "none" -%}
+  {%- style -%}
+    {%- if section.settings.add_padding -%}
+      {%- capture spacer -%}<div id="section-id-{{ section.id }}-spacer"></div>{%- endcapture -%}
+      #section-id-{{ section.id }}-spacer {
+        height: 2rem;
+        {%- if section.settings.behind_wave_color.alpha > 0 -%}
+          background-color: {{ section.settings.behind_wave_color }};
+        {%- endif -%}
+      }
+      @media (min-width: 768px) {
+        #section-id-{{ section.id }}-spacer {
+          height: 3rem;
+        }
+      }
+    {%- endif -%}
+    #section-id-{{ section.id }} {
+      position: relative;
+    }
+  {%- endstyle -%}
+  {%- render 'wave-styles', 
+    wave_position: section.settings.wave, 
+    section_id: section.id,
+    fill_color: section.settings.wave_color,
+    mobile_fill_color: section.settings.wave_color_mobile
+  -%}
+  {%- if section.settings.wave == 'top' -%}{{ spacer }}{%- endif -%}
+  <div id="section-id-{{ section.id }}" class="section-id-{{ section.id }}"></div>
+  {%- if section.settings.wave == 'bottom' -%}{{ spacer }}{%- endif -%}
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "Wave section divider",
+  "class": "section-wave",
+  "settings": [
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "id": "wave_color",
+      "type": "color",
+      "label": "Wave background color"
+    },
+    {
+      "id": "wave_color_mobile",
+      "type": "color",
+      "label": "Wave background color (mobile)",
+      "info": "Set a custom wave background color for small screens only (767px wide or less)"
+    },
+    {
+      "id": "add_padding",
+      "type": "checkbox",
+      "label": "Add padding behind wave"
+    },
+    {
+      "id": "behind_wave_color",
+      "type": "color",
+      "label": "Color behind wave"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wave section divider",
+      "settings": {
+      }
+    }
+  ]
+}
+{% endschema %}

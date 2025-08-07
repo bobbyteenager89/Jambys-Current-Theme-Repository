@@ -1,0 +1,84 @@
+{%- liquid
+  if view == 'main'
+    if image_sizes == blank
+      assign image_sizes = '(max-width: 767px) 85vw, (max-width: 1023px) calc(50vw - 20px), (max-width: 1199px) calc(60vw - 142px), (max-width: 1439px) calc(60vw - 152px), 712px'
+    endif
+    if image_widths == blank
+      assign image_widths = '180,360,540,640,725,800,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024,' | append: media.preview_image.width
+    endif
+    assign img_default_url = media.preview_image | image_url: width: 720
+  else
+    if image_sizes == blank
+      assign image_sizes = '(max-width: 767px) 50px, (max-width: 1199px) 70px, 80px'
+    endif
+    if image_widths == blank
+      assign image_widths = '50,70,80,100,140,160'
+    endif
+    assign img_default_url = media.preview_image | image_url: width: 100
+  endif
+-%}
+
+{%- unless animation_type -%}
+  {%- assign animation_type = 'cc-zoom-out' -%}
+{%- endunless -%}
+{% case media.media_type %}
+  {% when 'image' %}
+    {%- if prevent_lazyload -%}
+      {%- assign image_width = media.preview_image.width | at_most: 2048 -%}
+      {{
+        media.preview_image
+        | image_url: width: image_width
+        | image_tag: preload: true, fetchpriority: 'high', widths: image_widths, sizes: image_sizes, class: class
+      }}
+    {%- else -%}
+      <img
+        class="rimage_custom {{class}} lazyload--manual {% unless prevent_lazyload %}fade-in{% endunless %}"
+        loading="lazy"
+        data-src="{{ img_default_url }}"
+        data-sizes="{{ image_sizes }}"
+        data-srcset="{%- render 'image-srcset', image: media.preview_image, max_width: max_width, image_widths: image_widths -%}"
+        data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+        height="{{ media.preview_image.height }}"
+        width="{{ media.preview_image.width }}"
+        alt="{{ media.alt | escape }}"
+        {% if animate %}
+          data-cc-animate="{{ animation_type }}"
+          data-cc-animate-delay="{{ animate }}s"
+        {% endif %}
+      >
+      <noscript>
+        <img data-src="{{ img_default_url }}" alt="{{ media.alt | escape }}">
+      </noscript>
+    {%- endif -%}
+  {% when 'video' %}
+    <img loading="lazy" src="{{ img_default_url }}" style="opacity:0;" alt="{{ media.alt | escape }}">
+    {% if view == 'main' %}
+      <div class="playButton control_icon" style="display:none">Play</div>
+      <div class="pauseButton control_icon">Pause</div>
+    {% endif %}
+    <div
+      class="product-media product-media--video product-media--{{ media.id }} product-media--frame"
+      data-video-type="shopify"
+      data-media-id="{{ media.id }}"
+      data-media-type="{{ media.media_type }}"
+      data-enable-video-looping="{{ section.settings.enable_video_looping }}"
+    >
+      <div class="lazyload--manual fade-in">
+        <video
+          id="theVideo"
+          autoplay="autoplay"
+          playsinline="playsinline"
+          class="media-video"
+          muted="muted"
+          preload="none"
+          aria-label="{{ media.alt | escape }}"
+          poster="{{ img_default_url }}"
+          loop=""
+        >
+          {%- for source in media.sources -%}
+            <source src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endfor -%}
+        </video>
+      </div>
+    </div>
+{% endcase %}

@@ -1,0 +1,81 @@
+<div class="dtc-hero-slider" data-loop-slider={{section.settings.loop_slider}}>
+<div class="swiper-wrapper">
+{%- for block in section.blocks -%}
+  <div class="swiper-slide">
+    <div class="slide-content">
+      {%- case block.type -%}
+        {%- when 'slide' -%}
+          <div class="slide-content__info">
+            <h1>{{ block.settings.title }}</h1> 
+            <p>{{ block.settings.description }}</p>
+            <a href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+          </div>
+          {%- assign image = block.settings.image -%}
+          <div class="slide-content__image" style="">
+            <img src="{{ image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+          </div>
+      {%- endcase -%}
+    </div>
+  </div>
+{%- endfor -%}
+</div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+{% schema %}
+  {
+  "name": "Test hero slider",
+  "class": "dtc-hero-image-slider-test",
+  "tag": "section",
+  "settings": [
+{
+      "type": "checkbox",
+      "id": "loop_slider",
+      "label": "Loop slider",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TESTING dtc hero image slider"
+    }
+  ]
+}  
+{% endschema %}

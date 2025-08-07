@@ -1,0 +1,666 @@
+{% liquid
+assign video = "" 
+assign image = "" 
+assign title_with_line_breaks = "" 
+assign subtitle_with_line_breaks = "" 
+assign faqs = "" 
+assign show_section = false 
+for collection in product.collections 
+  if collection.metafields.custom.wwmt_section_title 
+    assign title_with_line_breaks = collection.metafields.custom.wwmt_section_title | newline_to_br 
+ 
+    if collection.metafields.custom.wwmt_default_video 
+      assign video = collection.metafields.custom.wwmt_default_video 
+    endif 
+   
+    if collection.metafields.custom.wwmt_default_image 
+      assign image = collection.metafields.custom.wwmt_default_image 
+    endif 
+   
+   
+    if collection.metafields.custom.wwmt_section_subtitle 
+      assign subtitle_with_line_breaks = collection.metafields.custom.wwmt_section_subtitle | newline_to_br 
+    endif 
+
+    if collection.metafields.custom.wwmt_fields != blank 
+      assign faqs = collection.metafields.custom.wwmt_fields.value 
+    endif 
+
+    break 
+  endif 
+endfor 
+
+if title_with_line_breaks != blank and video != blank and subtitle_with_line_breaks != blank  
+  assign show_section = true    
+endif
+%}
+
+
+{% if show_section %}
+  
+  {% style %}
+    .why-we-made-this {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      margin-bottom: 8rem;
+    }
+    {% if section.settings.color_scheme == "custom" %}
+      .section-id-{{ section.id }} {
+        background: {{ section.settings.color_bg }};
+        --cust-text-color: {{ section.settings.color_text }};
+      }
+
+      {% if section.settings.button_style == 'auto' %}
+        #section-id-{{ section.id }} .button:hover {
+          background-color: {{ section.settings.color_text }};
+          color: {{ section.settings.color_bg }};
+          border-color: {{ section.settings.color_bg }};
+        }
+      {% endif %}
+    {% endif %}
+
+    {% unless section.settings.bg_image == blank %}
+      .section-id-{{ section.id }} {
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 5rem;
+      }
+
+      .section-id-{{ section.id }}.lazy-background {
+        background-image: url("{{ section.settings.bg_image | img_url: '2000x' }}");
+      }
+
+      #section-id-{{ section.id }} h2 {
+        font-family: kansasnew,serif;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      }
+      #section-id-{{ section.id }} p {
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      }
+
+      @media(max-width: 768px) {
+          .section-id-{{ section.id }} {
+            padding: 50px 0 0;
+            background-attachment: initial;
+          }
+      }
+      
+    {% endunless %}
+
+    .section-id-{{ section.id }} {
+      font-weight: {{ section.settings.font_weight}};
+      font-size: {{ section.settings.font_size }}px;
+    }
+
+    @media(min-width: 768px) {
+      .image-with-text__image {
+        padding: 3rem 0;
+      }
+      .section-id-{{ section.id }} .image-with-text__image__inner {
+        {% if section.settings.media_size == "cover" %}
+          transform: scale({{ section.settings.image_width | times: 0.01 }});
+        {% elsif section.settings.media_size == "contain" %}
+          height: auto !important;
+          width: {{ section.settings.image_width }}% !important;
+        {% endif %}
+      }
+
+      .section-id-{{ section.id }} .feature-header {
+        {%- assign title_size_medium = section.settings.title_size | times: 0.7 -%}
+        font-size: {{ title_size_medium }}px;
+      }
+
+      .section-id-{{ section.id }} .image-with-text__text {
+        flex-basis: {{ section.settings.text_width }}%;
+      }
+
+      .section-id-{{ section.id }} .image-with-text__image__inner .rimage-outer-wrapper {
+        background-size: {{ section.settings.media_size }};
+      }
+    }
+
+    @media (min-width: 992px) {
+      .section-id-{{ section.id }} .feature-header {
+        font-size: {{ section.settings.title_size }}px;
+      }
+    }
+
+    /* Maintain newlines if specified */
+    {%- if title_with_line_breaks != blank and title_with_line_breaks contains '<br />' -%}
+      @media (min-width: 375px) {
+        .section-id-{{ section.id }} .feature-header {
+          white-space: nowrap;
+        }
+      }
+    {%- endif -%}
+
+    /* Styling to allow duplicate mobile-only heading above image */
+    .image-with-text__mobile_heading {
+      display: none;
+    }
+    @media (max-width: 767px) {
+      .image-with-text__mobile_heading {
+        padding-top: 70px;
+        display: block;
+        order: 0;
+      }
+      .image-with-text__mobile_heading + .image-with-text__image {
+        padding-top: 0;
+      }
+      .image-with-text__mobile_heading ~ .image-with-text__text .feature-header,
+      .image-with-text__mobile_heading ~ .image-with-text__text .feature-subheader {
+        display: none;
+      }
+    }
+    @media (max-width: 768px) {
+      .why-we-made-this .accordion-content {
+          padding: 16px 12px;
+      }
+    }
+
+    /* Bulleted list */
+    .image-with-text__bullet .h3 {
+      text-align: left;
+      margin-bottom: 0.25rem;
+    }
+    .image-with-text__bullet .rte > :first-child {
+      margin-top: 0;
+    }
+    .section-id-{{ section.id }} .image-with-text__bullet {
+      {%- if block.settings.custom_bullet_point_icon -%}
+        background-image: url('{{ block.settings.custom_bullet_point_icon }}');
+      {%- else -%}
+        background-image: url('{{ 'icon-checkmark.svg' | asset_url }}');
+      {%- endif -%}
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-size: 32px 32px;
+      min-height: 32px;
+      padding-left: 48px;
+      margin-bottom: 1.5rem;
+    }
+  {% endstyle %}
+
+  {%- if section.settings.wave != "none" -%}
+      {%- render 'wave-styles', 
+          wave_position: section.settings.wave, 
+          section_id: section.id
+          fill_color: section.settings.color_bg -%}
+  {%- endif -%}
+
+  {% if section.settings.title != blank %}
+      <h2 class="h2 align-{{ section.settings.text_alignment }} desktop">
+          {{ title_with_line_breaks }}
+      </h2>
+  {% endif %}
+
+  {%- if subtitle_with_line_breaks != blank -%}
+      <div class="rte align-{{ section.settings.text_alignment }} subheading desktop" data-cc-animate="cc-fade-in-up" data-cc-animate-delay="0.3s">
+          {{ subtitle_with_line_breaks }}
+      </div>
+  {%- endif -%}
+
+  {% capture image_html %} 
+    <div class="image-with-text__image lazyload--placeholder">
+      <div class="image-with-text__image__inner">
+        {%- if image == blank and video == blank -%}
+          <div class="placeholder-image">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        {%- elsif video == blank -%}
+          <div class="rimage-outer-wrapper lazyload fade-in"
+              data-cc-animate="cc-zoom-out"
+              data-bgset="{% render 'bgset', image: image %}"
+              data-sizes="auto"
+              data-parent-fit="cover"
+              style="max-width: {{ image.width }}px; max-height: {{ image.height }}px">
+            <div class="rimage-wrapper" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100 }}%">
+              <noscript>
+                <img src="{{ image | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}" class="rimage__image">
+              </noscript>
+            </div>
+          </div>
+        {%- else -%}
+          {% render 'inline-video', video: video, image: image %}
+        {% endif %}
+      </div>
+      
+      {% if section.settings.title != blank %}
+        <h2 class="h2 align-{{ section.settings.text_alignment }} mobile">
+          {{ title_with_line_breaks }}
+        </h2>
+      {% endif %}
+
+      {%- if section.settings.text != blank -%}
+        <div class="rte align-{{ section.settings.text_alignment }} subheading mobile" data-cc-animate="cc-fade-in-up" data-cc-animate-delay="0.3s">
+          {{ subtitle_with_line_breaks }}
+        </div>
+      {%- endif -%}
+    </div>
+  {% endcapture %}
+
+  <div class='why-we-made-this_container cf lazy-background
+    section-id-{{ section.id }} use-{{ section.settings.color_scheme }}-bg
+    {% if section.settings.image_width < 100 and section.settings.media_size == "contain" %}section-spacing-sm{% endif %}
+    image-with-text--{{ section.settings.media_size }}
+  ' id="section-id-{{ section.id }}" data-section-type="image-with-text" data-cc-animate>
+      {%- if section.settings.title_above_image_mobile -%}
+          <div class="image-with-text__mobile_heading">
+              {% if subtitle_with_line_breaks != blank %}
+                  <div class="feature-subheader" data-cc-animate="cc-fade-in-up" data-cc-animate-delay="0.1s">{{ subtitle_with_line_breaks | escape }}</div>
+              {% endif %}
+          </div>
+      {%- endif -%}
+
+      {% if section.settings.image_position == 'left' %}{{ image_html }}{% endif %}
+
+      <div class="image-with-text__text align-{{ section.settings.text_alignment }}">
+          <div class='image-with-text__text__wrap {% if brightness < 190 and alpha > 0 %}inherit-colors{% endif %}'>
+              <!-- FAQ Section -->
+              <div class="faq-section" id="faq-section">
+                {% for faq in faqs %}
+                    <div class="accordion">
+                        <div class="accordion-heading" onclick="toggleAccordion(this)" data-image="{{ faq.image | img_url: '400x' }}">
+                            {% if faq.icon != blank %}
+                              <span class="img-container">
+                                <img 
+                                  src="{{ faq.icon | img_url: '96x' }}" 
+                                  alt="{{ faq.title | escape }}"
+                                  width="48"
+                                  height="48"
+                                  loading="lazy"
+                                />
+                              </span>
+                            {% endif %}
+                            <p>{{ faq.title }}</p>
+                            <span class="plus-minus-icon"></span>
+                        </div>
+                        <div class="accordion-content">
+                          {%- assign toggle_content = faq.content | split: ' | ' -%}
+                          <ul>
+                            {%- for content in toggle_content -%}
+                              <li>{{ content }}</li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+              </div>
+
+              <!-- Script to handle accordion toggle -->
+              <script>
+                  function toggleAccordion(element) {
+                    // Close all other accordions
+                    $('.accordion > .accordion-heading').not(element).removeClass('active');
+                    $('.accordion > .accordion-heading').not(element).next('.accordion-content').slideUp(200);
+
+                    // Toggle the clicked accordion
+                    var content = $(element).next('.accordion-content');
+                    $(element).toggleClass('active');
+                    content.slideToggle(200);
+
+                    // If the clicked accordion is active
+                    if ($(element).hasClass('active')) {
+                      var image = element.getAttribute('data-image');
+                      
+                      $('.image-with-text__image__inner').css('background-image', 'url(' + image + ')');
+                      $('.image-with-text__image__inner').addClass('toggled');
+                      $('.image-with-text__image__inner .video-container').css('display', 'none');
+                    } else {
+                      // If no other accordion is active, remove the image and display the video
+                      if ($('.accordion.active').length === 0) {
+                        $('.image-with-text__image__inner').css('background-image', 'none');
+                        $('.image-with-text__image__inner').removeClass('toggled');
+                        $('.image-with-text__image__inner .video-container').css('display', 'block');
+                      }
+                    }
+                  }
+              </script>
+
+              {%- assign bullet_points = section.blocks | where: 'type', 'bullet_point' -%}
+              {%- if bullet_points.size > 0 -%}
+                  <div class="image-with-text__bullet-list">
+                      {%- for block in bullet_points -%}
+                          <div class="image-with-text__bullet">
+                          <h3 class="h3">{{ block.settings.title }}</h3>
+                          <div class="rte">{{ block.settings.text }}</div>
+                          </div>
+                      {%- endfor -%}
+                  </div>
+              {%- endif -%}
+
+              {% if section.settings.button_label != blank %}
+                  <div class="button-row" data-cc-animate="cc-fade-in-up" data-cc-animate-delay="0.4s">
+                      {% if section.settings.button_link != blank %}
+                          <a data-cc-animate-click class="
+                              {% if section.settings.button_style != 'auto' %}button-custom {% endif %}
+                              {% if section.settings.button_arrowless %}button--arrowless{% endif %}
+                              {% if section.settings.button_style == 'link' %}link-display {% else %}button {% if section.settings.button_style == 'secondary' %}alt{% endif %}{% endif %}"
+                              href="{{ section.settings.button_link }}">
+                      {% else %}
+                          <span class="
+                              {% if section.settings.button_style != 'auto' %}button-custom {% endif %}
+                              {% if section.settings.button_arrowless %}button--arrowless{% endif %}
+                              {% if section.settings.button_style == 'link' %}link-display {% else %}button {% if section.settings.button_style == 'secondary' %}alt{% endif %}{% endif %}">
+                      {% endif %}
+
+                      {{ section.settings.button_label | escape }}
+
+                      {% if section.settings.button_link == blank %}
+                          </span>
+                      {% else %}
+                          </a>
+                      {% endif %}
+                  </div>
+              {% endif %}
+          </div>
+      </div>
+
+      {% if section.settings.image_position == 'right' %}{{ image_html }}{% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Why we made this",
+    "class": "section-image-with-text why-we-made-this",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "Why we made this"
+      },
+      {
+        "type": "checkbox",
+        "id": "title_above_image_mobile",
+        "label": "Show title above image on mobile"
+      },
+      {
+        "type": "range",
+        "id": "title_size",
+        "min": 16,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Heading text size",
+        "default": 28
+      },
+      {
+        "type": "text",
+        "id": "not_appear_for",
+        "label": "Not appear for",
+        "info": "Comma separated list of product tags where you don't want to display."
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Use this text to share information about your store with your customers. Describe product, share announcements, or welcome customers to your store.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_arrowless",
+        "label": "Hide button arrow?"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "label": "Left",
+            "value": "left"
+          },
+          {
+            "label": "Center",
+            "value": "center"
+          },
+          {
+            "label": "Right",
+            "value": "right"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "text_width",
+        "min": 30,
+        "max": 70,
+        "step": 1,
+        "unit": "%",
+        "label": "Text width",
+        "default": 50
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "default": "auto",
+        "options": [
+          {
+            "label": "Button - primary",
+            "value": "primary"
+          },
+          {
+            "label": "Button - secondary",
+            "value": "secondary"
+          },
+          {
+            "label": "Button - auto",
+            "value": "auto"
+          },
+          {
+            "label": "Link",
+            "value": "link"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Media"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "If you're using an mp4 video, it's recommended to also add an image, which will be shown while the video loads"
+      },
+      {
+        "id": "video",
+        "type": "text",
+        "label": "MP4 video URL",
+        "info": "E.g. https://example.com/video.mp4 - will not work with YouTube or Vimeo. [Learn more](https://cleancanvas.co.uk/support/showcase/sections/#inner-anchor-5)"
+      },
+      {
+        "type": "range",
+        "id": "image_width",
+        "min": 40,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Media scale",
+        "default": 100
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Media position",
+        "default": "right",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "media_size",
+        "label": "Media size",
+        "options": [
+          {
+            "value": "cover",
+            "label": "Fill"
+          },
+          {
+            "value": "contain",
+            "label": "Natural"
+          }
+        ],
+        "default": "cover"
+      },
+      {
+        "type": "header",
+        "content": "Style"
+      },
+      {
+        "type": "radio",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "standard",
+        "options": [
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "alt",
+            "label": "Alternate colors"
+          },
+          {
+            "value": "custom",
+            "label": "Custom colors"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Custom background color"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Custom text color"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "range",
+        "id": "font_size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "label": "Body font size",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "font_weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "label": "Body font weight",
+        "default": 600
+      },
+      {
+        "type": "select",
+        "id": "wave",
+        "label": "Wave",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          },
+          {
+            "value": "both",
+            "label": "Both"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "text",
+        "id": "custom_bullet_point_icon",
+        "label": "Custom bullet point icon",
+        "info": "Enter the URL of an SVG or PNG uploaded to Shopify."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "bullet_point",
+        "name": "Bullet Point",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Why we made this",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

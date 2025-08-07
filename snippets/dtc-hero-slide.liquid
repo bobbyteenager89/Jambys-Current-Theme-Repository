@@ -1,0 +1,82 @@
+<style>
+.slide-content__info a{
+  font-size: 20px;
+  padding: 12.5px 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  border-radius: 40px;
+  width:100%;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  height: 52px;
+  max-width:328px;
+  width:auto;
+}
+.slide-content__info a.hero-slider-button__one-{{block.id}}{
+  background-color: {{ block.settings.btn_bg_color }};
+  color: {{ block.settings.btn_text_color }};
+  border: 1px solid {{ block.settings.btn_border_color }};
+}
+.slide-content__info a.hero-slider-button__one-{{block.id}}:hover{
+  background-color: {{ block.settings.btn_hover_color }};
+  color: {{ block.settings.btn_hover_text_color }};
+  border: 1px solid {{ block.settings.btn_hover_color }};
+}
+.slide-content__info a.hero-slider-button__two-{{block.id}}{
+  background-color: {{ block.settings.btn2_bg_color }};
+  color: {{ block.settings.btn2_text_color }};
+  border: 1px solid {{ block.settings.btn2_border_color }};
+}
+.slide-content__info a.hero-slider-button__two-{{block.id}}:hover{
+  background-color: {{ block.settings.btn2_hover_color }};
+  color: {{ block.settings.btn2_hover_text_color }};
+  border: 1px solid {{ block.settings.btn2_hover_color }};
+}
+.slide-content__info a.hero-slider-button__single-{{block.id}}{
+  background-color: {{ block.settings.btn_bg_color }};
+  color: {{ block.settings.btn_text_color }};
+  border: 1px solid {{ block.settings.btn_border_color }};
+  padding: 12.5px 4rem;
+  width:100%;
+}
+@media (max-width: 489px) {
+  .hero-slider-content__buttons a {
+    font-size:18px;
+  }
+
+}
+
+</style>
+
+
+<div class="slide-content__info">
+  <h1>{{ block.settings.title }}</h1> 
+  <p>{{ block.settings.description }}</p>
+  {% if  block.settings.second_button_link != blank %}
+  <div class="hero-slider-content__buttons">
+    <a class="hero-slider-button__one-{{block.id}}" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+    <a class="hero-slider-button__two-{{block.id}}" href="{{ block.settings.second_button_link }}">{{ block.settings.second_button_label }}</a>
+  </div>
+  {% else %}
+    <a class="hero-slider-button__single-{{block.id}}" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+  {% endif %}
+</div>
+
+{% if block.settings.video_file == blank %}
+<div class="slide-content__image" style="">
+  {%- assign image = block.settings.image -%}
+  <img src="{{ image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+</div>
+{% endif %}
+
+{% if block.settings.video_file != blank %}
+<div class="slide-slide-content__video">
+  <video autoplay muted loop>
+    {%- for source in block.settings.video_file.sources-%}
+      <source type="{{ source.mime_type }}" src="{{ source.url }}">
+    {% endfor  %}
+  </video>
+</div>
+{% endif %}
+

@@ -1,0 +1,676 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "replo_replo_banner_section_xRGQ7U": {
+      "type": "replo-replo-banner-section",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Long_Jambys_WB.png",
+            "product_type": "Long Jambys"
+          }
+        },
+        "97449e7e-e980-491a-a445-d647fcbb1b9d": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Jambys_WB.png",
+            "product_type": "Jambys"
+          }
+        },
+        "758b06a0-e28c-4e51-94d7-d1b593df4071": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_JamTee_WB.png",
+            "product_type": "JamTee"
+          }
+        },
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_House_Hoodies_WB.png",
+            "product_type": "House Hoodie"
+          }
+        },
+        "2c553fc3-3abe-47c3-acc4-c95851565e25": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Basketball_Shorts_WB.png",
+            "product_type": "Basketball Shorts"
+          }
+        },
+        "998aaf51-46fa-449b-82a1-fde457a5f0be": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Crew_WB.png",
+            "product_type": "Chilluxe Crew"
+          }
+        },
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Long-Sleeve_JamTee_WB.png",
+            "product_type": "Long-Sleeve JamTee"
+          }
+        },
+        "1f80f22a-d860-425c-8f4a-0dc581415443": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Hoodie_WB.png",
+            "product_type": "Chilluxe Hoodie"
+          }
+        },
+        "d9c1351a-ce1f-4665-90d2-05539359a281": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Jogger_WB.png",
+            "product_type": "Chilluxe Jogger"
+          }
+        },
+        "91b18fbd-9e99-403e-a484-a0b8a89443ea": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Waffle_Robe_WB.png",
+            "product_type": "Soffle Robe"
+          }
+        },
+        "db3d4cfb-919f-46fa-9bfb-a74128a81e84": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Waffle_Short_WB.png",
+            "product_type": "Soffle Shorts"
+          }
+        },
+        "276a0c17-7231-4673-9069-c50ea04e986b": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Pajambys_Top_WB.png",
+            "product_type": "Pajambys Top"
+          }
+        },
+        "546ad748-2baf-45af-94db-b075fed9da7f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Pajambys_Bottoms_WB.png",
+            "product_type": "Pajambys Bottom"
+          }
+        },
+        "e2ee0922-fed2-4873-a816-1873c8f3d8c1": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Pajambys_Top_WB.png",
+            "product_type": "Pajambys Top"
+          }
+        },
+        "6a17496f-b013-4517-9f2b-8d50a06a1572": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Pajambys_Bottoms_WB.png",
+            "product_type": "Pajambys Bottom"
+          }
+        },
+        "2a3c1dce-a403-4295-891e-e1f9ec5980ab": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_House_Socks_WB.png",
+            "product_type": "House Socks"
+          }
+        },
+        "5f973d62-85c4-4682-8782-f3228c2fed8f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/6-NB.png",
+            "product_type": "Floof Crew"
+          }
+        },
+        "71b8c4bf-94f5-4cb2-822f-c2cfa2f0bc97": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Jogger_WB.png",
+            "product_type": "Floof Jogger"
+          }
+        },
+        "7f87a3a1-a98f-42ba-8333-9c5fb9edd981": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/15-NB_4005c09f-e901-4c87-be93-2e2cb28f50b0.png",
+            "product_type": "Floof Short"
+          }
+        },
+        "537df739-4df2-4704-a353-d3fe60844bc8": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/16-NB.png",
+            "product_type": "Hugby Rugby"
+          }
+        },
+        "c9685e4d-53db-4875-8b6a-b8c645081b94": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/15-NB.png",
+            "product_type": "Black Tie Jambys"
+          }
+        },
+        "b75a76b8-bdd1-4895-a710-bb4600e4962f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/12-NB.png",
+            "product_type": "Black Tie JamTee"
+          }
+        },
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Cozy_Cloak_WB.png",
+            "product_type": "Cozy Cloak"
+          }
+        },
+        "b42709f6-8a41-4f43-bbce-92bc0b542e9c": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Air_JamTee_WB.png",
+            "product_type": "Air JamTee"
+          }
+        },
+        "02d4a9dc-9de8-4ca6-a81a-6ec9907b9d6d": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Air_JamTank_WB.png",
+            "product_type": "Air JamTank"
+          }
+        },
+        "filter_icon_6ngDUJ": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/14-NB.png",
+            "product_type": "Chilluxe Quilted Pant"
+          }
+        },
+        "filter_icon_negcpp": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/18-NB.png",
+            "product_type": "Flight Suit Onesie"
+          }
+        },
+        "33e61728-daa3-4d24-82ab-a3c647d0fd33": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Air_Short_Short_WB.png",
+            "product_type": "Air Short Short"
+          }
+        },
+        "filter_icon_eLTix8": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_House_Socks_WB.png",
+            "product_type": "Floof Socks"
+          }
+        },
+        "filter_icon_VwBGEx": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/15-NB.png",
+            "product_type": "Shorts"
+          }
+        },
+        "filter_icon_jkHGyX": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Jogger_WB.png",
+            "product_type": "Pants + Joggers"
+          }
+        },
+        "filter_icon_dLVdDt": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/12-NB.png",
+            "product_type": "Tops + Tees"
+          }
+        },
+        "filter_icon_4Qfxzt": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Chilluxe_Hoodie_WB.png",
+            "product_type": "Hoodies + Crews"
+          }
+        },
+        "filter_icon_xMWQ6A": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Waffle_Robe_WB.png",
+            "product_type": "Sleepwear + Robes"
+          }
+        }
+      },
+      "block_order": [
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357",
+        "97449e7e-e980-491a-a445-d647fcbb1b9d",
+        "758b06a0-e28c-4e51-94d7-d1b593df4071",
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91",
+        "2c553fc3-3abe-47c3-acc4-c95851565e25",
+        "998aaf51-46fa-449b-82a1-fde457a5f0be",
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f",
+        "1f80f22a-d860-425c-8f4a-0dc581415443",
+        "d9c1351a-ce1f-4665-90d2-05539359a281",
+        "91b18fbd-9e99-403e-a484-a0b8a89443ea",
+        "db3d4cfb-919f-46fa-9bfb-a74128a81e84",
+        "276a0c17-7231-4673-9069-c50ea04e986b",
+        "546ad748-2baf-45af-94db-b075fed9da7f",
+        "e2ee0922-fed2-4873-a816-1873c8f3d8c1",
+        "6a17496f-b013-4517-9f2b-8d50a06a1572",
+        "2a3c1dce-a403-4295-891e-e1f9ec5980ab",
+        "5f973d62-85c4-4682-8782-f3228c2fed8f",
+        "71b8c4bf-94f5-4cb2-822f-c2cfa2f0bc97",
+        "7f87a3a1-a98f-42ba-8333-9c5fb9edd981",
+        "537df739-4df2-4704-a353-d3fe60844bc8",
+        "c9685e4d-53db-4875-8b6a-b8c645081b94",
+        "b75a76b8-bdd1-4895-a710-bb4600e4962f",
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710",
+        "b42709f6-8a41-4f43-bbce-92bc0b542e9c",
+        "02d4a9dc-9de8-4ca6-a81a-6ec9907b9d6d",
+        "filter_icon_6ngDUJ",
+        "filter_icon_negcpp",
+        "33e61728-daa3-4d24-82ab-a3c647d0fd33",
+        "filter_icon_eLTix8",
+        "filter_icon_VwBGEx",
+        "filter_icon_jkHGyX",
+        "filter_icon_dLVdDt",
+        "filter_icon_4Qfxzt",
+        "filter_icon_xMWQ6A"
+      ],
+      "settings": {
+        "show_collection_content": true,
+        "show_collection_image": false,
+        "description_position": "top",
+        "layout": "rows",
+        "grid": 4,
+        "grid_mobile": "2",
+        "products_per_page": 18,
+        "enable_infinite_scroll": true,
+        "show_vendor": false,
+        "show_filter_counts": true,
+        "show_filter_deadends": true,
+        "ajax_products": true,
+        "filter_mode": "sidebar",
+        "sticky_sidebar": true,
+        "collapse_filters_method": "all",
+        "collapse_sort_by": true,
+        "enable_sorting": false,
+        "show_featured_in_sort": false
+      }
+    },
+    "replo_replo_ticker_section_tFte9q": {
+      "type": "replo-replo-ticker-section",
+      "settings": {}
+    },
+    "16445400345a4b1e35": {
+      "type": "reviews-marquee",
+      "blocks": {
+        "ef91571c-5a38-42ff-b804-1c07e1a76576": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Comfiest shorts I own!<\/p>",
+            "name_1": "Emma D.",
+            "classname_1": "row-span-4 col-span-3 row-start-2 col-start-3",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>So comfy. Just get them<\/p>",
+            "name_2": "Thomas D.",
+            "classname_2": "row-span-5 col-span-4 row-start-7 col-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-start"
+          }
+        },
+        "ac7408ad-db73-4500-8ee0-b790777a6a75": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": false,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-3 col-span-3 col-start-1 row-start-12",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Customer service rocked<\/p>",
+            "name_2": "Gabrielle S.",
+            "classname_2": "row-span-4 col-span-4 row-start-14 col-start-4",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "c3474d9d-590b-41e6-8035-1089ab2eec33": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>Best customer service EVER!<\/p>",
+            "name_1": "Stephanie C.",
+            "classname_1": "row-span-4 col-span-4 col-start-6 row-start-3",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>LIKE RUBBING YOUR FACE IN A CLOUD<\/p>",
+            "name_2": "Paul H.",
+            "classname_2": "row-span-5 col-span-4 col-start-7 row-start-8",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "e5e249f3-bc0d-4faf-a6f0-81d4f534b68c": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>So comfortable, absolutely loving them<\/p>",
+            "name_1": "Michael L.",
+            "classname_1": "row-span-5 col-span-4 row-start-15 col-start-8",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Gods greatest gift to earth and man kind<\/p>",
+            "name_2": "Kevin F.",
+            "classname_2": "row-span-4 col-span-5 row-start-1 col-start-10",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "65d42fce-2b7e-4b70-b6d8-75857eadf3d8": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I may never wear any other pants ever again.<\/p>",
+            "name_1": "Brianna W.",
+            "classname_1": "row-span-5 col-span-4 row-start-6 col-start-11",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": true,
+            "points_right_2": false,
+            "title_2": "",
+            "name_2": "",
+            "classname_2": "row-span-4 col-span-2 row-start-12 col-start-12",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "08348c07-4196-47be-8b0a-aa1788679248": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Even comfier than you’d think they’d be<\/p>",
+            "name_1": "Kirby Z.",
+            "classname_1": "row-span-4 col-span-5 row-start-16 col-start-13",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>Perfect for all genders!<\/p>",
+            "name_2": "Susan B.",
+            "classname_2": "row-span-4 col-span-4 row-start-2 col-start-15",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "07c2c881-377c-484f-bd1f-2a45e0b2910d": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I didn't believe the hype could be real. You forget you're wearing clothes!<\/p>",
+            "name_1": "Samantha R.",
+            "classname_1": "row-span-5 col-span-5 col-start-15 row-start-9",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>Drunk ordered these for my boyfriend and he loves em!<\/p>",
+            "name_2": "Lindsey Q.",
+            "classname_2": "row-span-6 col-span-5 col-start-19 row-start-3",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "737e588f-2a0e-404c-bdda-ac7ed4782f46": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": false,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-4 col-span-3 row-start-16 col-start-18",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>The perfect lounge shorts.<\/p>",
+            "name_2": "Timothy J.",
+            "classname_2": "row-span-4 col-span-4 row-start-11 col-start-20",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "68e1427f-1695-4a4c-991b-ac730b16f117": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>These are a complete revelation.<\/p>",
+            "name_1": "Nicolas C.",
+            "classname_1": "row-span-4 col-span-5 row-start-16 col-start-22",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>I think the material might literally be the softest fabric I've ever felt.<\/p>",
+            "name_2": "Emma",
+            "classname_2": "row-span-5 col-span-5 col-start-24 row-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "0fb74066-f554-45ec-9eb0-14dd5763bb77": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": true,
+            "points_right_1": true,
+            "title_1": "",
+            "name_1": "",
+            "classname_1": "row-span-4 col-span-3 row-start-9 col-start-24",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>WFH FTW<\/p>",
+            "name_2": "Nathan",
+            "classname_2": "row-span-3 col-span-3 row-start-17 col-start-27",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "d3ee6979-0c19-4beb-bab1-d57f0a315585": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>I'm obsessed with these - and so is my girlfriend<\/p>",
+            "name_1": "Jacob",
+            "classname_1": "row-span-5 col-span-5 row-start-12 col-start-26 mb-2",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": true,
+            "title_2": "<p>My boys have not taken these off since they opened them!<\/p>",
+            "name_2": "Scott S.",
+            "classname_2": "row-span-6 col-span-5 col-start-29 ml-5 row-start-1",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "07842041-2d70-4227-866c-72a2b139d925": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Like being continuously hugged by an angel. Cute too.<\/p>",
+            "name_1": "Susanna P.",
+            "classname_1": "row-span-5 col-span-5 row-start-8 col-start-32 ml-4",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>Most comfortable shorts I've ever worn.<\/p>",
+            "name_2": "Julia C.",
+            "classname_2": "row-span-5 col-span-5 row-start-7 col-start-27",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "2e0b6c24-f607-4c69-85f1-eb77f3499fed": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": true,
+            "title_1": "<p>Fast shipping. Affordable pricing. Unmatched comfort.<\/p>",
+            "name_1": "Kevin F.",
+            "classname_1": "row-span-5 col-span-5 row-start-14 col-start-31",
+            "bubble_classname_1": "",
+            "attributes_1": "",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": false,
+            "points_right_2": false,
+            "title_2": "<p>These are the best loungewear \/ sleep shorts out there!<\/p>",
+            "name_2": "Stephen W.",
+            "classname_2": "row-span-5 col-span-5 mr-6 col-start-34 row-start-2",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-center",
+            "justified_2": "justify-self-center"
+          }
+        },
+        "cd5415ec-bfcf-47f9-8f35-373bb3bdb89e": {
+          "type": "select",
+          "settings": {
+            "is_blank_1": false,
+            "points_right_1": false,
+            "title_1": "<p>SOOO SOFT!!!<\/p>",
+            "name_1": "Sarah M.",
+            "classname_1": "row-span-4 col-span-3 col-start-36 row-start-16",
+            "bubble_classname_1": "",
+            "attributes_1": "style=\"width: 180px;\"",
+            "alignment_1": "self-center",
+            "justified_1": "justify-self-center",
+            "is_blank_2": true,
+            "points_right_2": true,
+            "title_2": "<p>this is<\/p>",
+            "name_2": "",
+            "classname_2": "col-span-4 row-span-4",
+            "bubble_classname_2": "",
+            "attributes_2": "",
+            "alignment_2": "self-start",
+            "justified_2": "justify-self-start"
+          }
+        }
+      },
+      "block_order": [
+        "ef91571c-5a38-42ff-b804-1c07e1a76576",
+        "ac7408ad-db73-4500-8ee0-b790777a6a75",
+        "c3474d9d-590b-41e6-8035-1089ab2eec33",
+        "e5e249f3-bc0d-4faf-a6f0-81d4f534b68c",
+        "65d42fce-2b7e-4b70-b6d8-75857eadf3d8",
+        "08348c07-4196-47be-8b0a-aa1788679248",
+        "07c2c881-377c-484f-bd1f-2a45e0b2910d",
+        "737e588f-2a0e-404c-bdda-ac7ed4782f46",
+        "68e1427f-1695-4a4c-991b-ac730b16f117",
+        "0fb74066-f554-45ec-9eb0-14dd5763bb77",
+        "d3ee6979-0c19-4beb-bab1-d57f0a315585",
+        "07842041-2d70-4227-866c-72a2b139d925",
+        "2e0b6c24-f607-4c69-85f1-eb77f3499fed",
+        "cd5415ec-bfcf-47f9-8f35-373bb3bdb89e"
+      ],
+      "settings": {
+        "heading": "<p>People Love Jambys<\/p>",
+        "reviews_badge_link_text": "",
+        "animation_duration": 35,
+        "wave": "none",
+        "color_bg": "#ecebff"
+      }
+    }
+  },
+  "order": [
+    "replo_replo_banner_section_xRGQ7U",
+    "main",
+    "replo_replo_ticker_section_tFte9q",
+    "16445400345a4b1e35"
+  ]
+}

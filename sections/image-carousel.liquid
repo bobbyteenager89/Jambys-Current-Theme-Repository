@@ -1,0 +1,130 @@
+{% if section.blocks.size > 0 %}
+  
+  {% assign target_width = 2600 %}
+  {% assign block_width = section.blocks.size | times: 200 %}
+  {% assign loop_count = target_width | divided_by: block_width %}
+  {% assign loop_width = loop_count | times: block_width %}
+  {% if loop_width < target_width %}
+    {% assign loop_count = loop_count | plus: 1 %}
+  {% endif %}
+  {% assign frame_width = loop_count | times: section.blocks.size | times: 200 %}
+  {% assign loop_count = loop_count | times: 2 %}
+    <style>
+      @keyframes moveSlideshow {
+          0% { transform: translateX(0); }
+          100% {transform: translateX(-100%)}
+      } 
+
+      #carousel-wrapper-{{ section.id }} {
+        width : 100%;
+        padding:10px 0;
+        background-color: {{ section.settings.background_color }}
+      }
+      
+      #carousel-{{ section.id }} {
+        width : 100%;
+        position : relative;
+        overflow-x : hidden;
+        overflow-y : hidden;
+        border-radius : 15px;
+      }
+      
+      #carousel-{{ section.id }} .slides-wrapper {
+        width : {{ frame_width }}px;
+        animation-duration : {{ section.settings.carousel_speed }}s;
+        animation-timing-function : linear;
+        animation-delay : 0s;
+        animation-iteration-count : infinite;
+        animation-direction : normal;
+        animation-fill-mode : none;
+        animation-play-state : running;
+        animation-name : moveSlideshow;
+      }
+      
+      #carousel-{{ section.id }} .slides {
+        display : flex;
+        width : max-content;
+      }
+      
+      #carousel-{{ section.id }} .slides .slide {
+        display : flex;
+        flex-direction : column;
+        align-items : center;
+      }
+      
+      #carousel-{{ section.id }} .slides .slide .image {
+        width : 192px;
+        height : 192px;
+        position : relative;
+        border-radius : 15px;
+        overflow-x : hidden;
+        overflow-y : hidden;
+        margin : 0px 4px;
+      }
+      
+      #carousel-{{ section.id }} .slides .slide .image img {
+        position : absolute;
+        width : 100%;
+        height : 100%;
+        object-fit : cover;
+      }
+    </style>
+    <div id="carousel-wrapper-{{ section.id }}">
+      <div id="carousel-{{ section.id }}" class="carousel">
+          <div class="slides-wrapper">
+              <div id="carousel-{{ section.id }}" class="slides">
+                {% for i in (1..loop_count) %}
+                  {% for block in section.blocks %}
+                    <div class="slide">
+                        <div class="image"><img src="{{ block.settings.image | img_url: '300x300', crop: 'center' }}" loading="lazy"></div>
+                    </div>
+                  {% endfor %}
+                {% endfor %}
+              </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Image Carousel",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "range",
+        "id": "carousel_speed",
+        "min": 10,
+        "max": 100,
+        "step": 10,
+        "unit": "s",
+        "label": "Carousel Speed",
+        "default": 30,
+        "info": "scrolling speed will vary slightly depending on how many items exist"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Select an image for the carousel"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Carousel",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}

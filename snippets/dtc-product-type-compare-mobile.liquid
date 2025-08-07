@@ -1,0 +1,42 @@
+{% assign product_type_compare_label = collection.metafields.dtc.product_type_compare %}
+    
+{% if product_type_compare_label != blank %}
+    <div class="wide-container dtc-product-type-compare mobile">
+        <div class="slider-content swiper-container">
+            <div class="swiper-wrapper">
+                {% for object in collection.metafields.dtc.product_type_compare_products.value %}
+                    {% render "product-type-compare-block",
+                        product_url: object.link,
+                        product_img: object.image,
+                        product_heading: object.headline,
+                        product_content: object.upper_content,
+                        product_benefits: object.benefits.value %}
+                {% endfor %}
+            </div>
+
+            <!-- Add Navigation -->
+            <div class="controls">
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <script>
+            var mobileSwiper = new Swiper('.dtc-product-type-compare.mobile .swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 12,
+                width: 310,
+                navigation: {
+                    nextEl: '.dtc-product-type-compare.mobile .swiper-button-next',
+                    prevEl: '.dtc-product-type-compare.mobile .swiper-button-prev',
+                    clickable: true
+                },
+                pagination: {
+                    el: '.dtc-product-type-compare.mobile .swiper-pagination',
+                    clickable: true,
+                },
+            });
+        </script>
+    </div>
+{% endif %}

@@ -1,0 +1,36 @@
+<div class="dtc-gift-purchase loading">
+    <div class="heading">
+        <h2>Cart</h2>
+    </div>
+
+    <ig-shipping-progress-container></ig-shipping-progress-container>
+
+    <!-- <div class="skeleton">
+        <h3></h3>
+        <div class="progress-bar-container"></div>
+    </div>
+ -->
+    <div class="content hidden">
+        <h3 class="remain-message"></h3>
+        <div class="progress-bar-container">
+            <div class="freeshipping-tier">
+                <div style="width: 0;" class="progress-bar"></div>
+                <div class="threshold threshold-50 threshold-freeshipping">
+                    {% render "truck-icon" %}
+                    {% render "truck-white-icon" %}
+                </div>
+            </div>
+            <div class="freegift-tier">
+                <div style="width: 0;" class="progress-bar"></div>
+                <div class="threshold threshold-96 threshold-freegift">
+                    {% render "gift-icon" %}
+                    {% render "gift-white-icon" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="unlock-message hidden">
+        <p></p>
+    </div>
+    <div id="free-gift-container" class="free-gift-container dtc-no-rebuy-single-upsell hidden"></div>
+</div>

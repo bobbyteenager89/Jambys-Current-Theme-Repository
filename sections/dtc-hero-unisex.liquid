@@ -1,0 +1,171 @@
+<style>
+  /* #unisex-slider{
+    opacity:0; visibility:hidden; height:0;
+  } */
+  .hero-slider-content__buttons{
+    display:flex;
+    gap:20px;
+  }
+  
+  @media (max-width: 480px) { 
+    .hero-slider-content__buttons{
+    gap:5px;
+    width:100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .hero-slider-content__buttons a{
+    width:50%;
+  }
+  }
+</style>
+<div class="dtc-hero-slider" id= "unisex-slider">
+
+<div class="swiper-wrapper">
+  {% assign total_slides = 0 %}
+{%- for block in section.blocks -%}
+  {% assign total_slides = total_slides |  plus: 1 %}
+  <div class="swiper-slide">
+    <div class="slide-content">
+      {%- case block.type -%}
+        {%- when 'slide' -%}
+          {% render 'dtc-hero-slide', block:block %}
+      {%- endcase -%}
+    </div>
+  </div>
+{%- endfor -%}
+</div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  {% if total_slides != 1 %}
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+  {% endif %}
+</div>
+{% schema %}
+  {
+  "name": "dtc hero unisex slider",
+  "class": "dtc-hero-slider-unisex",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "loop_slider",
+      "label": "Loop slider",
+      "default": true
+    },
+    {
+      "type": "color",
+      "label": "Background color",
+      "id": "background_color"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "id": "video_file",
+          "type": "video",
+          "label": "Video",
+          "info": "if there is a video, it will be displayed instead of the image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "btn_bg_color",
+          "label": "Button Background"
+        },
+        {
+          "type": "color",
+          "id": "btn_border_color",
+          "label": "Button Border"
+        },
+        {
+          "type": "color",
+          "id": "btn_text_color",
+          "label": "Button Text"
+        },
+        {
+          "type": "color",
+          "id": "btn_hover_color",
+          "label": "Hover Color"
+        },
+        {
+          "type": "color",
+          "id": "btn_hover_text_color",
+          "label": "Hover Text Color"
+        },
+        {
+          "type": "text",
+          "id": "second_button_label",
+          "label": "Second Button Label"
+        },
+        {
+          "type": "url",
+          "id": "second_button_link",
+          "label": "Second Button link"
+        },
+                {
+          "type": "color",
+          "id": "btn2_bg_color",
+          "label": "Second Button Background"
+        },
+        {
+          "type": "color",
+          "id": "btn2_border_color",
+          "label": "Second Button Border"
+        },
+        {
+          "type": "color",
+          "id": "btn2_text_color",
+          "label": "Second Button Text"
+        },
+        {
+          "type": "color",
+          "id": "btn2_hover_color",
+          "label": "Second Hover Color"
+        },
+                {
+          "type": "color",
+          "id": "btn2_hover_text_color",
+          "label": "Second Hover Text Color"
+        }
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "dtc hero image/video"
+    }
+  ]
+}  
+{% endschema %}

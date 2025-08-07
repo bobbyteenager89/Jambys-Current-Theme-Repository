@@ -1,0 +1,419 @@
+{% style %}
+  {% if section.settings.title_alignment == 'center' %}
+  .section-id-{{ section.id }} h2 {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+  .section-id-{{ section.id }} .section-heading {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  {% endif %}
+{% endstyle %}
+
+{% style %}
+  {% unless section.settings.color_bg == blank %}
+     .section-id-{{ section.id }} {
+        background-color: {{ section.settings.color_bg }};
+     }
+  {% endunless %}
+{% endstyle %}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+    wave_position: section.settings.wave, 
+    section_id: section.id,
+    fill_color: section.settings.color_bg -%}
+{%- endif -%}
+
+<div id="section-id-{{ section.id }}" data-section-type="accordion" class="half-gutter section-spacing section-id-{{ section.id }} {% if section.settings.alternate_bg_color %}use-alt-bg{% endif %}" data-components="accordion">
+  <div class="accordion-container reading-width {% if section.settings.title == blank %}no-title{% endif %}" >
+    {% if section.settings.title != blank %}
+      <div class="section-heading section-heading--with-spacing container container--large"
+           data-cc-animate>
+        <h2 class="h2">{{ section.settings.title | escape }}</h2>
+
+        {% if section.settings.view_all_page %}
+          <a data-cc-animate-click class="view-all-link" href="{{ section.settings.view_all_page }}">
+            {{ 'faq.view_all' | t }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="container container--large" data-cc-animate id="faqs-product">
+      
+
+      {% if product != blank %}
+        {% assign product_type = product.type | handleize %}
+
+        {% if product.type == 'House Hoodie' %}
+          {% assign product_type = 'House Hoodies' | handleize %}
+        {% endif %}
+        {% if product.type == 'JamTee' %}
+          {% assign product_type = 'JamTees' | handleize %}
+        {% endif %}
+
+        
+
+        {%- assign product_type_collection = collections[product_type] -%}
+
+        {% assign handle_pack = collections[product_type].metafields.custom.collection_pack.value.handle %}
+        {% assign handle_five_pack = collections[product_type].metafields.custom.five_pack_collection.value.handle %}
+
+        {% assign has_single_variation = product.metafields.custom.single_product_type %}
+        {% assign has_5_pack_variation = product.metafields.custom.parent_single_collection_5_reference_ %}
+
+        {% if has_single_variation != blank or has_5_pack_variation != blank %}
+          {% if has_single_variation != blank and handle_pack != blank %}
+            {%- assign product_type_collection = collections[handle_pack] -%}
+          {% elsif has_5_pack_variation != blank and handle_five_pack != blank %}
+            {%- assign product_type_collection = collections[handle_five_pack] -%}
+          {% endif %}
+        {% endif %}
+
+        <script>
+          var isShowMetaobject = {{ section.settings.show_metaobject_faqs }};
+        </script>
+        {% if section.settings.show_metaobject_faqs == true %}
+
+          {% assign isCustom = false %}
+          {% for product in product_type_collection.products %}
+            {% for question in product.metafields.custom.faqs_questions.value %}
+              {% assign isCustom = true %}
+              {% assign text = question.answers | metafield_tag %}
+              {%- render "accordion", first_item_open: false, item1_title: question.question, item1_content: text, id_accordion: product.id -%}
+            {% endfor %}
+          {% endfor %}
+          {% for question in product_type_collection.metafields.custom.faqs_questions.value %}
+            {% assign isCustom = true %}
+            {% assign text = question.answers | metafield_tag %}
+            {%- render "accordion", first_item_open: false, item1_title: question.question, item1_content: text, id_accordion: "general"-%}
+          {% endfor %}
+
+          {% unless isCustom %}
+            <script>
+              isShowMetaobject = false;
+            </script>
+          {% endunless %}
+
+
+          {% if product.metafields.custom.faqs_questions.value != blank %}
+            {% for question in product.metafields.custom.faqs_questions.value %}
+              {% assign text = question.answers | metafield_tag %}
+              {%- render "accordion", first_item_open: false, item1_title: question.question, item1_content: text -%}
+            {% endfor %}
+          {% elsif product_type_collection.metafields.custom.faqs_questions.value != blank %}
+            {% for question in product_type_collection.metafields.custom.faqs_questions.value %}
+              {% assign text = question.answers | metafield_tag %}
+              {%- render "accordion", first_item_open: false, item1_title: question.question, item1_content: text -%}
+            {% endfor %}
+          {% else %}
+            {% for block in section.blocks %}
+              <div {{ block.shopify_attributes }}>
+                {% capture accordion_title %}
+                  {% if block.settings.icon != "none" %}
+                    {% render 'icon', icon: block.settings.icon %}
+                  {% endif %}
+                  {{ block.settings.title }}
+                {% endcapture %}
+                {%- render "accordion", first_item_open: block.settings.open, item1_title: accordion_title, item1_content: block.settings.text -%}            
+              </div>
+            {% endfor %}
+        {% endif %}  
+        {% else %}
+          {% for block in section.blocks %}
+            <div {{ block.shopify_attributes }}>
+              {% capture accordion_title %}
+                {% if block.settings.icon != "none" %}
+                  {% render 'icon', icon: block.settings.icon %}
+                {% endif %}
+                {{ block.settings.title }}
+              {% endcapture %}
+    
+              {%- render "accordion", first_item_open: block.settings.open, item1_title: accordion_title, item1_content: block.settings.text -%}              
+            </div>
+          {% endfor %}
+        {% endif %}  
+      {% endif %}
+      
+
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Expandable content",
+  "class": "section-accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Expandable content"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "id": "alternate_bg_color",
+      "type": "checkbox",
+      "label": "Use alternate section color",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "view_all_page",
+      "label": "Link to more info",
+      "info": "If specified, shows a 'View all' link to this URL"
+    },
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "id": "color_bg",
+      "type": "color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "show_metaobject_faqs",
+      "type": "checkbox",
+      "label": "Show FAQs from metaobject",
+      "info": "If checked, FAQs will be shown from the metaobject collection.",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Row",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "none",
+          "options": [
+  {
+    "value": "none",
+    "label": "None"
+  },
+  {
+    "value": "award",
+    "label": "Award"
+  },
+  {
+    "value": "box",
+    "label": "Box"
+  },
+  {
+    "value": "briefcase",
+    "label": "Briefcase"
+  },
+  {
+    "value": "calendar",
+    "label": "Calendar"
+  },
+  {
+    "value": "chat_bubble",
+    "label": "Chat bubble"
+  },
+  {
+    "value": "check_mark",
+    "label": "Check mark"
+  },
+  {
+    "value": "clock",
+    "label": "Clock"
+  },
+  {
+    "value": "credit_card",
+    "label": "Credit card"
+  },
+  {
+    "value": "dollar_sign",
+    "label": "Dollar sign"
+  },
+  {
+    "value": "dryer",
+    "label": "Dryer"
+  },
+  {
+    "value": "eye",
+    "label": "Eye"
+  },
+  {
+    "value": "feather",
+    "label": "Feather"
+  },
+  {
+    "value": "gift",
+    "label": "Gift"
+  },
+  {
+    "value": "heart",
+    "label": "Heart"
+  },
+  {
+    "value": "iron",
+    "label": "Iron"
+  },
+  {
+    "value": "leaf",
+    "label": "Leaf"
+  },
+  {
+    "value": "leather",
+    "label": "Leather"
+  },
+  {
+    "value": "lock",
+    "label": "Lock"
+  },
+  {
+    "value": "map_pin",
+    "label": "Map pin"
+  },
+  {
+    "value": "pants",
+    "label": "Pants"
+  },
+  {
+    "value": "percent",
+    "label": "Percent"
+  },
+  {
+    "value": "plane",
+    "label": "Plane"
+  },
+  {
+    "value": "price_tag",
+    "label": "Price tag"
+  },
+  {
+    "value": "question_mark",
+    "label": "Question mark"
+  },
+  {
+    "value": "return",
+    "label": "Return"
+  },
+  {
+    "value": "ruler",
+    "label": "Ruler"
+  },
+  {
+    "value": "scissors",
+    "label": "Scissors"
+  },
+  {
+    "value": "shirt",
+    "label": "Shirt"
+  },
+  {
+    "value": "shoe",
+    "label": "Shoe"
+  },
+  {
+    "value": "silhouette",
+    "label": "Silhouette"
+  },
+  {
+    "value": "star",
+    "label": "Star"
+  },
+  {
+    "value": "truck",
+    "label": "Truck"
+  },
+  {
+    "value": "washing",
+    "label": "Washing"
+  }
+]
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add the content to appear when the content is expanded</p>"
+        },
+        {
+          "id": "open",
+          "type": "checkbox",
+          "label": "Open",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Expandable content",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "accordion"
+        },
+        {
+          "type": "accordion"
+        },
+        {
+          "type": "accordion"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,162 @@
+{%- style -%}
+  #TextMarquee-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .text-marquee {
+    width: 100%;
+    overflow: hidden;
+    {% if settings.custom_heading_font_name %}
+      font-family: {{ settings.custom_heading_font_name }};
+      font-weight: {{ settings.custom_heading_font_weight }};
+      font-style: normal;
+    {% else %}
+      font-family: {{ settings.type_heading_font }}, {{ settings.type_heading_font.fallback_families }};
+      font-weight: {{ settings.type_heading_font.weight }};
+      font-style: {{ settings.type_heading_font.style }};
+    {% endif %}
+    font-size: 1.5rem;
+    line-height: 1;
+    padding-top: 1.5rem;
+    padding-bottom: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .text-marquee {
+      padding-top: 2rem;
+      padding-bottom: 1.75rem;
+      font-size: 1.75rem;
+    }
+  }
+  .text-marquee__inner {
+    display: flex;
+  }
+  .text-marquee__content {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    animation-duration: var(--marquee-animation-duration);
+    animation-play-state: running;
+  }
+  .text-marquee__content > * {
+    flex: 0 0 auto;
+    display: inline-block;
+    margin-left: 1rem;
+  }
+  .text-marquee__content--left {
+    animation-name: textMarqueeLeft;
+  }
+  .text-marquee:hover .text-marquee__content {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion) {
+    .text-marquee--paused .text-marquee__content {
+      animation-play-state: paused;
+    }
+  }
+  @keyframes textMarqueeLeft {
+    0% {
+      transform: translateZ(0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+{%- endstyle -%}
+
+{%- assign item_count = section.blocks.size | times: section.settings.repetitions -%}
+{%- assign speed_multiplier = section.settings.speed | default: 1 -%}
+{%- if speed_multiplier == 0 -%}
+  {%- assign speed = 1 -%}
+{%- else -%}
+  {%- assign speed = 6 | times: item_count | divided_by: speed_multiplier -%}
+{%- endif -%}
+<div
+  id="TextMarquee-{{ section.id }}"
+  class="text-marquee__container"
+>
+  <div
+    class="text-marquee"
+    onclick="this.classList.toggle('text-marquee--paused');"
+    style="--marquee-animation-duration: {{ speed }}s;"
+  >
+    <div class="text-marquee__inner">
+      {%- capture marquee_items -%}
+        <div class="text-marquee__content text-marquee__content--left">
+          {%- capture marquee_item -%}
+            {%- for block in section.blocks -%}
+              <div class="text-marquee__item">
+                {{ block.settings.text }}
+              </div>
+              <div>&bull;</div>
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- for i in (1..section.settings.repetitions) -%}
+            {{ marquee_item }}
+          {%- endfor -%}
+        </div>
+      {%- endcapture -%}
+      {{- marquee_items -}}
+      {{- marquee_items -}}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Text",
+  "class": "section-text-marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color"
+    },
+    {
+      "type": "range",
+      "id": "repetitions",
+      "label": "Text repetitions",
+      "info": "Increase this if there's blank space to the right on large screens",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation speed",
+      "default": 1,
+      "step": 0.1,
+      "min": 0,
+      "max": 3
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Text",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

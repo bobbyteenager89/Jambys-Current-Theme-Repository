@@ -1,0 +1,68 @@
+<style>
+  .find-your-fit {
+    line-height: 40px;
+    padding: 0 20px;
+    width: auto;
+    height: 44px;
+    border: solid 2px;
+    white-space: nowrap;
+    cursor: pointer;
+    display:none;
+    text-align: center;
+  }
+  .size-chart-modal .inner {
+    top: 50% !important;
+    left: 50% !important;
+    translate: -50% -50% !important;
+    width: 50% !important;
+    min-width: 700px !important;
+    min-height: 400px !important;
+  }
+  .size-chart-modal .inner.rte .modal-close {
+    cursor: pointer;
+  }
+  .size-chart-modal .inner.rte table {
+    width:100% !important;
+    font-size:0.8rem;
+  }
+  @media (max-width: 767px) {
+   .size-chart-modal .inner {
+      min-width: 98% !important;
+    }
+  }
+  @media (max-width: 370px) {
+   .find-your-fit {
+      padding: 0 15px;
+    }
+  }
+</style>
+<span class="border-radius-rounded find-your-fit">
+  Find Your Perfect Fit
+</span>
+<div class="theme-modal theme-modal--small unreveal size-chart-modal">
+  <div class="inner rte">
+    <a data-modal-close="" class="modal-close" style="border-bottom:none;">×</a>
+    {{ product.metafields.global.size_chart.value.content }}
+  </div>
+</div>
+<script>
+  const size_chart_button = document.querySelector('.find-your-fit');
+  const size_chart_modal = document.querySelector('.size-chart-modal');
+  const size_chart_modal_close = document.querySelector('.size-chart-modal .modal-close');
+  
+  size_chart_button.addEventListener('click', function() {
+    size_chart_modal.classList.remove('unreveal');
+    size_chart_modal.classList.add('reveal');
+    document.body.classList.add("no-scroll");
+  });
+  size_chart_modal.addEventListener('click', function() {
+    size_chart_modal.classList.remove('reveal');
+    size_chart_modal.classList.add('unreveal');
+    document.body.classList.remove("no-scroll");
+  });
+  size_chart_modal_close.addEventListener('click', function() {
+    size_chart_modal.classList.remove('reveal');
+    size_chart_modal.classList.add('unreveal');
+    document.body.classList.remove("no-scroll");
+  });
+</script>

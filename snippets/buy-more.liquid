@@ -1,0 +1,44 @@
+{{ 'buy-more.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign show_section = false 
+  for collection in product.collections 
+    if collection.metafields.custom.buy_more.value 
+      assign boxTitle = collection.metafields.custom.buy_box_title
+      assign boxDescription = collection.metafields.custom.buy_box_description
+      assign boxContent = collection.metafields.custom.buy_more.value
+      assign boxDisclaimer = collection.metafields.custom.buy_box_disclaimer
+      break
+    endif
+  endfor 
+
+  if boxTitle != blank and boxContent != blank 
+    assign show_section = true    
+  endif
+%}
+
+{% if show_section %}
+  <div class="buy-more__container dct-buy-more--{{ product.type | handleize }}">
+    <div class="buy-more__header-container">
+      <p class="buy-more__left-title">{{ boxTitle }}</p>
+      <p class="buy-more__right-title">{{ boxDescription }}</p>
+    </div>
+    <div class="buy-more__content-wrapper">
+      {% for buyBoxReview in boxContent %}
+        <div class="buy-more__content-container">
+            <p class="buy-more__content-title">{{ buyBoxReview.quantity }} {{ product.type }}</p>
+            <div class="buy-more__price-content">
+              <div class="buy-more__price-wrapper">
+                <p class="buy-more__content-discount">${{ buyBoxReview.price }}</p>
+                <p class="buy-more__content-price">${{ buyBoxReview.discount }}</p>
+              </div>
+              <div class="buy-more__left-savings-container">
+                <p class="buy-more__left-savings">Save {{ buyBoxReview.savings }}%</p>
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    <p class="buy-more__disclaimer">{{ boxDisclaimer }}</p>
+  </div>
+{% endif %}

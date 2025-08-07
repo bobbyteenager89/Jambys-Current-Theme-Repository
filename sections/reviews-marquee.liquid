@@ -1,0 +1,504 @@
+{% comment %}
+  styles from the old theme, this should be tree shaken
+{% endcomment %}
+{{ 'reviews-marquee.css' | asset_url | stylesheet_tag }}
+
+{%- unless section.settings.color_bg == '#ffffff' -%}
+  {%- style -%}
+    .section-id-{{ section.id }} {
+       background-color: {{ section.settings.color_bg }};
+    }
+  {%- endstyle -%}
+{%- endunless -%}
+
+{%- if section.settings.wave != 'none' -%}
+  {%- render 'wave-styles',
+    wave_position: section.settings.wave,
+    section_id: section.id,
+    fill_color: section.settings.color_bg
+  -%}
+{%- endif -%}
+
+{%- assign reviews_badge_site_average = settings.reviews_badge_site_average | default: 100 -%}
+{%- style -%}
+  .section-id-{{ section.id }} {
+   position: relative;
+  }
+
+  .section-id-{{ section.id }} .junip-stars-filled {
+    width: {{ reviews_badge_site_average }}%;
+  }
+
+  .reviews-page-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem auto;
+  }
+  .reviews-page-link .junip-product-summary-star {
+    width: 27px;
+    height: 27px;
+  }
+  .reviews-page-link .junip-stars-container {
+    height: 27px;
+    margin: 8px auto;
+  }
+  .reviews-page-link__text {
+    font-size: 17px;
+    line-height: 100%;
+    text-align: center;
+    text-decoration: underline;
+  }
+{%- endstyle -%}
+
+{%- assign reviews_badge_link_text = section.settings.reviews_badge_link_text -%}
+{%- if reviews_badge_link_text == blank -%}
+  {%- assign reviews_badge_link_text = settings.reviews_badge_link_text -%}
+{%- endif -%}
+
+<div class="bg-yellow py-24 section-id-{{ section.id }}">
+  <div class="mb-8 flex flex-col items-center">
+    <h2>{{ section.settings.heading }}</h2>
+
+    <a href="/pages/reviews" class="reviews-page-link">
+      <div class="junip-stars-container">
+        <div class="junip-stars-outline">
+          <div class="junip-product-summary-star junip-star-outline">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Outline Star</title>
+              <use href="#junipOutlineStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-outline">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Outline Star</title>
+              <use href="#junipOutlineStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-outline">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Outline Star</title>
+              <use href="#junipOutlineStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-outline">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Outline Star</title>
+              <use href="#junipOutlineStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-outline">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Outline Star</title>
+              <use href="#junipOutlineStar"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="junip-stars-filled">
+          <div class="junip-product-summary-star junip-star-filled">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Filled Star</title>
+              <use href="#junipFilledStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-filled">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Filled Star</title>
+              <use href="#junipFilledStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-filled">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Filled Star</title>
+              <use href="#junipFilledStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-filled">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Filled Star</title>
+              <use href="#junipFilledStar"></use>
+            </svg>
+          </div>
+          <div class="junip-product-summary-star junip-star-filled">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img">
+              <title>Filled Star</title>
+              <use href="#junipFilledStar"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-page-link__text">{{ reviews_badge_link_text }}</div>
+    </a>
+  </div>
+  <div
+    id="reviews-marquee-{{section.id}}"
+    class="marquee__container w-full flex relative {% if request.design_mode %}overflow-scroll{% else %}overflow-hidden{% endif %}"
+    data-component="marquee"
+  >
+    <div
+      class="marquee__row marquee__row--left-offset max-w-none flex"
+      data-js-duration="{{section.settings.animation_duration}}"
+    >
+      {% capture grid_content %}
+      <div class="reviews-grid max-w-none overflow-visible" style="
+        grid-auto-flow: column dense;
+        display: grid;
+        width: 2160px;
+        grid-template-columns: repeat(36, 60px);
+        grid-template-rows: repeat(20, 25px);">
+        {% for block in section.blocks %}
+          <div class="quote {{block.settings.justified_1}} {{block.settings.alignment_1}}
+            {% if block.settings.points_right_1 %}quote--points-right{% endif %}
+            {{block.settings.classname_1}}"
+            {{block.settings.attributes_1}}>
+            <div class="quote__bubble {{block.settings.bubble_classname_1}} relative overflow-visible rounded-full
+              bg-white {% if block.settings.is_blank_1 %}w-32 h-16 opacity-50{% endif %}"
+              style="padding: 18px 18px 12px 18px;
+                {% comment %} max-width: {% if block.settings.title.size < 25 %}140px{% elsif block.settings.title.size < 45 %}160px;{% else %}80%{% endif %}; {% endcomment %}
+              ">
+              {% unless block.settings.is_blank_1 %}
+                <div class="text-center mx-auto">
+                  <div class="text-xl">{{block.settings.title_1}}</div>
+                  <div class="text-sm opacity-50">{{block.settings.name_1}}</div>
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+          <div class="quote {{block.settings.justified_1}} {{block.settings.alignment_1}}
+            {% if block.settings.points_right_1 %}quote--points-right{% endif %}
+            {{block.settings.classname_1}}"
+            {{block.settings.attributes_1}}>
+            <div class="quote__bubble {{block.settings.bubble_classname_1}} relative overflow-visible rounded-full
+              bg-white {% if block.settings.is_blank_1 %}w-32 h-16 opacity-50{% endif %}"
+              style="padding: 18px 18px 12px 18px;
+                {% comment %} max-width: {% if block.settings.title.size < 25 %}140px{% elsif block.settings.title.size < 45 %}160px;{% else %}80%{% endif %}; {% endcomment %}
+              ">
+              {% unless block.settings.is_blank_1 %}
+                <div class="text-center mx-auto">
+                  <div class="text-xl">{{block.settings.title_1}}</div>
+                  <div class="text-sm opacity-50">{{block.settings.name_1}}</div>
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+          {% unless forloop.last %}
+          <div class="quote {{block.settings.justified_2}} {{block.settings.alignment_2}}
+            {% if block.settings.points_right_2 %}quote--points-right{% endif %}
+            {{block.settings.classname_2}}"
+            {{block.settings.attributes_2}}>
+            <div class="quote__bubble {{block.settings.bubble_classname_2}} relative overflow-visible rounded-full
+              bg-white {% if block.settings.is_blank_2 %}w-32 h-16 opacity-50{% endif %}"
+              style="padding: 18px 18px 12px 18px;
+                {% comment %} max-width: {% if block.settings.title.size < 25 %}140px{% elsif block.settings.title.size < 45 %}160px;{% else %}80%{% endif %}; {% endcomment %}
+              ">
+              {% unless block.settings.is_blank_2 %}
+                <div class="text-center mx-auto">
+                  <div class="text-xl">{{block.settings.title_2}}</div>
+                  <div class="text-sm opacity-50">{{block.settings.name_2}}</div>
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+          <div class="quote {{block.settings.justified_2}} {{block.settings.alignment_2}}
+            {% if block.settings.points_right_2 %}quote--points-right{% endif %}
+            {{block.settings.classname_2}}"
+            {{block.settings.attributes_2}}>
+            <div class="quote__bubble {{block.settings.bubble_classname_2}} relative overflow-visible rounded-full
+              bg-white {% if block.settings.is_blank_2 %}w-32 h-16 opacity-50{% endif %}"
+              style="padding: 18px 18px 12px 18px;
+                {% comment %} max-width: {% if block.settings.title.size < 25 %}140px{% elsif block.settings.title.size < 45 %}160px;{% else %}80%{% endif %}; {% endcomment %}
+              ">
+              {% unless block.settings.is_blank__2 %}
+                <div class="text-center mx-auto">
+                  <div class="text-xl">{{block.settings.title_2}}</div>
+                  <div class="text-sm opacity-50">{{block.settings.name_2}}</div>
+                </div>
+              {% endunless %}
+            </div>
+          </div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+      {% endcapture %}
+      {{ grid_content }}
+      {{ grid_content }}
+    </div>
+  </div>
+</div>
+
+{% assign animDuration = section.settings.animation_duration %}
+{% if animDuration == blank %}
+  {% assign animDuration = 30 %}
+{% endif %}
+{% assign animDuration = animDuration | append: 's' %}
+<style>
+  #reviews-marquee-{{section.id}} .marquee__row {
+    -webkit-animation-duration: {{animDuration}};
+    animation-duration: {{animDuration}};
+  }
+  .quote {
+    padding-left: 25px;
+  }
+  .quote--points-right {
+    padding-left: 0;
+    padding-right: 25px;
+  }
+  .quote__bubble {
+    overflow: visible;
+    position: relative;
+    border-radius: 999px;
+  }
+  .quote__bubble:not(.bg-grey) {
+    background-color: white;
+  }
+  .quote__bubble > div {
+    position: relative;
+    z-index: 1;
+  }
+  .quote__bubble:before {
+    content: url("data:image/svg+xml,%3Csvg width='49' height='42' viewBox='0 0 49 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40.0216C22.6894 32.974 34.4427 11.0593 37.4831 0.98291C45.4808 10.8393 56.8843 31.9783 38.5167 37.6835C20.149 43.3887 5.1857 41.6194 0 40.0216Z' fill='white'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    left: -25px;
+    bottom: 16px;
+    width: 48px;
+    height: 40px;
+  }
+  .quote__bubble.bg-grey:before {
+    content: url("data:image/svg+xml,%3Csvg width='49' height='42' viewBox='0 0 49 42' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40.0216C22.6894 32.974 34.4427 11.0593 37.4831 0.98291C45.4808 10.8393 56.8843 31.9783 38.5167 37.6835C20.149 43.3887 5.1857 41.6194 0 40.0216Z' fill='%23f3f4f9'/%3E%3C/svg%3E%0A");
+  }
+  .quote--points-right .quote__bubble:before {
+    transform: scale(-1, 1);
+    right: -25px;
+    left: auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name": {
+    "en": "Selected Reviews"
+  },
+  "class": "reviews-marquee",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "reviews_badge_link_text",
+      "label": "Reviews badge link text",
+      "info": "E.g. \"See all 7,000 reviews\""
+    },
+    {
+      "id": "animation_duration",
+      "type": "number",
+      "label": "Animation duration in seconds"
+    },
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Custom background color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Review 1"
+        },
+        {
+          "id": "is_blank_1",
+          "type": "checkbox",
+          "label": "Blank quote bubble?"
+        },
+        {
+          "id": "points_right_1",
+          "type": "checkbox",
+          "label": "Bubble points right?"
+        },
+        {
+          "id": "title_1",
+          "type": "richtext",
+          "label": "Quote"
+        },
+        {
+          "id": "name_1",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "id": "classname_1",
+          "type": "textarea",
+          "label": "Wrapper classname",
+          "default": "col-span-4 row-span-4"
+        },
+        {
+          "id": "bubble_classname_1",
+          "type": "textarea",
+          "label": "Bubble classname"
+        },
+        {
+          "id": "attributes_1",
+          "type": "textarea",
+          "label": "HTML attributes"
+        },
+        {
+          "type": "radio",
+          "id": "alignment_1",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "self-start",
+              "label": "Top"
+            },
+            {
+              "value": "self-center",
+              "label": "Center"
+            },
+            {
+              "value": "self-end",
+              "label": "Bottom"
+            }
+          ],
+          "default": "self-center"
+        },
+        {
+          "type": "radio",
+          "id": "justified_1",
+          "label": "Justified",
+          "options": [
+            {
+              "value": "justify-self-start",
+              "label": "Left"
+            },
+            {
+              "value": "justify-self-center",
+              "label": "Center"
+            },
+            {
+              "value": "justify-self-end",
+              "label": "Right"
+            }
+          ],
+          "default": "justify-self-center"
+        },
+        {
+          "type": "header",
+          "content": "Review 2"
+        },
+
+        {
+          "id": "is_blank_2",
+          "type": "checkbox",
+          "label": "Blank quote bubble?"
+        },
+        {
+          "id": "points_right_2",
+          "type": "checkbox",
+          "label": "Bubble points right?"
+        },
+        {
+          "id": "title_2",
+          "type": "richtext",
+          "label": "Quote"
+        },
+        {
+          "id": "name_2",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "id": "classname_2",
+          "type": "textarea",
+          "label": "Wrapper classname",
+          "default": "col-span-4 row-span-4"
+        },
+        {
+          "id": "bubble_classname_2",
+          "type": "textarea",
+          "label": "Bubble classname"
+        },
+        {
+          "id": "attributes_2",
+          "type": "textarea",
+          "label": "HTML attributes"
+        },
+        {
+          "type": "radio",
+          "id": "alignment_2",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "self-start",
+              "label": "Top"
+            },
+            {
+              "value": "self-center",
+              "label": "Center"
+            },
+            {
+              "value": "self-end",
+              "label": "Bottom"
+            }
+          ],
+          "default": "self-center"
+        },
+        {
+          "type": "radio",
+          "id": "justified_2",
+          "label": "Justified",
+          "options": [
+            {
+              "value": "justify-self-start",
+              "label": "Left"
+            },
+            {
+              "value": "justify-self-center",
+              "label": "Center"
+            },
+            {
+              "value": "justify-self-end",
+              "label": "Right"
+            }
+          ],
+          "default": "justify-self-center"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Marquee"
+    }
+  ]
+}
+{% endschema %}

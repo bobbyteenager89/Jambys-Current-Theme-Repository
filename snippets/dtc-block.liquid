@@ -1,0 +1,161 @@
+{% liquid
+assign current_variant = related_product.selected_or_first_available_variant
+assign product_type = related_product.type | handleize
+if related_product.type == 'House Hoodie'
+    assign product_type = 'House Hoodies' | handleize
+endif
+if related_product.type == 'JamTee'
+    assign product_type = 'JamTees' | handleize
+endif
+assign product_type_collection = collections[product_type]
+assign color_collection = product_type_collection.products | where: 'type', related_product.type
+assign currentColor = ''
+for product_collection in color_collection
+  if product_collection.id == related_product.id
+    assign currentColor = product_collection.metafields.product.color
+  endif
+endfor
+%}
+<div class="dtc-product-container">
+  <h3 class="product-area__details__title h2 dtc-alt-title">
+    Pairs well with:
+  </h3>
+  {% if related_product.featured_image != blank %}
+    <div class="dtc-product-image-wrapper">
+      <img src="{{ related_product.featured_image | img_url:'800x' }}" alt="{{ related_product.featured_image.alt | escape }}" />
+    </div>
+  {% endif %}
+  <div class="dtc-product-content-wrapper">
+    <div class="dtc-product-main-info">
+      <h3 class="product-area__details__title product-detail__gap-sm h2">
+        Pairs well with:
+      </h3>
+
+      <h2 class="product-subtitle">{{ related_product.title }}</h2>
+      <div
+        class="price-area product-detail__gap-sm"
+        data-product-id="{{ related_product.id }}"
+        data-variant-id="{{ current_variant.id }}">
+
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="was-price theme-money">{%- render "price", price: current_variant.compare_at_price | money_without_trailing_zeros -%}</span>
+        {% endif %}
+
+        <div class="price theme-money">{%- render "price", price: current_variant.price | money_without_trailing_zeros -%}</div>
+
+        {% render 'unit-price', variant: current_variant %}
+      </div>
+    </div>
+    <div class="dtc-pricing-reviews-wrapper">
+      <div class="dtc-pricing-container">
+        <div
+          class="price-area product-detail__gap-sm"
+          data-product-id="{{ related_product.id }}"
+          data-variant-id="{{ current_variant.id }}">
+
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="was-price theme-money">{%- render "price", price: current_variant.compare_at_price | money_without_trailing_zeros -%}</span>
+          {% endif %}
+
+          <div class="price theme-money">{%- render "price", price: current_variant.price | money_without_trailing_zeros -%}</div>
+
+          {% render 'unit-price', variant: current_variant %}
+        </div>
+      </div>
+      <div class="dtc-reviews-container">
+
+        {% render 'junip-product-summary', product: related_product %}
+        {% if related_product.metafields.reviews.rating_count != blank and related_product.metafields.reviews.rating_count > 0 %}
+          <span class="cc-rating-custom-caption">
+            ({{ related_product.metafields.reviews.rating_count }} {{ 'products.product.reviews_link' | t: count: related_product.metafields.reviews.rating_count | downcase }})
+          </span>
+        {% endif %}
+      </div>
+    </div>
+    {% if color_collection and related_product.handle != 'jambys-gift-card' %}
+      <div class="dtc-color-swatches-floating-wrapper" data-content="dtc-swatches">
+
+        <div class="selector-wrapper">
+          <span class="dtc-close" data-content="dtc-swatches">&times;</span>
+          <label>Color: {{ currentColor }}</label>
+          <ul class="product-color-swatches cc-swatches">
+            {% for collection_product in color_collection %}
+              {% if collection_product.metafields.product.color %}
+                <li class="dtc-color-swatch {% if collection_product.id == related_product.id %}active{% endif %}"data-color-swatch="{{ collection_product.metafields.product.color }}"data-product-id-swatch="{{ collection_product.id }}"data-js-product-handle="{{ collection_product.handle }}"{% if section.settings.enable_zoom == true %}data-enable-zoom="true"{% endif %}></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    <div class="dtc-options-wrapper" data-content="dtc-variants">
+      {% if related_product.has_only_default_variant %}
+        <input
+          type="hidden"
+          value="{{ related_product.variants.first.id }}"
+          name="id"
+          class="dtc-selected"
+          data-id="{{ related_product.variants.first.id }}" />
+      {% else %}
+
+        {% for option in related_product.options_with_values %}
+          <label>{{ option.name }}</label>
+          <div class="dtc-variants-wrapper">
+            {% render 'dtc-variant-button', option: option, related_product: related_product, current_variant: current_variant %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="dtc-options-wrapper-mobile">
+      <div class="dtc-color-swatches-wrapper">
+        <button
+          type="button"
+          class="dtc-button-dropdown"
+          data-content="dtc-swatches">
+          <span class="dtc-test-button"></span>
+          <span class="dtc-chevron-down">{% render 'dtc-chevron-down' %}</span>
+        </button>
+      </div>
+      <div class="dtc-variant-wrapper">
+        {% if related_product.has_only_default_variant %}
+          <input
+            type="hidden"
+            value="{{ related_product.variants.first.id }}"
+            name="id"
+            class="dtc-selected"
+            data-id="{{ related_product.variants.first.id }}" />
+        {% else %}
+
+          {% for option in related_product.options_with_values %}
+            <button
+              class="dtc-button-dropdown"
+              type="button"
+              data-content="dtc-variants">
+              <span class="dtc-variant-current-value">{{ option.name }}</span>
+              <span class="dtc-chevron-down">{% render 'dtc-chevron-down' %}</span>
+            </button>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="dtc-atc-wrapper">
+      <button type="button" class="dtc-atc-button">
+        <span class="dtc-default-content">
+          {{ 'products.product.add_to_cart' | t }}
+          <span class="dtc-btn-price">
+            - {{ current_variant.price | money_without_trailing_zeros }}</span>
+        </span>
+        <span class="dtc-adding-message dtc-hide-element">
+          Adding...
+        </span>
+        <span class="dtc-added-message dtc-hide-element">
+          Added to Cart
+        </span>
+      </button>
+      <a href="{{ related_product.url }}">View Full Product Page</a>
+    </div>
+
+  </div>
+</div>

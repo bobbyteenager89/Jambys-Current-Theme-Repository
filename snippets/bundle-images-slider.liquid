@@ -1,0 +1,84 @@
+<div class='relative' data-component='carousel'>
+  <div class="product-carousel embla relative w-full" data-js-main-carousel>
+      <div class="embla__viewport">
+        <div class="embla__container">
+          {% for image in product.images %}
+            <div class="embla__slide min-w-full">
+            <div class="embla__slide__inner">
+              {% assign classname = 'object-cover' %}
+              {% if forloop.first %}
+                {% comment %}
+                  Attempt to load the first image immediately,
+                  and match it to the preloaded image's media
+                  queries in 'snippets/preload-images.liquid'
+                {% endcomment %}
+                {%- assign img_widths = '360,540,600,720,800,900,1080,1296,1512,1728,1944,2160' | split: ',' -%}
+                {%- capture srcset -%}
+                  {%- for width in img_widths -%}
+                    {%- assign width_num = width | plus: 0 | round -%}
+                    {%- if image.width > width_num -%}
+                      {%- assign url_param = width | append: 'x' -%}
+                      {{image | img_url: url_param}} {{width}}w,
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endcapture -%}
+                {%- assign max_width_param = image.width | append: 'x' -%}
+                {%- assign max_width_img = image | img_url: max_width_param -%}
+                {% capture image_attr %}
+                  src="{{ max_width_img }}" style="color: transparent;"
+                  srcset="{{srcset}} {{max_width_img}} {{image.width}}w"
+                  sizes="
+                  (max-width: 639px) calc(100vw - 48px),
+                  (max-width: 1000px) calc(100vw - 344px),
+                  784px"
+                {% endcapture %}
+                {% render 'responsive-image' with
+                  image: image,
+                  image_class: classname,
+                  cover: true,
+                  key: 'carousel',
+                  max_width: 900,
+                  no_lazyload: true,
+                  image_attributes: image_attr
+                %}
+              {% else %}
+              {% render 'responsive-image' with
+                image: image,
+                image_class: classname,
+                cover: true,
+                key: 'carousel',
+                max_width: 900
+              %}
+              {% endif %}
+            </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    <button class="embla__button embla__button--prev" type="button" aria-label="Go to previous product image">
+      {% render 'builder-icon-left', classname: 'text-blue' %}
+    </button>
+    <button class="embla__button embla__button--next" type="button" aria-label="Go to next product image">
+      {% render 'builder-icon-right', classname: 'text-blue' %}
+    </button>
+  </div>
+  <div class="absolute embla embla--thumb" data-js-thumb-carousel>
+    <div class="embla__viewport">
+      <div class="embla__container embla__container--thumb">
+        {% for image in product.images %}
+          <div class="embla__slide embla__slide--thumb px-1">
+            <button
+              aria-label="Go to product image {{forloop.index}}"
+              class="embla__slide__inner embla__slide__inner--thumb"
+              type="button"
+            >
+              <img class='embla__slide__thumbnail lazyload w-full'
+                alt="Thumbnail of {{ image.alt | escape }}"
+                data-src='{{image | img_url: "92x92"}}'/>
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

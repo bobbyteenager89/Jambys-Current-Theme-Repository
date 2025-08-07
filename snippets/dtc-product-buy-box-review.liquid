@@ -1,0 +1,30 @@
+{% assign buy_box_reviews = false %}
+
+{% for collection in product.collections %}
+  {% assign buy_box_reviews = collection.metafields.custom.buy_box_review.value %}
+  {% if buy_box_reviews %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if buy_box_reviews %}
+  <div class="dtc-product-buy-box-review">
+    {% for item in buy_box_reviews %}  
+      <div class="review-box-container">
+        <h3 class="review-title">{{ item.heading }}</h3>
+        <div class="review-stars">
+          <!-- Here you will dynamically generate stars based on the rating -->
+          {% for i in (1..item.stars) %}
+            {% render 'star-icon' %}
+          {% endfor %}
+        </div>
+        <p class="review-text">{{ item.review }}</p>
+        <div class="reviewer-info">
+          <strong>{{ item.name }}</strong>
+          {% render "verified-icon" %}
+          Verified Reviewer
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

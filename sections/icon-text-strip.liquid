@@ -1,0 +1,187 @@
+{%- style -%}
+  #section-id-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+  #section-id-{{ section.id }} .icon-text-strip__container {
+    display: flex;
+    justify-content: center;
+    padding: {{ section.settings.padding_y_mobile | default: 24 }}px 24px;
+  }
+  #section-id-{{ section.id }} .icon-text-strip__text {
+    font-size: {{ section.settings.text_size_mobile }}px;
+    max-width: {{ section.settings.text_max_width_mobile }}px;
+    margin-left: 1rem;
+  }
+  @media (min-width: 768px) {
+    #section-id-{{ section.id }} .icon-text-strip__container {
+      padding: {{ section.settings.padding_y_desktop | default: 48 }}px 24px;
+    }
+    #section-id-{{ section.id }} .icon-text-strip__text {
+      margin-left: 2rem;
+      font-size: {{ section.settings.text_size_desktop }}px;
+      max-width: {{ section.settings.text_max_width_desktop }}px;
+    }
+  }
+  #section-id-{{ section.id }} .icon-text-strip__icon {
+    width: {{ section.settings.icon_width | default: '15%' }};
+    max-width: {{ section.settings.icon_max_width | default: '100px' }};
+    flex-shrink: 0;
+  }
+  .icon-text-strip__container .icon-text-strip__text > :first-child {
+    margin-top: 0;
+  }
+{%- endstyle -%}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+    wave_position: section.settings.wave, 
+    section_id: section.id,
+    fill_color: section.settings.background_color -%}
+{%- endif -%}
+
+<div
+  id="section-id-{{ section.id }}"
+  class="section-id-{{ section.id }}"
+  data-section-type="icon-text-strip"
+>
+  <div class="icon-text-strip__container">
+    <div class="icon-text-strip__icon">
+      {%- render 'responsive-image', image: section.settings.icon -%}
+    </div>
+    <div class="icon-text-strip__text rte">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Icon + Text Strip",
+  "class": "section-icon-text-strip",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
+    {
+      "id": "text",
+      "type": "richtext",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Styles"
+    },
+    {
+      "type": "text",
+      "id": "icon_width",
+      "label": "Icon width",
+      "info": "Use CSS, like \"20%\"",
+      "default": "20%"
+    },
+    {
+      "type": "text",
+      "id": "icon_max_width",
+      "label": "Icon maximum width",
+      "info": "Use CSS, like \"80px\"",
+      "default": "80px"
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (mobile)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (desktop)",
+      "default": 24
+    },
+    {
+      "type": "number",
+      "id": "text_max_width_mobile",
+      "label": "Text maximum width (mobile) in px",
+      "default": 360
+    },
+    {
+      "type": "number",
+      "id": "text_max_width_desktop",
+      "label": "Text maximum width (desktop)",
+      "default": 420
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#f3f4f9"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#36409a"
+    },
+    {
+      "type": "range",
+      "id": "padding_y_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile vertical padding (px)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_y_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop vertical padding (px)",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave below video",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon + Text Strip",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

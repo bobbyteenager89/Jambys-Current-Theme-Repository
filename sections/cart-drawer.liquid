@@ -1,0 +1,252 @@
+<template id="cart-drawer" data-continue-shopping-url="{{ section.settings.continue_link }}" data-fs-threshold="{{ section.settings.free_shipping_threshold }}">
+  <aside class="cart-drawer" data-cart-overlay>
+    <section class="cart-section">
+      <button class="close-button" data-close-cart-drawer>
+        <svg class="close-button-svg" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" ecl="true">
+          <path d="M6.25 24.1685L23.75 6.66846M6.25 6.66846L23.75 24.1685" stroke-width="2" stroke-linecap="round" fill="#36409a" stroke="#36409a" ecl="true"></path>
+        </svg>
+      </button>
+      <div class="cart-line-items_container">
+        {% render "dtc-gift-purchase" %}
+
+        <ul class="cart-line-items"></ul>
+        <div class="upsell-items-container">
+          <div class="upsell-items-wrapper">
+            <ul class="upsell-line-items">
+            
+            </ul>
+          </div>
+        </div>
+
+        <div class="dtc-rebuy-single-upsell hidden">
+          <h3></h3>
+          <div data-rebuy-id="114739"></div>
+        </div>
+      </div>
+      
+      <section class="cart-details">
+        <p class="cart-subtotal"><span>Subtotal</span><span class="cart-subtotal-currency"></span></p>
+        <progress id="shipping-progress-bar" class="shipping-progress-bar" value="" max="{{ section.settings.free_shipping_threshold }}"></progress>
+        <label for="shipping-progress-bar" class="shipping-progress-bar-label"></label>
+        <a class="cart-checkout-button" href="/checkout"><svg fill="#36409a" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="50px" height="50px"><path d="M 25 3 C 18.363281 3 13 8.363281 13 15 L 13 20 L 9 20 C 7.355469 20 6 21.355469 6 23 L 6 47 C 6 48.644531 7.355469 50 9 50 L 41 50 C 42.644531 50 44 48.644531 44 47 L 44 23 C 44 21.355469 42.644531 20 41 20 L 37 20 L 37 15 C 37 8.363281 31.636719 3 25 3 Z M 25 5 C 30.566406 5 35 9.433594 35 15 L 35 20 L 15 20 L 15 15 C 15 9.433594 19.433594 5 25 5 Z M 9 22 L 41 22 C 41.554688 22 42 22.445313 42 23 L 42 47 C 42 47.554688 41.554688 48 41 48 L 9 48 C 8.445313 48 8 47.554688 8 47 L 8 23 C 8 22.445313 8.445313 22 9 22 Z M 25 30 C 23.300781 30 22 31.300781 22 33 C 22 33.898438 22.398438 34.6875 23 35.1875 L 23 38 C 23 39.101563 23.898438 40 25 40 C 26.101563 40 27 39.101563 27 38 L 27 35.1875 C 27.601563 34.6875 28 33.898438 28 33 C 28 31.300781 26.699219 30 25 30 Z"/></svg>Checkout</a>
+      </section>
+      <section class="cart-empty">
+        <div class="cart-empty_top">
+          {% if section.settings.empty_cart_title != blank %}<h2 class="cart-empty_title">{{ section.settings.empty_cart_title }}</h2>{% endif %}
+          {% if section.settings.empty_cart_text != blank %}<div class="cart-empty_message">{{ section.settings.empty_cart_text }}</div>{% endif %}
+        </div>
+        <div class="cart-empty_middle">
+        {% if section.settings.card_1_link != blank %}
+          <div class="empty-cart-link-card">
+            <a href="{{ section.settings.card_1_link }}">
+            {% if section.settings.card_1_title != blank %}
+              <div class="empty-cart-link-card-image"><img src='{{ section.settings.card_1_img | img_url: "200x" }}'></div>
+            {% endif %}
+            {% if section.settings.card_1_title != blank %}
+              <h3>{{ section.settings.card_1_title }}</h3>
+            {% endif %}
+            </a>
+          </div>
+        {% endif %}
+        {% if section.settings.card_2_link != blank %}
+          <div class="empty-cart-link-card">
+            <a href="{{ section.settings.card_2_link }}">
+            {% if section.settings.card_2_title != blank %}
+              <div class="empty-cart-link-card-image"><img src="{{ section.settings.card_2_img | img_url: "200x" }}"></div>
+            {% endif %}
+            {% if section.settings.card_2_title != blank %}
+              <h3>{{ section.settings.card_2_title }}</h3>
+            {% endif %}
+            </a>
+          </div>
+        {% endif %}
+        </div>
+        <div class="cart-empty_bottom">
+        {% if section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
+          <ul class="cart-empty_bottom-buttons">
+            {% if section.settings.button_1_text != blank %}
+              <li class="nav-ctas__cta new-collection">
+                <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.button_1_url }}" {% unless section.settings.button_1_color == blank or section.settings.button_1_color contains 'rgba(0,0,0,0)' %}style="background-color:{{ section.settings.button_1_bg }}; color:{{ section.settings.button_1_color }};"{% endunless %}>{{ section.settings.button_1_text }}{% if section.settings.button_1_subtext != blank %}<sub>{{ section.settings.button_1_subtext }}</sub>{% endif %}</a>
+              </li>
+            {% endif %}
+            {% if section.settings.button_2_text != blank %}
+              <li class="nav-ctas__cta new-collection">
+                <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.button_2_url }}" {% if section.settings.button_2_color != blank or section.settings.button_2_bg != blank %}style="background-color:{{ section.settings.button_2_bg }}; color:{{ section.settings.button_2_color }};"{% endif %}>{{ section.settings.button_2_text }}{% if section.settings.button_2_subtext != blank %}<sub>{{ section.settings.button_2_subtext }}</sub>{% endif %}</a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+        {% if section.settings.free_shipping_upsell_text != blank %}
+          {{ section.settings.free_shipping_upsell_text }}
+        {% endif %}
+        </div>
+      </section>
+    </section>
+  </aside>
+</template>
+
+<template id="cart-line-item">
+  <li class="cart-line-item-container" data-product-type="">
+    <article class="cart-line-item">
+        <img class="cart-line-img" src="#">
+        <div class="cart-line-info">
+          <header class="cart-line-header">
+            <div><a class="cart-line-item-link" href="#"><h3 class="cart-line-title"></h3></a></div>
+            <div class="cart-line-purchase">
+              <div>
+                <h4 class="cart-line-variant-title"></h4>
+                <form class="cart-line-quantity-form" data-line-key>
+                  <button class="cart-line-adjust decrease" data-cart-line-adjust data-decrease-quantity>-</button>
+                  <input class="cart-line-quantity" type="number" readonly name="quantity">
+                  <button class="cart-line-adjust increase" data-cart-line-adjust data-increase-quantity>+</button>
+                </form>
+              </div>
+              <div class='mini_cart_final'>
+                <p class="cart-line-total-orignal original-price"></p>
+                <p class="cart-line-total"></p>
+                <p class="mini_discount_title"></p>
+              </div>
+            </div>
+          </header>
+        </div>
+
+      <div class='mini_cart_discount'>
+        <p class='mini_orignal_price original-price'></p>
+        <p class='mini_discount_price '></p>
+        <p class='mini_discount_title'></p>
+        <p class='mini_discount_amount'></p>
+      </div>
+    </article>
+  </li>
+</template>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Empty Cart Content"
+    },
+    {
+      "type": "text",
+      "id": "empty_cart_title",
+      "label": "Title",
+      "default": "Your cart is empty."
+    },
+    {
+      "type": "richtext",
+      "id": "empty_cart_text",
+      "label": "Message"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_img",
+      "label": "Card one image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Card one title",
+      "info": "leave blank to hide card"
+    },
+    {
+      "type": "url",
+      "id": "card_1_link",
+      "label": "Card one link"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_img",
+      "label": "Card two image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Card two title",
+      "info": "leave blank to hide card"
+    },
+    {
+      "type": "url",
+      "id": "card_2_link",
+      "label": "Card two link"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button one text"
+    },
+    {
+      "type": "text",
+      "id": "button_1_subtext",
+      "label": "Button one sub-text"
+    },
+    {
+      "type": "url",
+      "id": "button_1_url",
+      "label": "Button one url"
+    },
+    {
+      "type": "color",
+      "id": "button_1_color",
+      "label": "Button one color"
+    },
+    {
+      "type": "color",
+      "id": "button_1_bg",
+      "label": "Button one bg"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button two text"
+    },
+    {
+      "type": "text",
+      "id": "button_2_subtext",
+      "label": "Button two sub-text"
+    },
+    {
+      "type": "url",
+      "id": "button_2_url",
+      "label": "Button two url"
+    },
+    {
+      "type": "color",
+      "id": "button_2_color",
+      "label": "Button two color"
+    },
+    {
+      "type": "color",
+      "id": "button_2_bg",
+      "label": "Button two bg"
+    },
+    {
+      "type": "header",
+      "content": "Free Shipping"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping_cta",
+      "label": "Show free shipping CTA?"
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping amount threshold"
+    },
+    {
+      "type": "richtext",
+      "id": "free_shipping_upsell_text",
+      "label": "Free shipping upsell text",
+      "info": "This shows before the customer has reached the free shipping threshold"
+    },
+    {
+      "type": "richtext",
+      "id": "free_shipping_success_text",
+      "label": "Free shipping success text",
+      "info": "This shows when customer earns free shipping"
+    }
+  ]
+}
+{% endschema %}

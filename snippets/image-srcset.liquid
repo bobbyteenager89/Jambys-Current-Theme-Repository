@@ -1,0 +1,16 @@
+{%- if image.preview_image -%}
+  {%- assign image = image.preview_image -%}
+{%- endif -%}
+{%- assign image_widths = image_widths | default: '180,360,540,640,725,800,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024'
+  | split: ','
+-%}
+{%- if max_width == blank -%}
+  {%- assign max_width = image.width -%}
+{%- endif -%}
+{%- for width in image_widths -%}
+  {%- assign width_num = width | plus: 0 | round -%}
+  {%- if max_width > width_num -%}
+    {{ image | image_url: width: width_num }} {{ width_num }}w,
+  {%- endif -%}
+{%- endfor -%}
+{{- image | image_url: width: max_width }} {{ max_width }}w

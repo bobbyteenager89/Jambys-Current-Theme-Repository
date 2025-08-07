@@ -1,0 +1,183 @@
+@media (max-width: 767px) {
+    #page-menu {
+        margin-top: 30px;
+    }
+
+    .template-collection {
+        padding-top: 0 !important;
+    }
+    
+    .site-control.fixed {
+        position: unset;
+        background-color: #f3f4fa !important;
+    }
+    
+    .theme-filter-container .active-filter-controls {
+        margin-top: -10px;
+    }
+    
+    .footer-button-xs {
+        position: sticky;
+        top: 0;
+        padding: 20px 0;
+        border: none; 
+        box-shadow: none;
+        bottom: unset;
+        left: unset;
+        background-color: #f3f4fa;
+        z-index: 1 !important;
+    } 
+    .footer-button-xs.top-filter {
+        position: unset;
+        margin-top: -20px;
+    } 
+    
+    .footer-button-xs button {
+        width: auto;
+        min-width: 156px;
+        height: auto;
+        padding: 10px 16px;
+        color: #36409a;
+        border-radius: 100px!important;
+        border: 1px solid #36409A;
+        -webkit-border-radius: 100px!important;
+        -moz-border-radius: 100px!important;
+        -ms-border-radius: 100px!important;
+        -o-border-radius: 100px!important;
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .theme-filter-container .cc-product-filter {
+        bottom: 0;
+        top: 0 !important;
+        box-shadow: none;
+        transform: translateX(-100%);
+    }
+
+    .theme-filter-container .cc-product-filter.-in {
+        transform: translateX(0%);
+    }
+}
+
+/**
+ *  @experiment: Variant | Objection Handlers
+ *  @url: https://www.notion.so/dtc-pages/Variant-Creation-Objection-Handlers-0a2d2cfb1a46457ebf4d977c4322bd45?pvs=4
+*/
+.dtc-objection-handler__container {
+    height: 90%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #BCBAF6;
+    position: relative;
+    padding: 0 14px;
+}
+
+.dtc-objection-handler__container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(188, 186, 246, 0.2);
+}
+
+.dtc-objection-handler__container > div, 
+.dtc-objection-handler__container > h2 {
+    z-index: 1;
+}
+
+.dtc-objection-handler__container .dtc-objection-handler__icon {
+    margin-bottom: 10px;
+}
+
+.dtc-objection-handler__container .dtc-objection-handler__heading {
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.dtc-objection-handler__content .dtc-objection-handler__content-wrapper {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 15px;
+    font-family: 'sofia-pro', sans-serif;
+}
+
+.dtc-objection-handler__content .dtc-objection-handler__content-wrapper svg {
+    width: 76px;
+}
+
+.dtc-objection-handler__container:after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+@media (min-width: 1440px) {
+    .dtc-objection-handler__container .dtc-objection-handler__heading {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .dtc-objection-handler__content .dtc-objection-handler__content-wrapper {
+        font-size: 17px;
+        line-height: 17px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .dtc-objection-handler__container .dtc-objection-handler__icon img {
+        width: 80px;
+        height: 80px;
+    }
+    .dtc-objection-handler__container .dtc-objection-handler__heading {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .dtc-objection-handler__content .dtc-objection-handler__content-wrapper {
+        font-size: 24px;
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 430px) {
+    .dtc-objection-handler.mobile {
+        max-width: 198px;
+    }
+}
+
+@media (max-width: 375px) {
+    .dtc-objection-handler.mobile {
+        max-width: 177px;
+    }
+}
+
+.dtc-objection-handler.mobile {
+    display: none;
+} 
+
+@media (max-width: 768px) {
+    .dtc-objection-handler.desktop {
+        display: none;
+    } 
+    .dtc-objection-handler.mobile {
+        display: block;
+    }
+}

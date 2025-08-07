@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "17296301157234c860": {
+      "type": "apps",
+      "settings": {
+        "skip_container": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "1693248235b5f8d3bb": {
+      "type": "apps",
+      "settings": {
+        "skip_container": false
+      }
+    }
+  },
+  "order": [
+    "17296301157234c860",
+    "main",
+    "1693248235b5f8d3bb"
+  ]
+}

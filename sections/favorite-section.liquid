@@ -1,0 +1,372 @@
+{{ 'favorite-section.css' | asset_url | stylesheet_tag }}
+
+<div class="favorites__container">
+  <h1 class="favorites__title">{{ section.settings.title }}</h1>
+  <div class="favorites__toggler-wrapper ">
+   
+    <div class="favorites__toggler favorites__toggler-active {% if section.settings.toggler-right == blank %} favorites__toggler-alone {% endif %} {% if section.settings.toggler-left == blank %} hidden-favorite__products {% endif %}"  id="toggler-btn-left">{{ section.settings.toggler-left }}</div>
+    <div class="favorites__toggler {% if section.settings.toggler-center == blank %} favorites__toggler-alone {% endif %} {% if section.settings.toggler-center == blank %} hidden-favorite__products {% endif %}" id="toggler-btn-center">{{ section.settings.toggler-center }}</div>
+    <div class="favorites__toggler {% if section.settings.toggler-left == blank %} favorites__toggler-alone {% endif %} {% if section.settings.toggler-right == blank %} hidden-favorite__products {% endif %}" id="toggler-btn-right">{{ section.settings.toggler-right }}</div>
+  </div>
+
+  <div class="favorites__content-container">
+    <div class="favorites-carousel-outer">
+      <div class="swiper-wrapper">
+        {% assign favoritesA = section.blocks | where: 'type', 'favorite-a' %}
+        {% for block in favoritesA %}
+            {% assign product = all_products[block.settings.product] %}
+            {% assign product_url = product.url %}
+            <div class="favorites__content favorite-products-a swiper-slide {% if section.settings.toggler-left == blank %} hidden-favorite__products {% endif %}">
+              <div class="favorites-carousel-content">
+                <div class="swiper-wrapper">
+                  {% assign product_only_images = product.media | where:'media_type', 'image' %}
+                  {% for itemImage in product_only_images limit: 5 %}
+                    {% assign collection_handle = collection.handle %}
+                    {% assign alt_tags = itemImage.alt | split: "|" %}
+                    {% assign alt_colletions = "" | split: "" %}
+                    {% assign images_index = forloop.index0 %}
+                    {% assign has_alt_priority = false %}
+                    {% assign item_to_show = itemImage %}
+                    {% for tags in alt_tags %}
+                      {% assign tag = tags | split: ":" %}
+                      {% assign tag_name = tag[0] | strip %}
+                      {% if tag_name == "first" %}
+                        {% assign alt_colletions = tag[1] | split: "," %}
+                        {% for my_tag in alt_colletions %}
+                          {% assign actual_tag = "" %}
+                          {% assign actual_tag = my_tag | strip %}
+                          {% if collection_handle != actual_tag %}
+                            {% assign first_image = images_index %}
+                            {% assign has_alt_priority = true %}
+                            {% assign item_to_show = itemImage %}
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+                        {% if has_alt_priority %}
+                          {% break %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+        
+                    {% if has_alt_priority %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if has_alt_priority %}
+                    <div class="swiper-slide">
+                      {% if forloop.index0 <= 4 %}
+                        <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                          {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                        </a>
+                      {% else %}
+                        <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                          {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                        </a>
+                      {% endif %}
+                    </div>
+                  {% endif %}          
+        
+                  {% for itemImage in product_only_images limit: 5 %}
+                    {% if forloop.index0 == first_image and has_alt_priority %}
+                      {% continue %}
+                    {% endif %}
+                  <div class="swiper-slide">
+                    {% if forloop.index0 <= 4 %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% else %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+                </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <p class="favorites__product-title">{{ product.title }}</p>
+            <p class="favorites__product-price">{{ product.price | money_without_trailing_zeros }}</p>
+          </div>
+        {% endfor %}
+
+        {% assign favoritesB = section.blocks | where: 'type', 'favorite-b' %}
+        {% for block in favoritesB %}
+          {% assign product = all_products[block.settings.product] %}
+          {% assign product_url = product.url %}
+          <div class="favorites__content favorite-products-b hidden-favorite__products-favorite__products swiper-slide {% if section.settings.toggler-left == blank %} shown-favorite__products {% endif %} {% if section.settings.toggler-right == blank or section.settings.toggler-left != blank %} hidden-favorite__products {% endif %}">
+            <div class="favorites-carousel-content">
+              <div class="swiper-wrapper">
+                {% assign product_only_images = product.media | where:'media_type', 'image' %}
+                {% for itemImage in product_only_images limit: 5 %}
+                  {% assign collection_handle = collection.handle %}
+                  {% assign alt_tags = itemImage.alt | split: "|" %}
+                  {% assign alt_colletions = "" | split: "" %}
+                  {% assign images_index = forloop.index0 %}
+                  {% assign has_alt_priority = false %}
+                  {% assign item_to_show = itemImage %}
+                  {% for tags in alt_tags %}
+                    {% assign tag = tags | split: ":" %}
+                    {% assign tag_name = tag[0] | strip %}
+                    {% if tag_name == "first" %}
+                      {% assign alt_colletions = tag[1] | split: "," %}
+                      {% for my_tag in alt_colletions %}
+                        {% assign actual_tag = "" %}
+                        {% assign actual_tag = my_tag | strip %}
+                        {% if collection_handle != actual_tag %}
+                          {% assign first_image = images_index %}
+                          {% assign has_alt_priority = true %}
+                          {% assign item_to_show = itemImage %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if has_alt_priority %}
+                        {% break %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+      
+                  {% if has_alt_priority %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if has_alt_priority %}
+                  <div class="swiper-slide">
+                    {% if forloop.index0 <= 4 %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% else %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}          
+      
+                {% for itemImage in product_only_images limit: 5 %}
+                  {% if forloop.index0 == first_image and has_alt_priority %}
+                    {% continue %}
+                  {% endif %}
+                <div class="swiper-slide">
+                  {% if forloop.index0 <= 4 %}
+                    <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                      {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                    </a>
+                  {% else %}
+                    <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                      {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <p class="favorites__product-title">{{ product.title }}</p>
+            <p class="favorites__product-price">{{ product.price | money_without_trailing_zeros }}</p>
+          </div>
+        {% endfor %}
+        {% assign favoritesC = section.blocks | where: 'type', 'favorite-c' %}
+        {% for block in favoritesC %}
+          {% assign product = all_products[block.settings.product] %}
+          {% assign product_url = product.url %}
+          <div class="favorites__content favorite-products-c hidden-favorite__products-favorite__products swiper-slide {% if section.settings.toggler-left == blank %} shown-favorite__products {% endif %} {% if section.settings.toggler-right == blank or section.settings.toggler-left != blank %} hidden-favorite__products {% endif %}">
+            <div class="favorites-carousel-content">
+              <div class="swiper-wrapper">
+                {% assign product_only_images = product.media | where:'media_type', 'image' %}
+                {% for itemImage in product_only_images limit: 5 %}
+                  {% assign collection_handle = collection.handle %}
+                  {% assign alt_tags = itemImage.alt | split: "|" %}
+                  {% assign alt_colletions = "" | split: "" %}
+                  {% assign images_index = forloop.index0 %}
+                  {% assign has_alt_priority = false %}
+                  {% assign item_to_show = itemImage %}
+                  {% for tags in alt_tags %}
+                    {% assign tag = tags | split: ":" %}
+                    {% assign tag_name = tag[0] | strip %}
+                    {% if tag_name == "first" %}
+                      {% assign alt_colletions = tag[1] | split: "," %}
+                      {% for my_tag in alt_colletions %}
+                        {% assign actual_tag = "" %}
+                        {% assign actual_tag = my_tag | strip %}
+                        {% if collection_handle != actual_tag %}
+                          {% assign first_image = images_index %}
+                          {% assign has_alt_priority = true %}
+                          {% assign item_to_show = itemImage %}
+                          {% break %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if has_alt_priority %}
+                        {% break %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+      
+                  {% if has_alt_priority %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if has_alt_priority %}
+                  <div class="swiper-slide">
+                    {% if forloop.index0 <= 4 %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% else %}
+                      <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                        {{ item_to_show | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}          
+      
+                {% for itemImage in product_only_images limit: 5 %}
+                  {% if forloop.index0 == first_image and has_alt_priority %}
+                    {% continue %}
+                  {% endif %}
+                <div class="swiper-slide">
+                  {% if forloop.index0 <= 4 %}
+                    <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                      {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                    </a>
+                  {% else %}
+                    <a href="{{ product_url }}" aria-label="{{ product.title | escape }}" tabindex="-1">
+                      {{ itemImage | image_url: width: 600 | image_tag: class: 'swiper-slide-image favorites__image', loading: 'lazy' }}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <p class="favorites__product-title">{{ product.title }}</p>
+            <p class="favorites__product-price">{{ product.price | money_without_trailing_zeros }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-arrows__container">
+      <div class="swiper-button-prev favorites"></div>
+      <div class="swiper-button-next favorites"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="favorites__cta-container cta-container__a {% if section.settings.toggler-left == blank %} hidden-favorite__products {% endif %}">
+    <a href="{{ section.settings.cta-url-a }}" class="favorites__cta" id="favorites-cta-a">{{ section.settings.cta-text-a }}</a>
+  </div>
+  <div class="favorites__cta-container cta-container__c hidden-favorite__products-favorite__products {% if section.settings.toggler-center == blank or section.settings.toggler-left != blank %} hidden-favorite__products {% endif %}">
+    <a href="{{ section.settings.cta-url-c }}" class="favorites__cta" id="favorites-cta-c">{{ section.settings.cta-text-c }}</a>
+  </div>
+  <div class="favorites__cta-container cta-container__b hidden-favorite__products-favorite__products {% if section.settings.toggler-right == blank or section.settings.toggler-left != blank %} hidden-favorite__products {% endif %}">
+    <a href="{{ section.settings.cta-url-b }}" class="favorites__cta" id="favorites-cta-b">{{ section.settings.cta-text-b }}</a>
+  </div>
+  
+</div>
+
+<script src="{{ 'favorite-section.js' | asset_url }}" defer></script>
+
+
+{% schema %}
+  {
+    "name": "Favorites",
+    "limit": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "toggler-left",
+        "label": "Switcher Left Text"
+      },
+      {
+        "type": "text",
+        "id": "toggler-center",
+        "label": "Switcher Center Text"
+      },
+      {
+        "type": "text",
+        "id": "toggler-right",
+        "label": "Switcher Right Text"
+      },
+      {
+        "type": "url",
+        "id": "cta-url-a",
+        "label": "CTA Url A"
+      },
+      {
+        "type": "url",
+        "id": "cta-url-b",
+        "label": "CTA Url B"
+      },
+      {
+        "type": "url",
+        "id": "cta-url-c",
+        "label": "CTA Url C"
+      },
+      {
+        "type": "text",
+        "id": "cta-text-a",
+        "label": "CTA Text A"
+      },
+      {
+        "type": "text",
+        "id": "cta-text-b",
+        "label": "CTA Text B"
+      },
+      {
+        "type": "text",
+        "id": "cta-text-c",
+        "label": "CTA Text C"
+      }
+    ],
+    "blocks": [
+       {
+         "name": "Favorite A",
+         "type": "favorite-a",
+         "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+         ]
+       },
+       {
+         "name": "Favorite B",
+         "type": "favorite-b",
+         "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+         ]
+       }
+       ,
+       {
+         "name": "Favorite C",
+         "type": "favorite-c",
+         "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+         ]
+       }
+    ],
+    "presets": [
+      {
+        "name": "Favorites"
+      }
+    ]
+  }
+  {% endschema %} 
+  

@@ -1,0 +1,448 @@
+<div style="display:none;" class="dtc-no-mega-menu-desktop site-control__inline-links">
+        <div class="nav-row multi-level-nav reveal-on-hover" role="navigation" aria-label="{{ 'general.navigation.main_navigation_aria_label' | t | escape }}">
+          <div class="tier-1">
+            <ul>
+              {% for link in linklists[section.settings.menu_linklist].links %}
+                {%- assign has_mega_drop_down = true -%}
+                {%- if link.links != blank -%}
+                  {%- for child_link in link.links -%}
+                    {%- if child_link.links == blank -%}
+                      {%- assign has_mega_drop_down = false -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- assign has_mega_drop_down = false -%}
+                {%- endif -%}
+
+                <li id="hover_menu_desktop" class="{% if link.active %}active{% endif %}{% if link.links != blank %} contains-children{% endif %}{% if has_mega_drop_down %} contains-mega-menu{% endif %}{% if featured_links contains link.title %} featured-link{% endif %}">
+                  <a {% if link.links == blank %}data-cc-animate-click{% endif %} href="{{ link.url }}" class="{% if link.active %}active{% endif %} {% if link.links != blank %}has-children{% endif %}" {% if link.links != blank %}aria-haspopup="true"{% endif %}>
+                    {{ link.title }}
+                  </a>
+
+                  {% if link.links != blank %}
+
+                    {% assign num_ctas = 0 %}
+                    {% for block in section.blocks %}
+                      {% assign menu_item =  block.settings.menu_item | downcase %}
+                      {% assign link_title =  link.title | downcase %}
+                      {% if menu_item == link_title %}
+                        {% if block.settings.image1 != blank %}
+                          {% assign num_ctas = num_ctas | plus: 1 %}
+                        {% endif %}
+                        {% if block.settings.image2 != blank %}
+                          {% assign num_ctas = num_ctas | plus: 1 %}
+                        {% endif %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+
+                    <ul {% if has_mega_drop_down %}
+                      class="nav-columns
+                        nav-columns--count-{{ link.links.size }}
+                        {% if link.links.size > 2 %} nav-columns--count-3-or-more {% endif %}
+                        {% if link.links.size > 4 %} nav-columns--count-5-or-more {% endif %}
+                        nav-columns--cta-count-{{ num_ctas }}"
+                      {% else %}
+                        class="nav-rows"
+                      {% endif %}>
+
+                      {% for child_link in link.links %}
+                        <li class="{% if child_link.active %}active{% endif %}{% if child_link.links != blank %} contains-children{% endif %}{% if featured_links contains child_link.title %} featured-link{% endif %}">
+                          <a {% if child_link.links == blank %}data-cc-animate-click{% endif %} href="{{ child_link.url }}" class="{% if child_link.links != blank %}has-children column-title{% endif %}" {% if child_link.links != blank %}aria-haspopup="true"{% endif %}>
+                            {{ child_link.title }}
+                          </a>
+
+                          {% if child_link.links != blank %}
+                            <ul>
+                              {% for child_child_link in child_link.links %}
+                                <li class="{% if child_child_link.active %}active{% endif %}{% if featured_links contains child_child_link.title %} featured-link{% endif %}">
+                                  <a data-cc-animate-click href="{{ child_child_link.url }}">{{ child_child_link.title }}</a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                      <!-- child blocks -->
+                      {% for block in section.blocks %}
+                        {% assign menu_item =  block.settings.menu_item | downcase %}
+                        {% assign link_title =  link.title | downcase %}
+                        {% if menu_item == link_title %}
+                          {% render 'nav-call-to-action', cta: block, render_li: true %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if section.settings.sub_nav_1_text != blank or section.settings.sub_nav_2_text != blank or section.settings.sub_nav_3_text != blank or section.settings.sub_nav_4_text != blank %}
+                        {% if section.settings.sub_nav_1_text != blank %}
+                          <!-- spacer -->
+                          <div style="width: 100%;"></div>
+                          <!-- spacer -->
+                          <li class="nav-ctas__cta new-collection">
+                            <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.sub_nav_1_url }}" {% unless section.settings.sub_nav_1_color == blank or section.settings.sub_nav_1_color contains 'rgba(0,0,0,0)' %}style="background-color:{{ section.settings.sub_nav_1_bg }}; color:{{ section.settings.sub_nav_1_color }};"{% endunless %}>{{ section.settings.sub_nav_1_text }}{% if section.settings.sub_nav_1_subtext != blank %}<sub>{{ section.settings.sub_nav_1_subtext }}</sub>{% endif %}</a>
+                          </li>
+                        {% endif %}
+                        {% if section.settings.sub_nav_2_text != blank %}
+                          <li class="nav-ctas__cta new-collection">
+                            <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.sub_nav_2_url }}" {% if section.settings.sub_nav_2_color != blank or section.settings.sub_nav_2_bg != blank %}style="background-color:{{ section.settings.sub_nav_2_bg }}; color:{{ section.settings.sub_nav_2_color }};"{% endif %}>{{ section.settings.sub_nav_2_text }}{% if section.settings.sub_nav_2_subtext != blank %}<sub>{{ section.settings.sub_nav_2_subtext }}</sub>{% endif %}</a>
+                          </li>
+                        {% endif %}
+                        {% if section.settings.sub_nav_3_text != blank %}
+                          <li class="nav-ctas__cta new-collection">
+                            <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.sub_nav_3_url }}" {% if section.settings.sub_nav_3_color != blank or section.settings.sub_nav_3_bg != blank %}style="background-color:{{ section.settings.sub_nav_3_bg }}; color:{{ section.settings.sub_nav_3_color }};"{% endif %}>{{ section.settings.sub_nav_3_text }}{% if section.settings.sub_nav_3_subtext != blank %}<sub>{{ section.settings.sub_nav_3_subtext }}</sub>{% endif %}</a>
+                          </li>
+                        {% endif %}
+                        {% if section.settings.sub_nav_4_text != blank %}
+                          <li class="nav-ctas__cta new-collection">
+                            <a data-cc-animate-click="" class="inner image-overlay image-overlay--bg-full" href="{{ section.settings.sub_nav_4_url }}" {% if section.settings.sub_nav_4_color != blank or section.settings.sub_nav_4_bg != blank %}style="background-color:{{ section.settings.sub_nav_4_bg }}; color:{{ section.settings.sub_nav_4_color }};"{% endif %}>{{ section.settings.sub_nav_4_text }}{% if section.settings.sub_nav_4_subtext != blank %}<sub>{{ section.settings.sub_nav_4_subtext }}</sub>{% endif %}</a>
+                          </li>
+                        {% endif %}
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </li>
+
+                <li id="clickable_menu_desktop" class="{% if link.active %}active{% endif %}{% if link.links != blank %} this contains-children {% endif %}{% if has_mega_drop_down %} contains-mega-menu{% endif %}{% if featured_links contains link.title %} featured-link{% endif %}" >
+                  <a id="dropdown-this-menu" {% if link.links == blank %}data-cc-animate-click{% endif %}  class="{% if link.active %}active{% endif %} {% if link.links != blank %}has-children{% endif %}" {% if link.links != blank %}aria-haspopup="true"{% endif %}>
+                    {{ link.title }}
+                  </a>
+
+                  {% if link.links != blank %}
+
+                    {% assign num_ctas = 0 %}
+                    {% for block in section.blocks %}
+                      {% assign menu_item =  block.settings.menu_item | downcase %}
+                      {% assign link_title =  link.title | downcase %}
+                      {% if menu_item == link_title %}
+                        {% if block.settings.image1 != blank %}
+                          {% assign num_ctas = num_ctas | plus: 1 %}
+                        {% endif %}
+                        {% if block.settings.image2 != blank %}
+                          {% assign num_ctas = num_ctas | plus: 1 %}
+                        {% endif %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+
+                    <div id="blur-effect" class="blur-open"></div>
+
+                    <ul class="menu_desktop nav-rows only" id="nav-rows">
+                      <div id="icon-close" class="close-container">
+                        <div class="icon-close"></div>
+
+                        <div>Close</div>
+                      </div>
+
+                      {% for block in section.blocks %}
+                        {% case block.type %}
+                          {% when 'link' %}
+                            <div class="menu_item{% if linklists[block.settings.category_link_list] == blank %}-empty{% endif %}">
+                              {% if block.settings.new_menu_link != blank%}
+                                <a href="{{ block.settings.new_menu_link }}" {% if link.active %}class="link_active"{% endif %} >
+                                  <span class="menu-title">{{ block.settings.new_menu_title }}</span>
+                                </a>
+                              {% else %}
+                                <span class="menu-title">{{ block.settings.new_menu_title }}</span>
+                              {% endif %} 
+                              {% if linklists[block.settings.category_link_list] != blank%}
+                                {% if linklists[block.settings.category_link_list].levels > 0 %}
+                                  <div class="icon-switcher"> </div>
+                                {% else %}
+                                {% endif %}
+                              {% endif %}
+                            </div>
+                            <div class=" sub_menu_item">
+                              <ul class="sub_menu_mobile">
+                                {% if block.settings.category_link_list == 'bottoms' or block.settings.category_link_list == "tops" %}
+                                {% comment %} dtc-shop-all ID is needed for the experiment due to we are working on top of other development made by other company. the class I need to work on has an !important so I cannot step into it.
+                                If the experiment wins, delete it, we won't actually need it anymore
+                              {% endcomment %}
+                                  <li class="child_links_desktop dtc-shop__all {% if childlink.active %}link_active{% endif %}">
+                                    <a href="{% if block.settings.category_link_list == 'bottoms' %} /collections/bottoms {% else %} /collections/tops {% endif %}" class="dtc-child__links">
+                                      <span class="sub_menu_font">Shop All {{ block.settings.new_menu_title }}</span>
+                                      <img class="shop-all-icon" src="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/shop-all-icon.svg?v=1694527772" height="auto" width="auto" loading="lazy" alt="Shop All Icon"/>
+                                    </a>
+                                  </li>
+                                {% endif %}
+                              {% for childlink in linklists[block.settings.category_link_list].links %}
+                                <li class="child_links_desktop {% if childlink.active %}link_active{% endif %}">
+                                  <a href="{{ childlink.url }}">
+                                    <span class="sub_menu_font dtc-submenu__font" style="font-weight: 500;">{{ childlink.title | escape }}</span>
+                                  </a>
+                                </li>
+                              {% endfor %}
+              
+                              {% if block.settings.enable_featured %}
+                                  <div class="menu-title-featured">FEATURED</div>
+                                  <div class="desktop featured-products">
+                                    {% if block.settings.product_1 != blank %}
+                                      <div class="featured-container">
+                                        <a href="{{ block.settings.product_1.url }}">
+                                          <img loading="lazy" src={{ block.settings.product_1.featured_image | image_url}}  width="150" height="166">
+                                        </a>
+                                        <div class="featured-information">
+                                          <div class="featured-title">
+                                            <a href="{{ block.settings.product_1.url }}">
+                                            {{ block.settings.product_1.title }}
+                                            </a>
+                                          </div>
+                                          <div class="featured-text">
+                                            {{ block.settings.product_1.metafields.global.subtitle }}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                
+                                    {% if block.settings.product_2 != blank %}
+                                      <div class="featured-container">
+                                        <a href="{{ block.settings.product_2.url }}">
+                                          <img loading="lazy" src={{ block.settings.product_2.featured_image | image_url }}  width="150" height="166" >
+                                        </a>
+                                        <div class="featured-information">
+                                          <div class="featured-title">
+                                            <a href="{{ block.settings.product_2.url }}">
+                                              {{ block.settings.product_2.title }}
+                                            </a>
+                                          </div>
+                                          <div class="featured-text">
+                                            {{ block.settings.product_2.metafields.global.subtitle }}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                  </div>  
+                                
+                              {% endif %}
+              
+                              </ul>
+                            </div>
+                      
+                          {% when 'categories'%}
+                            <div class="menu_item">
+                              {% if block.settings.first_category_url != blank%}
+                                <a href="{{ block.settings.first_category_url }}" {% if link.active %}class="link_active"{% endif %} >
+                                  <span class="menu-title">{{ block.settings.first_category_title }}</span>
+                                </a>
+                              {% else %}
+                                <span class="menu-title">{{ block.settings.first_category_title }}</span>
+                              {% endif %}
+                        
+                              <div class="icon-switcher"> </div>
+                            </div>
+                            <div class=" sub_menu_item">
+                              <ul class="sub_menu_mobile">
+                                <div class="custom_category desktop">
+                                  {% if block.settings.category_image_1 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_1 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_1 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_1 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_1 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                  
+                                  {% if block.settings.category_image_2 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_2 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_2 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_2 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_2 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                  
+                                  {% if block.settings.category_image_3 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_3 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_3 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_3 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_3 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                  
+                                  {% if block.settings.category_image_4 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_4 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_4 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_4 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_4 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                  
+                                  {% if block.settings.category_image_5 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_5 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_5 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_5 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_5 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                  
+                                  {% if block.settings.category_image_6 != blank %}
+                                    <div class="sub_row">
+                                      <div class="image_container">
+                                        <a href={{ block.settings.category_link_6 }}>
+                                        <img loading="lazy" src="{{ block.settings.category_image_6 | image_url }}" width="93.97" height="96">
+                                        </a>
+                                      </div>
+                                      <div class="description_container">
+                                        <div class="sub-title-category">
+                                          {{ block.settings.category_title_6 }}
+                                        </div>
+                                        <div class="description-category">
+                                          {{ block.settings.category_description_6 }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                                
+                                </div>
+              
+                                  {% if block.settings.enable_featured_custom %}
+                                      <div class="menu-title-featured">FEATURED</div>
+
+                                      <div class="desktop featured-products">
+                                        {% if block.settings.product_1_custom != blank %}
+                                          <div class="featured-container">
+                                            <a href="{{ block.settings.product_1_custom.url }}">
+                                              <img loading="lazy" src={{ block.settings.product_1_custom.featured_image | image_url}}  width="150" height="166">
+                                            </a>
+                                            <div class="featured-information">
+                                              <div class="featured-title">
+                                                <a href="{{ block.settings.product_1_custom.url }}">
+                                                {{ block.settings.product_1_custom.title }}
+                                                </a>
+                                              </div>
+                                              <div class="featured-text">
+                                                {{ block.settings.product_1_custom.metafields.global.subtitle }}
+                                              </div>
+                                            </div>
+                                          </div>
+                                      {% endif %}
+                                      
+                    
+                                      {% if block.settings.product_2_custom != blank %}
+                                        <div class="featured-container">
+                                          <a href="{{ block.settings.product_2_custom.url }}">
+                                            <img loading="lazy" src={{ block.settings.product_2_custom.featured_image | image_url }}  width="150" height="166" >
+                                          </a>
+                                          <div class="featured-information">
+                                            <div class="featured-title">
+                                              <a href="{{ block.settings.product_2_custom.url }}">
+                                                {{ block.settings.product_2_custom.title }}
+                                              </a>
+                                            </div>
+                                            <div class="featured-text">
+                                              {{ block.settings.product_2_custom.metafields.global.subtitle }}
+                                            </div>
+                                          </div>
+                                        </div>
+                                    {% endif %}
+                                      </div>
+                                      
+                                  {% endif %}
+                              </ul>
+                            </div>
+                        {% endcase %}
+                      {% endfor %}
+
+                      <div class="best-seller__container">
+                        <span class="menu-title">Best Sellers</span>
+                        <div class="best-seller__content-container">
+                          <div class="swiper-wrapper">
+                            {% for i in (1..2) %}
+                              {% assign bestSeller = section.blocks | where: "type", "best-seller" %}
+                              {% for block in bestSeller %}
+                                <a class="swiper-slide best-seller__content-wrapper" href="{{ block.settings.slide_url }}">
+                                  <div class="best-seller__content">
+                                    <img
+                                      class="best-seller__image"
+                                      src="{{ block.settings.image | image_url: width: 280 }}"
+                                      alt=""
+                                      width="auto"
+                                      height="auto"
+                                      loading="lazy"
+                                    >
+                                    <p class="best-seller__content-title">{{ block.settings['best-seller-title'] }}</p>
+                                    <p class="best-seller__description">{{ block.settings['best-seller__description'] }}</p>
+                                  </div>
+                                </a>
+                              {% endfor %}
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    
+                      {% if section.settings.button_click != blank %}
+                        {% if section.settings.button_click != blank %}
+                          <li class="nav-ctas__cta new-collection">
+                            <a  data-cc-animate-click="" 
+                              class="inner image-overlay image-overlay--bg-full button-bottom-desktop" 
+                              href="{{ section.settings.button_click_url }}" 
+                              {% unless section.settings.button_click_color == blank or section.settings.button_click_color contains 'rgba(0,0,0,0)' %}
+                                style="background-color:{{ section.settings.button_click_bg }}; color:{{ section.settings.button_click_color }};"{% endunless %}>
+                                {{ section.settings.button_click }}
+                                {% if section.settings.button_click_text != blank %}
+                                  <sub>
+                                    {{ section.settings.button_click_text }}
+                                  </sub>
+                                {% endif %}</a>
+                          </li>
+                        {% endif %}
+                      {% endif %}
+
+                      {% if section.settings.sub_nav_quote != blank %}
+                        <div class="bottom_menu_desktop">{{ section.settings.sub_nav_quote }}&nbsp;<img src="{{ section.settings.sub_tagline | img_url: "50x" }}"></div>
+                      {% endif %}
+
+                      <div style="height: 165px; "></div>
+                    </ul>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>

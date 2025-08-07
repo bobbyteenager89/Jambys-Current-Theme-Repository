@@ -1,0 +1,54 @@
+<div class="dtc-ptc-container swiper-slide">
+    <div class="dtc-ptc-img">
+        {% if product_img != blank %}
+            <img 
+                src="{{ product_img | image_url: width: 620, height: 620 }}" 
+                alt="Product Image" 
+                class="avatar"
+                width="310"
+                height="310"
+                loading="lazy"
+            />
+        {% endif %}
+    </div>
+    <div class="dtc-ptc-content">
+        <div class="dtc-ptc-meta">
+            {% if product_heading != blank %}
+                <h2 class="dtc-ptc-title">{{ product_heading }}</h2>
+            {% endif %}
+            {% if product_content != blank %}
+                <p class="dtc-ptc-description">{{ product_content }}</p>
+            {% endif %}
+            {% if product_benefits != blank %}
+                <ul class="dtc-ptc-benefits">
+                    {% for benefit in product_benefits %}
+                        {% if benefit.icon != blank and benefit != blank %}
+                            <li class="dtc-ptc-item">
+                                {% if benefit.icon != blank %}    
+                                    <img 
+                                        src="{{ benefit.icon | image_url: width: 20, height: 20 }}" 
+                                        alt="Benefit Icon" 
+                                        class="avatar"
+                                        width="14"
+                                        height="14"
+                                        loading="lazy"
+                                    />
+                                {% endif %}
+                                {% if benefit.benefit != blank %}
+                                    <span>{{ benefit.benefit }}</span>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% if product_url != blank %}
+            <div class="dtc-ptc-link">
+                <a href="{{ product_url }}" class="btn btn--secondary btn--full">
+                    Shop Now
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>

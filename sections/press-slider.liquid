@@ -1,0 +1,113 @@
+{%- unless section.settings.color_bg == blank -%}
+  {%- style -%}
+     #shopify-section-{{ section.id }} {
+        background-color: {{ section.settings.color_bg }};
+     }
+   {%- endstyle -%}
+{%- endunless -%}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+              wave_position: section.settings.wave, 
+              section_id: section.id
+              fill_color: section.settings.color_bg -%}
+{%- endif -%}
+
+<div class="section-id-{{ section.id }} press-slider">
+  {% for block in section.blocks %}
+  <details class="press-slide"{% if forloop.first %} open{% endif %}>
+    <summary data-show-quote>
+      <img src="{{ block.settings.image | img_url: '240x' }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          class="press-img" />
+    </summary>
+    <span class="press-text">{{block.settings.text}}</span>
+  </details>
+  {% endfor %}
+</div>
+<script>
+  window.addEventListener('click', function(e){
+    const element = e.target;
+    if ('showQuote' in element.dataset) {
+      element.parentElement.parentElement.querySelectorAll('.press-slide').forEach(slide => {
+        if (slide != element) {
+          slide.removeAttribute('open');
+        }
+      })
+    }
+  });
+</script>
+{% schema %}
+{
+  "name": "Press Slideshow",
+  "class": "press-slideshow-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "id": "color_bg",
+      "type": "color",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Press",
+      "settings": [
+        {
+          "id": "text",
+          "type": "richtext",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "id": "link",
+          "type": "url",
+       		"label": "url"
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection",
+          "info": "Select a collection this quote should be limited to. Otherwise, it shows for all products/collections"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "Press Slideshow",
+        "category": "Press"
+    }
+  ]
+}
+{% endschema %}

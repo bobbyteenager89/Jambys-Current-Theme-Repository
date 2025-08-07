@@ -1,0 +1,81 @@
+<button type="button" class="dtc-variant dtc-button-title">
+  <span>{{ option.name }}</span>
+</button>
+{% for value in option.values %}
+  {% for variant in related_product.variants %}
+    {% if variant.title == value %}
+      {% assign lowercase_value = variant.title | downcase %}{% case lowercase_value %}
+        {% when 'extra extra small' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="XXS">{% render 'dtc-done-icon' %}XXS</button>
+        {% when 'extra small' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="XS">{% render 'dtc-done-icon' %}XS</button>
+
+        {% when 'small' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="S">{% render 'dtc-done-icon' %}S</button>
+
+        {% when 'medium' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="M">{% render 'dtc-done-icon' %}M</button>
+
+        {% when 'large' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="L">{% render 'dtc-done-icon' %}L</button>
+
+        {% when 'extra large' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="XL">{% render 'dtc-done-icon' %}XL</button>
+
+        {% when 'extra extra large' %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="XXL">{% render 'dtc-done-icon' %}XXL</button>
+
+      {% else %}
+        <button
+          type="button"
+          class="dtc-variant{% unless variant.available %} dtc-unavailable{% endunless %}{% if variant.id == current_variant.id %} dtc-selected{% endif %}"
+          data-id="{{ variant.id }}"
+          data-price="{{ variant.price }}"
+          data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
+          data-value="{{ variant.title }}">{% render 'dtc-done-icon' %}{{ variant.title }}</button>
+      {% endcase %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}

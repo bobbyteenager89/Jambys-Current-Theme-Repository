@@ -1,0 +1,56 @@
+{% comment %} 
+i = Product Index
+handler = Objection Handler 
+{% endcomment %}
+
+{%- liquid
+    if animation_type == blank
+        assign animation_type = "cc-fade-in-up"
+    endif
+-%}
+
+{% if section.settings.layout == 'rows' %}
+    {% if section.settings.grid == 2 %}
+        {% assign classes = 'column half' %}
+    {% elsif section.settings.grid == 3 %}
+        {% assign classes = 'column third' %}
+    {% else %}
+        {% assign classes = 'column quarter' %}
+    {% endif %}
+{% endif %}
+
+<style>
+.dtc-objection-handler__container.dtc-objection-handler__{{ handler.heading | handleize }}:after {
+    content: '';
+    background-image: url({{ handler.background | img_url: '696x890' }});
+}
+</style>
+
+<div 
+    class="dtc-objection-handler product-block alternative-product-swatches custom-product-block {{ classes }} {% if mobile %}mobile{% else %}desktop{% endif %}"
+    data-loop-index="{{ i }}"
+    {% if animate %} data-cc-animate="{{ animation_type }}" data-cc-animate-delay="{{ animate | times: 0.15 }}s" {% endif %}
+>
+    <div class="dtc-objection-handler__container dtc-objection-handler__{{ handler.heading | handleize }}">
+        {% if handler.icon %}
+            <div class="dtc-objection-handler__icon">
+                <img 
+                    src="{{ handler.icon | img_url: '128x' }}" 
+                    alt="{{ handler.title }}"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                />
+            </div>
+        {% endif %}
+        
+        <h2 class="dtc-objection-handler__heading">{{ handler.heading }}</h2>
+        
+        <div class="dtc-objection-handler__content">
+            <div class="dtc-objection-handler__content-wrapper">
+                {% capture shop_pay_icon %}{% render 'shop-pay-icon' %}{% endcapture %}
+                {{ handler.text | replace: '(shop-pay-icon)', shop_pay_icon }}
+            </div>
+        </div>
+    </div>
+</div>

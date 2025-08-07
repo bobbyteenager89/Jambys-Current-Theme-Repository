@@ -1,0 +1,170 @@
+{%- style -%}
+  #section-id-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .five-star-reviews-banner {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  #section-id-{{ section.id }} .five-star-reviews-banner {
+    {% if section.settings.padding_vertical_mobile != blank %}
+      padding-top: {{ section.settings.padding_vertical_mobile }}px;
+      padding-bottom: {{ section.settings.padding_vertical_mobile }}px;
+    {% endif %}
+    {% if section.settings.text_size_mobile != blank %}
+      font-size: {{ section.settings.text_size_mobile }}px;
+    {% endif %}
+  }
+
+  @media (min-width: 768px) {
+    #section-id-{{ section.id }} .five-star-reviews-banner {
+      {% if section.settings.padding_vertical_desktop != blank %}
+        padding-top: {{ section.settings.padding_vertical_desktop }}px;
+        padding-bottom: {{ section.settings.padding_vertical_desktop }}px;
+      {% endif %}
+      {% if section.settings.text_size_desktop != blank %}
+        font-size: {{ section.settings.text_size_desktop }}px;
+      {% endif %}
+    }
+  }
+  .five-star-reviews-banner__stars {
+    display: flex;
+  }
+  .five-star-reviews-banner__stars svg {
+    margin-right: 0.25em;
+    width: 0.75em;
+    height: 0.75em;
+  }
+  .five-star-reviews-banner__text {
+    margin-left: 0.5em;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    margin-top: -0.2em;
+  }
+{%- endstyle -%}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+    wave_position: section.settings.wave, 
+    section_id: section.id,
+    fill_color: section.settings.background_color -%}
+{%- endif -%}
+
+<div
+  id="section-id-{{ section.id }}"
+  class="section-id-{{ section.id }}"
+  data-section-type="five-star-reviews-banner"
+>
+  <div class="five-star-reviews-banner">
+    <div class="five-star-reviews-banner__stars">
+      {%- for i in (1..5) -%}
+        <svg aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" role="img"><path d="m3.2 16.0001081c-.1687782 0-.33328968-.0531313-.47-.1521081-.24051968-.174488-.36451194-.4679107-.322-.762l.743-5.203-2.917-2.917c-.21191095-.21196521-.28756133-.52460199-.196-.81.09130759-.2851682.3345701-.49522345.63-.544l4.398-.734 2.218-4.435c.13744692-.27145241.41573373-.4426761.72-.443.3045618.00166772.58175678.1761261.715.45l2.123 4.362 4.498.801c.2933158.05211246.5333796.26289081.623.547.0898959.28455453.0135125.59548872-.198.806l-2.917 2.917.744 5.203c.042199.2957461-.0839008.5903645-.327.764-.2421349.1739598-.5609835.1986349-.827.064l-4.382-2.22-4.502 2.223c-.10996656.0547452-.23116004.0831081-.354.0831081z" fill="currentColor"></path></svg>
+      {%- endfor -%}
+    </div>
+    <div class="five-star-reviews-banner__text">{{ section.settings.text }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "5-Star Reviews Banner",
+  "class": "section-five-star-reviews-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Banner text",
+      "default": "6,000+ 5-Star Reviews"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#FFE660"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#36409A"
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 8,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (mobile)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_desktop",
+      "min": 8,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding on mobile",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding on desktop",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "wave",
+      "label": "Wave",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "both",
+          "label": "Both"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "presets": [
+    {
+      "name": "5-Star Reviews Banner",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+<style>
+  html #dtc-mega-menu-by-type{
+    display:none;
+  }
+</style>
+<div id="dtc-mega-menu-by-type" class="dtc-mega-menu-desktop nav-menu">
+    <ul class="mega-menu">
+        {% for link in linklists["dtc-desktop-mega-menu"].links %}
+            <li class="mega-menu-item">
+                <a class="{% if link.links.size > 0 %}arrow{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+                {% if link.links.size > 0 %}
+                    <div class="mega-menu-submenu">
+                        {% if link.title == "Best Sellers" %}
+                            {% for sublink in link.links %}
+                                {%- assign item_img = '' -%}
+                                {% assign sublink_title_array = sublink.title | split: "___" %}
+                                {%- assign sublink_title = sublink_title_array[0] -%}
+                                {%- assign item_img = sublink_title_array[1] -%}
+
+                                <div class="mega-menu-items bestsellers">
+                                    <a href="{{ sublink.url }}">
+                                        <div class="mega-menu-item-box">
+                                            <span class="mega-menu-item-title">{{ sublink_title }}</span>
+                                            <img 
+                                                src="{{ item_img }}"
+                                                width="528"
+                                                height="282"
+                                                loading="lazy"
+                                            />
+                                        </div>
+                                        <a href="{{ sublink.url }}" class="mega-menu-btn">Shop {{ sublink_title }}</a>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% elsif link.title == "Collections" or link.title == "Fabrics" %}
+                            <div class="mega-menu-items {{ link.title | handleize }}">
+                                <h3>{{ link.title }}</h3>
+                                {% for sublink in link.links %}
+                                    {% if link.title == "Fabrics" %}
+                                        {% assign url_parts = sublink.url | split: '/' %}
+                                        {% if sublink.url contains "products" %}
+                                            {% assign product_control = product_control | plus: 1 %}
+                                            {%- assign handle = url_parts[-1] -%}
+                                            {% assign product = all_products[handle] %}
+
+                                            {% assign item_img = product.metafields.product.fabric_img | img_url: "460x" %}
+                                            {% assign item_type = product.metafields.product.fabric_type_multi.value %}
+                                            {% assign item_description = product.metafields.product.fabric_description %}
+                                            {% assign fabric_url = product.metafields.custom.fabric_link.value.url %}
+                                            {% if fabric_url != blank %}
+                                              {% assign url = fabric_url %}
+                                            {% else %}
+                                              {% assign url = sublink.url %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% assign sublink_title_array = sublink.title | split: "___" %}
+                                        {%- assign sublink_title = sublink_title_array[0] -%}
+                                        {%- assign item_img = sublink_title_array[1] -%}
+                                    {% endif %}
+
+                                    <a href="{{ url }}">
+                                        <div class="mega-menu-item-box">
+                                            <img 
+                                                src="{{ item_img }}"
+                                                width="{% if link.title == 'Fabrics' %}230{% else %}190{% endif %}"
+                                                height="240"
+                                                loading="lazy"
+                                            />
+                                            <span class="mega-menu-btn">
+                                                <span>{% if item_type != blank %}{{ item_type | first }}{% else %}{{ sublink_title }}{% endif %}</span>
+                                                {% if link.title == "Fabrics" and item_description != blank %}
+                                                    <span>{{ item_description }}</span>
+                                                {% endif %} 
+                                            </span>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {% assign first_img = '' %}
+                            {% assign first_title = '' %}
+
+                            <div class="mega-menu-items mega-menu-left-items">
+                                <h3>{{ link.title }}</h3>
+                                <ul class="mega-menu">
+                                    {% if link.title == "Tops"%}
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/tees.png?v=1710514880"
+                                                data-item-title="Tees"
+                                                href="/collections/tees"
+                                            >Tees</a>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/hoodies.png?v=1710514880"
+                                                data-item-title="Hoodies & Crews"
+                                                href="/collections/hoodies-crews"
+                                            >Hoodies & Crews</a>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/sleepwear.png?v=1710514880"
+                                                data-item-title="Sleepwear"
+                                                href="collections/sleepwear?filter.p.product_type=Cozy+Cloak&filter[…]Pajambys+Top&filter.p.product_type=Soffle+Robe&sort_by=manual"
+                                            >Sleepwear</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if link.title == "Bottoms"%}
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/shorts_d8dba22e-0d7b-4f46-9409-a65f4a990e67.png?v=1710515800"
+                                                data-item-title="Shorts"
+                                                href="/collections/shorts"
+                                            >Shorts</a>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/pants.png?v=1710515800"
+                                                data-item-title="Pants"
+                                                href="/collections/pants"
+                                            >Pants</a>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a 
+                                                data-item-img="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/sleepwearp.png?v=1710515799"
+                                                data-item-title="Sleepwear"
+                                                href="/collections/sleepwear"
+                                            >Sleepwear</a>
+                                        </li>
+                                    {% endif %}
+
+
+
+
+
+                                </ul>
+                                <a href="{{ link.url }}" class="mega-menu-btn">Shop All {{ link.title }}</a>
+                            </div>
+                            <div class="mega-menu-items mega-menu-right-items">
+                                <div class="mega-menu-right-item">
+                                    <img
+                                        class="dtc-img-previewer"
+                                        src="https://cdn.shopify.com/s/files/1/0090/4128/1109/files/shorts_d8dba22e-0d7b-4f46-9409-a65f4a990e67.png?v=1710515800"
+                                        width="700"
+                                        height="320"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <a href="{{ link.url }}" class="dtc-title-previewer mega-menu-link">Shop {{ link.title }}</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

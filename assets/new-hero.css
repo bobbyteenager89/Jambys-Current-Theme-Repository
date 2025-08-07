@@ -1,0 +1,249 @@
+.new-hero-desktop__container {
+  width: 100%;
+  height: 100%;
+  padding: 40px 70px;
+}
+
+.new-hero-desktop__content-container {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.new-hero-desktop__content-container > .new-hero-desktop__content:nth-child(1), .new-hero-desktop__content-container > .new-hero-desktop__content:nth-child(6){
+  grid-column: span 2;
+}
+
+.new-hero-desktop__content {
+  width: 100%;
+  border-radius: 24px;
+  position: relative;
+  min-height: 328px;
+}
+
+.new-hero-desktop__content-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.new-hero-desktop__content:first-child {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.new-hero-desktop__content:first-child > .new-hero-desktop__content-image,
+.new-hero-desktop__content:first-child > .new-hero-desktop__content-wrapper {
+  width: 50%;
+  background-color: #fff;
+}
+
+.new-hero-desktop__content:first-child
+  > .new-hero-desktop__content-wrapper
+  > .new-hero-desktop__cta {
+  display: inline-flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #5b67d6;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 136%;
+  position: relative;
+  font-family: "kansasnew";
+  margin-top: 20px;
+  left: 0;
+  bottom: 0;
+}
+.new-hero-desktop__content-image:first-child {
+    position: initial;
+}
+@media (min-width: 1025px) {
+  .new-hero-desktop__content-image:first-child {
+    max-height: 330px;
+}
+}
+
+.new-hero-desktop__content:first-child > .new-hero-desktop__content-image > img {
+  border-radius: 0 24px 24px 0;
+}
+
+.new-hero-desktop__content:first-child > .new-hero-desktop__content-wrapper {
+  border-radius: 24px 0 0 24px;
+  padding: 16px 16px 50px;
+}
+
+.new-hero-desktop__content-title {
+  color: #36409a;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 115%;
+  text-align: left !important;
+  font-family: "kansasnew";
+}
+
+.new-hero-desktop__content-title > p {
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.new-hero-desktop__content-description {
+  color: #36409a;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 136%;
+  margin: 0;
+}
+
+.new-hero-desktop__cta {
+  display: inline-flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #ecebff;
+  color: #36409a;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 136%;
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: "kansasnew";
+}
+
+.hero-mobile__container {
+  display: none;
+}
+
+@media screen and (max-width: 1230px){
+  .new-hero-desktop__content-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 940px){
+  .new-hero-desktop__content-title {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  
+  .new-hero-desktop__content:first-child {
+    display: none;
+  }
+
+  .new-hero-desktop__content-container {
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .new-hero-desktop__container {
+    padding: 0 16px 40px;
+  }
+
+  .new-hero-desktop__content {
+    width: 100%;
+    height: 100%;
+    min-height: 156px;
+    min-width: 156px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .new-hero-desktop__content:last-child {
+    width: 100%;
+    grid-column: span 2;
+    aspect-ratio: 2 / 1;
+  }
+
+  .new-hero-desktop__cta {
+    padding: 8px 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background:#ECEBFF;
+    color: #36409A;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    bottom: 8px;
+    transform: translateX(-50%);
+    left: 50%;
+    width: max-content;
+  }
+
+  .hero-mobile__container {
+    display: block;
+    width: 100%;
+  }
+
+  .hero-mobile__content-images-container {
+    position: relative;
+  }
+
+  .hero-mobile__content-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-mobile__content-wave-image {
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+  }
+
+  .hero-mobile__content {
+    padding: 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+  }
+
+  .hero-mobile__content-title {
+    color: #36409A;
+    font-family: "kansasnew";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 136%;
+    text-align: left !important;
+  }
+
+  .hero-mobile__content-description {
+    color: #36409A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136%;
+  }
+
+  .hero-mobile__content-cta {
+    display: flex;
+    padding: 8px 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: #5B67D6;
+    color: #FFF;
+    font-family: "kansasnew";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 136%; 
+    width: max-content;
+  }
+}

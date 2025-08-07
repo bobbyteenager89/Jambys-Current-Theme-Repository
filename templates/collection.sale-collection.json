@@ -1,0 +1,474 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "dtc_shop_by_subtype_MfW9XV": {
+      "type": "dtc-shop-by-subtype",
+      "blocks": {
+        "subtype_7Wdjin": {
+          "type": "subtype",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/All_Bottoms.jpg",
+            "label": "All Bottoms",
+            "link": "shopify://collections/bottoms"
+          }
+        },
+        "subtype_nfApNJ": {
+          "type": "subtype",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Lightning.jpg",
+            "label": "Lightning Deals",
+            "link": "shopify://collections/black-friday-biggest-discounts"
+          }
+        },
+        "subtype_RjbyqE": {
+          "type": "subtype",
+          "settings": {
+            "image": "shopify://shop_images/All_Bottoms.jpg",
+            "label": "Sale Bottoms",
+            "link": "https://Jambys.com/collections/sale-bottoms"
+          }
+        },
+        "subtype_BKCaYc": {
+          "type": "subtype",
+          "settings": {
+            "image": "shopify://shop_images/Tees.jpg",
+            "label": "Sale Tops",
+            "link": "shopify://collections/sale-tops"
+          }
+        },
+        "subtype_GGrjmY": {
+          "type": "subtype",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Megaphone.png",
+            "label": "Going Fast",
+            "link": "shopify://collections/10-left"
+          }
+        },
+        "subtype_twVnn6": {
+          "type": "subtype",
+          "settings": {
+            "image": "shopify://shop_images/Smiley.png",
+            "label": "Sale Outfits",
+            "link": "shopify://collections/sale-outfits-bestsellers"
+          }
+        }
+      },
+      "block_order": [
+        "subtype_7Wdjin",
+        "subtype_nfApNJ",
+        "subtype_RjbyqE",
+        "subtype_BKCaYc",
+        "subtype_GGrjmY",
+        "subtype_twVnn6"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Long_Jambys_WB.png",
+            "product_type": "Long Jambys"
+          }
+        },
+        "97449e7e-e980-491a-a445-d647fcbb1b9d": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Jambys_WB.png",
+            "product_type": "Jambys"
+          }
+        },
+        "758b06a0-e28c-4e51-94d7-d1b593df4071": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_JamTee_WB.png",
+            "product_type": "JamTee"
+          }
+        },
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_House_Hoodies_WB.png",
+            "product_type": "House Hoodie"
+          }
+        },
+        "2c553fc3-3abe-47c3-acc4-c95851565e25": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Basketball_Shorts_WB.png",
+            "product_type": "Basketball Shorts"
+          }
+        },
+        "998aaf51-46fa-449b-82a1-fde457a5f0be": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Chilluxe_Crew_WB.png",
+            "product_type": "Chilluxe Crew"
+          }
+        },
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Long-Sleeve_JamTee_WB.png",
+            "product_type": "Long-Sleeve JamTee"
+          }
+        },
+        "1f80f22a-d860-425c-8f4a-0dc581415443": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Chilluxe_Hoodie_WB.png",
+            "product_type": "Chilluxe Hoodie"
+          }
+        },
+        "d9c1351a-ce1f-4665-90d2-05539359a281": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Chilluxe_Jogger_WB.png",
+            "product_type": "Chilluxe Jogger"
+          }
+        },
+        "91b18fbd-9e99-403e-a484-a0b8a89443ea": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Waffle_Robe_WB.png",
+            "product_type": "Soffle Robe"
+          }
+        },
+        "db3d4cfb-919f-46fa-9bfb-a74128a81e84": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Waffle_Short_WB.png",
+            "product_type": "Soffle Shorts"
+          }
+        },
+        "276a0c17-7231-4673-9069-c50ea04e986b": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Pajambys_Top_WB.png",
+            "product_type": "Pajambys Top"
+          }
+        },
+        "546ad748-2baf-45af-94db-b075fed9da7f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Pajambys_Bottoms_WB.png",
+            "product_type": "Pajambys Bottom"
+          }
+        },
+        "e2ee0922-fed2-4873-a816-1873c8f3d8c1": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Pajambys_Top_WB.png",
+            "product_type": "Pajambys Top"
+          }
+        },
+        "6a17496f-b013-4517-9f2b-8d50a06a1572": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Pajambys_Bottoms_WB.png",
+            "product_type": "Pajambys Bottom"
+          }
+        },
+        "2a3c1dce-a403-4295-891e-e1f9ec5980ab": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_House_Socks_WB.png",
+            "product_type": "House Socks"
+          }
+        },
+        "5f973d62-85c4-4682-8782-f3228c2fed8f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/6-NB.png",
+            "product_type": "Floof Crew"
+          }
+        },
+        "71b8c4bf-94f5-4cb2-822f-c2cfa2f0bc97": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Chilluxe_Jogger_WB.png",
+            "product_type": "Floof Jogger"
+          }
+        },
+        "7f87a3a1-a98f-42ba-8333-9c5fb9edd981": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/15-NB_4005c09f-e901-4c87-be93-2e2cb28f50b0.png",
+            "product_type": "Floof Short"
+          }
+        },
+        "537df739-4df2-4704-a353-d3fe60844bc8": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/16-NB.png",
+            "product_type": "Hugby Rugby"
+          }
+        },
+        "c9685e4d-53db-4875-8b6a-b8c645081b94": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/15-NB.png",
+            "product_type": "Black Tie Jambys"
+          }
+        },
+        "b75a76b8-bdd1-4895-a710-bb4600e4962f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/12-NB.png",
+            "product_type": "Black Tie JamTee"
+          }
+        },
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Cozy_Cloak_WB.png",
+            "product_type": "Cozy Cloak"
+          }
+        },
+        "b42709f6-8a41-4f43-bbce-92bc0b542e9c": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Air_JamTee_WB.png",
+            "product_type": "Air JamTee"
+          }
+        },
+        "02d4a9dc-9de8-4ca6-a81a-6ec9907b9d6d": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Air_JamTank_WB.png",
+            "product_type": "Air JamTank"
+          }
+        },
+        "filter_icon_6ngDUJ": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/14-NB.png",
+            "product_type": "Chilluxe Quilted Pant"
+          }
+        },
+        "filter_icon_negcpp": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/18-NB.png",
+            "product_type": "Flight Suit Onesie"
+          }
+        },
+        "33e61728-daa3-4d24-82ab-a3c647d0fd33": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_Air_Short_Short_WB.png",
+            "product_type": "Air Short Short"
+          }
+        },
+        "filter_icon_eLTix8": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/Illustration_House_Socks_WB.png",
+            "product_type": "Floof Socks"
+          }
+        }
+      },
+      "block_order": [
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357",
+        "97449e7e-e980-491a-a445-d647fcbb1b9d",
+        "758b06a0-e28c-4e51-94d7-d1b593df4071",
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91",
+        "2c553fc3-3abe-47c3-acc4-c95851565e25",
+        "998aaf51-46fa-449b-82a1-fde457a5f0be",
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f",
+        "1f80f22a-d860-425c-8f4a-0dc581415443",
+        "d9c1351a-ce1f-4665-90d2-05539359a281",
+        "91b18fbd-9e99-403e-a484-a0b8a89443ea",
+        "db3d4cfb-919f-46fa-9bfb-a74128a81e84",
+        "276a0c17-7231-4673-9069-c50ea04e986b",
+        "546ad748-2baf-45af-94db-b075fed9da7f",
+        "e2ee0922-fed2-4873-a816-1873c8f3d8c1",
+        "6a17496f-b013-4517-9f2b-8d50a06a1572",
+        "2a3c1dce-a403-4295-891e-e1f9ec5980ab",
+        "5f973d62-85c4-4682-8782-f3228c2fed8f",
+        "71b8c4bf-94f5-4cb2-822f-c2cfa2f0bc97",
+        "7f87a3a1-a98f-42ba-8333-9c5fb9edd981",
+        "537df739-4df2-4704-a353-d3fe60844bc8",
+        "c9685e4d-53db-4875-8b6a-b8c645081b94",
+        "b75a76b8-bdd1-4895-a710-bb4600e4962f",
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710",
+        "b42709f6-8a41-4f43-bbce-92bc0b542e9c",
+        "02d4a9dc-9de8-4ca6-a81a-6ec9907b9d6d",
+        "filter_icon_6ngDUJ",
+        "filter_icon_negcpp",
+        "33e61728-daa3-4d24-82ab-a3c647d0fd33",
+        "filter_icon_eLTix8"
+      ],
+      "settings": {
+        "show_collection_content": true,
+        "show_collection_image": false,
+        "description_position": "top",
+        "layout": "rows",
+        "grid": 4,
+        "grid_mobile": "2",
+        "products_per_page": 18,
+        "enable_infinite_scroll": true,
+        "show_vendor": false,
+        "show_filter_counts": true,
+        "show_filter_deadends": true,
+        "ajax_products": true,
+        "filter_mode": "sidebar",
+        "sticky_sidebar": true,
+        "collapse_filters_method": "all",
+        "collapse_sort_by": true,
+        "enable_sorting": false,
+        "show_featured_in_sort": false
+      }
+    },
+    "1643222587a9e061c6": {
+      "type": "gallery",
+      "blocks": {
+        "1643222587a7ca8a5e-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/product-illustration_small_pants_36b11e9d-986b-47c3-ac79-76e5fbc71892.png",
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "1643222587a7ca8a5e-1": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "1643222587a7ca8a5e-2": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "60c3c5ff-38a6-4918-b7ab-416a63863d0b": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        }
+      },
+      "block_order": [
+        "1643222587a7ca8a5e-0",
+        "1643222587a7ca8a5e-1",
+        "1643222587a7ca8a5e-2",
+        "60c3c5ff-38a6-4918-b7ab-416a63863d0b"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "grid": 3,
+        "desktop_image_height": 300,
+        "mobile_image_height": 400,
+        "title_size": 44,
+        "enable_margin": true,
+        "full_width": true,
+        "enable_carousel": true,
+        "overlay_style_tint": true,
+        "alternate_bg_color": true
+      }
+    },
+    "1643222251b6938102": {
+      "type": "accordions",
+      "blocks": {
+        "1643222251aa77425a-0": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        },
+        "1643222251aa77425a-1": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        },
+        "1643222251aa77425a-2": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "1643222251aa77425a-0",
+        "1643222251aa77425a-1",
+        "1643222251aa77425a-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Expandable content",
+        "title_alignment": "left",
+        "alternate_bg_color": false,
+        "view_all_page": "",
+        "wave": "none",
+        "color_bg": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "dtc_shop_by_subtype_MfW9XV",
+    "main",
+    "1643222587a9e061c6",
+    "1643222251b6938102"
+  ]
+}

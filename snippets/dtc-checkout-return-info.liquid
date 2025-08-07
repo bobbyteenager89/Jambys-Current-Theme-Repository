@@ -1,0 +1,99 @@
+<style>
+    .dtc-checkout-return-info{
+        align-items: center;
+        background-color: #ECEBFF;
+        padding: 12px 16px;
+    }
+    .dtc-checkout-return-info__container{
+        width: 100%;
+        padding: 0 1em;
+        margin: 0 auto;
+        display: flex;
+    }
+    .dtc-checkout-return-info__1{
+        flex: .4;
+        text-align: center;
+    }
+    .dtc-checkout-return-info__2{
+        flex: .3;
+        text-align: center;
+    }
+    .dtc-checkout-return-info span{
+        display: block;
+        color: #36409A;
+        font-size: 14px;
+        font-weight: 510;
+    }
+    .dtc-checkout-return-info__left{
+        display: none;
+    }
+
+    .dtc-checkout-return-info__right{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    @media screen and (min-width: 999px){
+        .dtc-checkout-return-info__container{
+            padding: 0 5%;
+            width: 90%;
+            max-width: 78.5714285714em;
+        }
+        .dtc-checkout-return-info__1, .dtc-checkout-return-info__2{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .dtc-checkout-return-info__1{
+            flex: unset;
+        }
+        .dtc-checkout-return-info__2{
+            flex: unset;
+        }
+        .dtc-checkout-return-info__left, .dtc-checkout-return-info__right{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .dtc-checkout-return-info__right{
+            justify-content: flex-end;
+        }
+     
+        .dtc-checkout-return-info__right{
+            gap: 32px;
+        }
+        .dtc-checkout-return-info__logo{
+            display: block;
+        }
+    }
+</style>
+
+<div class="dtc-checkout-return-info">
+    <div class="dtc-checkout-return-info__container">
+        <div class="dtc-checkout-return-info__left">
+            <div class="dtc-checkout-return-info__logo">
+            {{ content_for_logo }}
+            </div>
+        </div>
+        <div class="dtc-checkout-return-info__right">
+            <div class="dtc-checkout-return-info__1">
+            <picture>
+                <img src="{{ '77-day.svg' | asset_img_url }}"/>
+            </picture>
+            <span>
+                77-Day Extended Returns
+            </span>
+            </div>
+            <div class="dtc-checkout-return-info__2">
+            <picture>
+                <img src="{{ 'free_return.svg' | asset_img_url }}"/>
+            </picture>
+            <span>
+                Free Return Shipping
+            </span>
+            </div>
+        </div>
+    </div>
+</div>

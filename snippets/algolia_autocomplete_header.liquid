@@ -1,0 +1,17 @@
+<script>
+	(function(algolia) {
+		'use strict';
+
+		algolia.headerTemplate = function headerTemplate({ html, state }, resource) {
+			let title = ""
+			if(resource == "Products"){
+				title = "Are you looking for..."
+			}else{
+				title = "Suggestions"
+			}
+		  return html `<div class="aa-SourceHeader">
+				<span class="aa-SourceHeaderTitle">${title}</span>
+			</div>`
+		};
+	})(window.algoliaShopify);
+</script>

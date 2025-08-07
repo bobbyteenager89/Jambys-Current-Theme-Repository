@@ -1,0 +1,56 @@
+{{ 'new-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="hero-mobile__container">
+  <div class="hero-mobile__content-container">
+    <div class="hero-mobile__content-images-container">
+      <img class="hero-mobile__content-wave-image" src="{{ 'new-hero-mobile-wave.png' | file_img_url: 'large' }}" loading="lazy" width="auto" height="auto" />
+      <img class="hero-mobile__content-image" src="{{ section.settings.image | image_url: width: 600 }}" alt="Hero image" width="auto" height="auto" loading="lazy" />
+    </div>
+    <div class="hero-mobile__content">
+      <h1 class="hero-mobile__content-title">{{ section.settings.title }}</h1>
+      <p class="hero-mobile__content-description">{{ section.settings.description }}</p>
+      <a class='hero-mobile__content-cta'href="{{ section.settings.cta-url }}">{{ section.settings.cta-text }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Hero Mobile",
+    "tag": "section",
+    "class": "slideshow",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "richtext",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "url",
+        "id": "cta-url",
+        "label": "CTA Url"
+      },
+      {
+        "type": "text",
+        "id": "cta-text",
+        "label": "CTA Text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "New Hero Mobile"
+      }
+    ]
+  }
+  {% endschema %}
+  

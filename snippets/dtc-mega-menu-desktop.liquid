@@ -1,0 +1,491 @@
+{% assign blocks = section.blocks %}
+
+<div id="dtc-mega-menu-desktop-original" class="dtc-mega-menu-desktop nav-menu">
+    
+    <ul class="mega-menu">
+
+        {% for block in blocks %}
+            {% case block.type %}
+                {% when 'collection-images' %}
+                    <li class="mega-menu-item">
+                        <a class="" href="{{ block.settings.top_link }}">{{ block.settings.top_title }}</a>
+                        {% if linklists[block.settings.collection_links] != blank %}
+                        <div class="mega-menu-submenu custom-megamenu">
+                            <div class="mega-menu-submenu-items">
+                                {% for link in linklists[block.settings.collection_links].links %}
+                                    <div class="mega-menu-submenu-onlyitem">
+                                        <div class="mega-menu-title-arrow"><a href="{{ link.url }}"><span>{{ link.title }}</span> {% render 'arrow-new-menu' %} </a></div>
+                                        <div class="mega-menut-list-items">
+                                            <ul>
+                                            {% for second_link in link.links %}
+                                                <li><a href="{{ second_link.url }}"><span>{{ second_link.title }}</span></a></li>
+                                            {% endfor %}
+                                        </ul>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="mega-megu-container-images">
+                                {% if block.settings.item_image_1 != blank %}
+                                    <div class="mega-menu-second-container">
+                                        {% if block.settings.item_link_1 != blank %}
+                                            <a href="{{ block.settings.item_link_1 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_1 | image_url }}"
+                                                    width="229.2"
+                                                    height="127"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                            <a href="{{ block.settings.item_link_1 }}">
+                                                <span class="mega-menu-second-item-title">{{ block.settings.title_description1 }}</span>
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_1 | image_url }}"
+                                                width="229.2"
+                                                height="127"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                            <span class="mega-menu-second-item-title">{{ block.settings.title_description1 }}</span>
+                                        {% endif %}
+                                        <div><p>{{ block.settings.item_description_1 }}</p></div>
+                                        <a href="{{ block.settings.item_link_1 }}">{{ block.settings.title_link_1 }} {% render 'arrow-new-menu' %}</a>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_2 != blank %}
+                                    <div class="mega-menu-second-container">
+                                        {% if block.settings.item_link_2 != blank %}
+                                            <a href="{{ block.settings.item_link_2 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_2 | image_url }}"
+                                                    width="229.2"
+                                                    height="127"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                            <a href="{{ block.settings.item_link_2 }}">
+                                                <span class="mega-menu-second-item-title">{{ block.settings.title_description2 }}</span>
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_2 | image_url }}"
+                                                width="229.2"
+                                                height="127"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                            <span class="mega-menu-second-item-title">{{ block.settings.title_description2 }}</span>
+                                        {% endif %}
+                                        <div><p>{{ block.settings.item_description_2 }}</p></div>
+                                        <a href="{{ block.settings.item_link_2 }}">{{ block.settings.title_link_2 }} {% render 'arrow-new-menu' %}</a>
+                                    </div>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                {% when 'items-images' %}
+                    <li class="mega-menu-item">
+                        <a class="" href="{{ block.settings.top_link }}">{{ block.settings.top_title }}</a>
+                        <div class="mega-menu-submenu custom-collection-display">
+                        {% if block.settings.item_image_1 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_1 != blank %}
+                                        <a href="{{ block.settings.item_link_1 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_1 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_1 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_1 }}</span>
+                                        </a>
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_1 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_1 }}</span>
+                                    {% endif %}
+                                    
+                                    <div><p>{{ block.settings.item_description_1 }}</p></div>
+                                    <a href="{{ block.settings.item_link_1 }}">{{ block.settings.title_link_1 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+
+                        {% if block.settings.item_image_2 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_2 != blank %}
+                                        <a href="{{ block.settings.item_link_2 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_2 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_2 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_2 }}</span>
+                                        </a>
+                                        
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_2 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_2 }}</span>
+                                    {% endif %}
+                                    
+                                    <div><p>{{ block.settings.item_description_2 }}</p></div>
+                                    <a href="{{ block.settings.item_link_2 }}">{{ block.settings.title_link_2 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+
+                        {% if block.settings.item_image_3 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_3 != blank %}
+                                        <a href="{{ block.settings.item_link_3 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_3 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_3 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_3 }}</span>
+                                        </a>
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_3 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_3 }}</span>
+                                    {% endif %}
+                                    
+                                    
+                                    <div><p>{{ block.settings.item_description_3 }}</p></div>
+                                    <a href="{{ block.settings.item_link_3 }}">{{ block.settings.title_link_3 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+
+                        {% if block.settings.item_image_4 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_4 != blank %}
+                                        <a href="{{ block.settings.item_link_4 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_4 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_4 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_4 }}</span>
+                                        </a>
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_4 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_4 }}</span>
+                                    {% endif %}
+                                    <div><p>{{ block.settings.item_description_4 }}</p></div>
+                                    <a href="{{ block.settings.item_link_4 }}">{{ block.settings.title_link_4 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+
+                        {% if block.settings.item_image_5 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_5 != blank %}
+                                        <a href="{{ block.settings.item_link_5 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_5 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_5 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_5 }}</span>
+                                        </a>
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_5 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_5 }}</span>
+                                    {% endif %}
+                                    <div><p>{{ block.settings.item_description_5 }}</p></div>
+                                    <a href="{{ block.settings.item_link_5 }}">{{ block.settings.title_link_5 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+
+                        {% if block.settings.item_image_6 != blank %}
+                                <div class="mega-menu-new-item-image">
+                                    {% if block.settings.item_link_6 != blank %}
+                                        <a href="{{ block.settings.item_link_6 }}">
+                                            <img 
+                                                src="{{ block.settings.item_image_6 | image_url }}"
+                                                width="165"
+                                                height="208.4"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        </a>
+                                        <a href="{{ block.settings.item_link_6 }}">
+                                            <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_6 }}</span>
+                                        </a>
+                                    {% else %}
+                                        <img 
+                                            src="{{ block.settings.item_image_6 | image_url }}"
+                                            width="165"
+                                            height="208.4"
+                                            loading="lazy"
+                                            fetchpriority="low"
+                                        />
+                                        <span class="mega-menu-second-item-title">{{ block.settings.item_text_link_6 }}</span>
+                                    {% endif %}
+                                    <div><p>{{ block.settings.item_description_6 }}</p></div>
+                                    <a href="{{ block.settings.item_link_6 }}">{{ block.settings.title_link_6 }} {% render 'arrow-new-menu' %}</a>
+                                </div>
+                        {% endif %}
+                        </div>
+                        
+                    </li>
+                {% when 'fabrics-new' %} 
+                    <li class="mega-menu-item">
+                        <a class="" href="{{ block.settings.top_link }}">{{ block.settings.top_title }}</a>
+
+                        <div class="mega-menu-submenu mega-fabric-container">
+                            <div class="mega-menu-grid-fabric">
+                                {% if block.settings.item_image_1 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_1 != blank  %}
+                                            <a href="{{ block.settings.item_link_1 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_1 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_1 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_1 != blank  %}
+                                                <a href="{{ block.settings.item_link_1 }}"><span>{{ block.settings.item_title_1 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_1 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_1 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_2 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_2 != blank  %}
+                                            <a href="{{ block.settings.item_link_2 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_2 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_2 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_2 != blank  %}
+                                                <a href="{{ block.settings.item_link_2 }}"><span>{{ block.settings.item_title_2 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_2 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_2 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_3 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_3 != blank  %}
+                                            <a href="{{ block.settings.item_link_3 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_3 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_3 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_3 != blank  %}
+                                                <a href="{{ block.settings.item_link_3 }}"><span>{{ block.settings.item_title_3 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_3 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_3 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_4 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_4 != blank  %}
+                                            <a href="{{ block.settings.item_link_4 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_4 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_4 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+                                        
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_4 != blank  %}
+                                                <a href="{{ block.settings.item_link_4 }}"><span>{{ block.settings.item_title_4 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_4 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_4 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_5 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_5 != blank  %}
+                                            <a href="{{ block.settings.item_link_5 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_5 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_5 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_5 != blank  %}
+                                                <a href="{{ block.settings.item_link_5 }}"><span>{{ block.settings.item_title_5 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_5 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_5 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.item_image_6 != blank %}
+                                    <div class="mega-menu-fabric-item">
+                                        {% if block.settings.item_link_6 != blank  %}
+                                            <a href="{{ block.settings.item_link_6 }}">
+                                                <img 
+                                                    src="{{ block.settings.item_image_6 | image_url }}"
+                                                    width="108"
+                                                    height="108"
+                                                    loading="lazy"
+                                                    fetchpriority="low"
+                                                />
+                                            </a>
+                                        {% else %}
+                                            <img 
+                                                src="{{ block.settings.item_image_6 | image_url }}"
+                                                width="108"
+                                                height="108"
+                                                loading="lazy"
+                                                fetchpriority="low"
+                                            />
+                                        {% endif %}
+                                        <div class="mega-menu-fabric-description">
+                                            {% if block.settings.item_link_6 != blank  %}
+                                                <a href="{{ block.settings.item_link_6 }}"><span>{{ block.settings.item_title_6 }}</span></a>
+                                            {% else %}
+                                                <span>{{ block.settings.item_title_6 }}</span>
+                                            {% endif %}
+                                            <p>{{ block.settings.item_description_6 }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+            {% endcase %}
+        {% endfor %}
+
+    </ul>
+
+</div>

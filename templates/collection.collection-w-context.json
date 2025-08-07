@@ -1,0 +1,232 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "97449e7e-e980-491a-a445-d647fcbb1b9d": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/product-illustration_large_shorts_326c2619-1dd9-49af-a52f-5cc01f6f94f4.png",
+            "product_type": "Jambys"
+          }
+        },
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/product-illustration_large_pants_605e81de-754c-405c-88d5-55faa02ec85f.png",
+            "product_type": "Long Jambys"
+          }
+        },
+        "758b06a0-e28c-4e51-94d7-d1b593df4071": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/product-illustration_large_shirt_d60feea2-c6ac-4138-bb8d-0c81d9a2d731.png",
+            "product_type": "JamTee"
+          }
+        },
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/longjamtee-desktop-icon.png",
+            "product_type": "Long-Sleeve JamTee"
+          }
+        },
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/product-illustration_large_hoodie_bbe8fb2d-2665-444e-98f5-e6b6622fa5f1.png",
+            "product_type": "House Hoodie"
+          }
+        },
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/cozy-cloak_b56ed6d7-5cb1-4031-931b-440fa9873280.png",
+            "product_type": "Cozy Cloak"
+          }
+        },
+        "0f0a7f38-7c79-4d49-a4cd-4ea0d9d0a3fb": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify://shop_images/double-cozy-cloak_8d8bd370-e0dc-47b6-a0da-e4bfcb58d328.png",
+            "product_type": "Double Cozy Cloak"
+          }
+        }
+      },
+      "block_order": [
+        "97449e7e-e980-491a-a445-d647fcbb1b9d",
+        "d8892184-9856-4c1e-a324-fb8f4ef1b357",
+        "758b06a0-e28c-4e51-94d7-d1b593df4071",
+        "64d3f0a6-f21a-4369-890d-88ee6d003a0f",
+        "01b43ff2-56c2-452c-8821-913d7f0d8a91",
+        "60135472-4ba9-4a2f-9a6d-3f95c041b710",
+        "0f0a7f38-7c79-4d49-a4cd-4ea0d9d0a3fb"
+      ],
+      "settings": {
+        "show_collection_content": true,
+        "show_collection_image": false,
+        "description_position": "top",
+        "layout": "rows",
+        "grid": 4,
+        "grid_mobile": "2",
+        "products_per_page": 48,
+        "enable_infinite_scroll": true,
+        "show_vendor": false,
+        "show_filter_counts": true,
+        "show_filter_deadends": true,
+        "ajax_products": true,
+        "filter_mode": "sidebar",
+        "sticky_sidebar": true,
+        "collapse_filters_method": "none",
+        "collapse_sort_by": true,
+        "enable_sorting": false,
+        "show_featured_in_sort": false
+      }
+    },
+    "1643222587a9e061c6": {
+      "type": "gallery",
+      "blocks": {
+        "1643222587a7ca8a5e-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/product-illustration_small_pants_36b11e9d-986b-47c3-ac79-76e5fbc71892.png",
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "1643222587a7ca8a5e-1": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "1643222587a7ca8a5e-2": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        },
+        "60c3c5ff-38a6-4918-b7ab-416a63863d0b": {
+          "type": "image",
+          "settings": {
+            "video": "",
+            "desktop_image_position": "center center",
+            "mobile_image_position": "center center",
+            "enlarge_image": false,
+            "subheading": "Subheading",
+            "title": "Heading",
+            "heading_h1": false,
+            "button_label": "",
+            "link": "",
+            "text_alignment": "position--hcenter position--vcenter"
+          }
+        }
+      },
+      "block_order": [
+        "1643222587a7ca8a5e-0",
+        "1643222587a7ca8a5e-1",
+        "1643222587a7ca8a5e-2",
+        "60c3c5ff-38a6-4918-b7ab-416a63863d0b"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "grid": 3,
+        "desktop_image_height": 300,
+        "mobile_image_height": 400,
+        "title_size": 44,
+        "enable_margin": true,
+        "full_width": true,
+        "enable_carousel": true,
+        "overlay_style_tint": true,
+        "alternate_bg_color": true
+      }
+    },
+    "1643222251b6938102": {
+      "type": "accordions",
+      "blocks": {
+        "1643222251aa77425a-0": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        },
+        "1643222251aa77425a-1": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        },
+        "1643222251aa77425a-2": {
+          "type": "accordion",
+          "settings": {
+            "icon": "none",
+            "title": "Title",
+            "text": "<p>Add the content to appear when the content is expanded</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "1643222251aa77425a-0",
+        "1643222251aa77425a-1",
+        "1643222251aa77425a-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Expandable content",
+        "title_alignment": "left",
+        "alternate_bg_color": false,
+        "view_all_page": "",
+        "wave": "none",
+        "color_bg": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1643222587a9e061c6",
+    "1643222251b6938102"
+  ]
+}

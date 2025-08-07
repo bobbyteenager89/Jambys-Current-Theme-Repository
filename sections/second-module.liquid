@@ -1,0 +1,267 @@
+{% schema %}
+{
+  "name": "Custom Image Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image Grid"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment for the text",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_block",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Image Grid",
+      "blocks": [
+        {
+          "type": "image_block"
+        },
+        {
+          "type": "image_block"
+        },
+        {
+          "type": "image_block"
+        },
+        {
+          "type": "image_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<div class="title-container-item wide-container">
+  {% if section.settings.title != blank %}
+    <div class="title-container-link">
+      <a href="{{ section.settings.link }}">
+        <h2>{{ section.settings.title }}</h2>
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+<div class="image-grid wide-container">
+  {% for block in section.blocks %}
+    {% if block.settings.image_mobile != blank and block.settings.image_desktop != blank %}
+      <div class="grid-item">
+        <a href="{{ block.settings.link }}">
+          <picture>
+            <source media="(max-width: 768px)" srcset="{{ block.settings.image_mobile | image_url: width: 400 }}">
+            <source media="(min-width: 769px)" srcset="{{ block.settings.image_desktop | image_url: width: 800 }}">
+            <img src="{{ block.settings.image_desktop | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy" fetchpriority="low">
+          </picture>     
+          <div class="text-overlay">
+            <div class="text-overlay-container">
+                <h2>{{ block.settings.title }}</h2>
+                <div class="arrow-icon">
+                  <svg width="51" height="8" viewBox="0 0 51 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50.3536 4.35355C50.5488 4.15829 50.5488 3.84171 50.3536 3.64645L47.1716 0.464466C46.9763 0.269204 46.6597 0.269204 46.4645 0.464466C46.2692 0.659728 46.2692 0.976311 46.4645 1.17157L49.2929 4L46.4645 6.82843C46.2692 7.02369 46.2692 7.34027 46.4645 7.53553C46.6597 7.7308 46.9763 7.7308 47.1716 7.53553L50.3536 4.35355ZM0 4.5H50V3.5H0V4.5Z" fill="#36409A"/>
+                  </svg>
+                </div>
+            </div>
+            <p>{{ block.settings.subtitle }}</p>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+  
+.image-grid{
+    padding-bottom: 0 !important 
+}
+
+.title-container-link{
+  {% case section.settings.alignment %}
+    {% when "left" %}
+      justify-content: start;
+    {% when "center" %}
+      justify-content: center;
+    {% when "right" %}
+      justify-content: end;
+  {% endcase %}
+}
+
+
+.grid-item {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.text-overlay h2{
+  font-family: "sofia-pro" !important;
+}
+.title-container-item{
+  padding-top: 50px;
+  font-size: 40px;
+}
+
+.title-container-link{
+  width: 100%;
+  padding-bottom: 25px;
+  display: flex;
+}
+.title-container-link a{
+  width: fit-content;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .text-overlay {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .grid-item {
+    max-width: calc(50% - 8px) !important;
+  }
+  .text-overlay h2{
+    color: #36409a;
+    text-align: left;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 10%;
+
+  }
+  .text-overlay p{
+    margin: 0px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0%;
+
+  }
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 16px;
+    justify-content: space-between; 
+    padding-bottom: 50px;
+  }
+  .text-overlay-container{
+    display: flex;
+    gap: 10px;
+  }
+  .arrow-icon{
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .arrow-icon svg{
+    width: 50px;
+    height: 14px;
+  }
+  .title-container-item h2{
+    font-size: 24px;
+  }
+}
+@media (min-width: 769px) {
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .text-overlay h2{
+    color: #F3F4F9;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 10%;
+
+  }
+  .text-overlay p{
+    margin: 0px;
+    color: #F3F4F9;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    padding-top: 8px;
+  }
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding-bottom: 50px;
+  }
+  .arrow-icon{
+    display: none;
+  }
+  .grid-item:hover {
+    opacity: 0.9;
+  }
+  .title-container-item h2{
+    font-size: 40px;
+  }
+}
+</style>

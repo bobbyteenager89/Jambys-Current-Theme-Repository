@@ -1,0 +1,56 @@
+<!-- dtc-shop-by-subtype.liquid -->
+{% if section.blocks.size > 0 %}    
+  <div class="dtc-shop-by-subtype_container wide-container">
+    {% for block in section.blocks %}
+      <div class="dtc-shop-by-subtype_box{% if block.settings.label contains collection.title %} active{% endif %}">
+        <a href="{{ block.settings.link }}">
+          <img 
+              src="{{ block.settings.image | img_url: '300x' }}" 
+              alt="{{ block.settings.label }}"
+              width="150"
+              height="150"
+          />
+          <p>{{ block.settings.label }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "DTC Shop By Subtype",
+  "settings": [],
+  "class": "dtc-shop-by-subtype",
+  "blocks": [
+    {
+      "type": "subtype",
+      "name": "Subtype Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DTC Shop By Subtype",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

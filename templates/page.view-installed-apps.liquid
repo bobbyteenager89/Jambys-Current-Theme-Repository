@@ -1,0 +1,43 @@
+{%- if request.design_mode -%}
+  <div style="margin:40px auto 100px auto;padding:24px;max-width:1024px;">
+    <h1 style="margin-bottom: 32px;">Shopify App Filter</h1>
+
+    {%- if settings.shopify_apps_blocklist != blank -%}
+      <div style="margin-bottom: 32px;">
+        <h2>Blocklist</h2>
+        <ul>
+          <li>{{ settings.shopify_apps_blocklist | split: ',' | join: '</li><li>' }}</li>
+        </ul>
+      </div>
+    {%- endif -%}
+
+    <div style="margin-bottom: 32px;">
+      <h2>Allowed Apps</h2>
+      <ul id="ShopifyAppFilterAllowedApps"></ul>
+    </div>
+    <div>
+      <h2>Blocked Apps</h2>
+      <ul id="ShopifyAppFilterBlockedApps"></ul>
+    </div>
+  </div>
+
+  <script>
+    if (window.__SHOPIFY_APP_FILTER__) {
+      var installedAppsContainer = document.getElementById('ViewInstalledApps');
+      var allowedList = document.getElementById('ShopifyAppFilterAllowedApps');
+      var blockedList = document.getElementById('ShopifyAppFilterBlockedApps');
+      window.__SHOPIFY_APP_FILTER__.allowed.forEach(function (url) {
+        var li = document.createElement('li');
+        li.style.marginBottom = '8px';
+        li.innerText = url;
+        allowedList.appendChild(li);
+      });
+      window.__SHOPIFY_APP_FILTER__.blocked.forEach(function (url) {
+        var li = document.createElement('li');
+        li.style.marginBottom = '8px';
+        li.innerText = url;
+        blockedList.appendChild(li);
+      });
+    }
+  </script>
+{%- endif -%}

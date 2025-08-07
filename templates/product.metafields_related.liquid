@@ -1,0 +1,29 @@
+{% comment %}
+This template is to render the related product metafields with json
+  append ?view=metafields_related
+https://www.shopify.com/partners/blog/shopify-alternate-templates
+{% endcomment %}
+{% layout none %}
+{
+    "related_products":{
+    {% for upsell_product in product.metafields.custom.related_products.value %}
+        "p_{{ upsell_product.handle | replace: "5to9" "to9" | replace: "-jambys" "" | replace: "-" "_" }}":{
+          "prod_id": {{upsell_product.id}},
+          "prod_price": "{{upsell_product.price}}",
+          "prod_title": "{{upsell_product.title}}",
+          "prod_url": "{{upsell_product.url}}",
+          "prod_thumb": "{{upsell_product.images[0] | image_url}}",
+          "xxsm": "{% if upsell_product.variants[0].available %}{{upsell_product.variants[0].id}}{% else %}unavailable{% endif %}",
+          "xsm": "{% if upsell_product.variants[1].available %}{{upsell_product.variants[1].id}}{% else %}unavailable{% endif %}",
+          "sm": "{% if upsell_product.variants[2].available %}{{upsell_product.variants[2].id}}{% else %}unavailable{% endif %}",
+          "md": "{% if upsell_product.variants[3].available %}{{upsell_product.variants[3].id}}{% else %}unavailable{% endif %}",
+          "lg": "{% if upsell_product.variants[4].available %}{{upsell_product.variants[4].id}}{% else %}unavailable{% endif %}",
+          "xlg": "{% if upsell_product.variants[5].available %}{{upsell_product.variants[5].id}}{% else %}unavailable{% endif %}",
+          "x2lg": "{% if upsell_product.variants[6].available %}{{upsell_product.variants[6].id}}{% else %}unavailable{% endif %}",
+          "x3lg": "{% if upsell_product.variants[7].available %}{{upsell_product.variants[7].id}}{% else %}unavailable{% endif %}"
+        }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  }
+}
+
+{{ product.metafields[0].id }}

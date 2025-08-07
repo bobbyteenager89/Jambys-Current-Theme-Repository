@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "replo_coll_filters_hPqrP3": {
+      "type": "replo-coll-filters",
+      "blocks": {
+        "filter_icon_D8xJ6R": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Long_Jambys_WB.png",
+            "product_type": "Long Jambys"
+          }
+        },
+        "filter_icon_EdNRNa": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Jambys_WB.png",
+            "product_type": "Jambys"
+          }
+        },
+        "filter_icon_GUqcPc": {
+          "type": "filter_icon",
+          "settings": {
+            "filter_icon_img": "shopify:\/\/shop_images\/Illustration_Air_JamTee_WB.png",
+            "product_type": "JamTee"
+          }
+        }
+      },
+      "block_order": [
+        "filter_icon_D8xJ6R",
+        "filter_icon_EdNRNa",
+        "filter_icon_GUqcPc"
+      ],
+      "settings": {
+        "show_collection_content": true,
+        "show_collection_image": false,
+        "description_position": "top",
+        "layout": "rows",
+        "grid": 4,
+        "grid_mobile": "2",
+        "products_per_page": 48,
+        "enable_infinite_scroll": true,
+        "show_vendor": false,
+        "show_filter_counts": true,
+        "show_filter_deadends": true,
+        "ajax_products": true,
+        "filter_mode": "sidebar",
+        "sticky_sidebar": true,
+        "collapse_filters_method": "all",
+        "collapse_sort_by": true,
+        "enable_sorting": false,
+        "show_featured_in_sort": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "replo_coll_filters_hPqrP3"
+  ]
+}

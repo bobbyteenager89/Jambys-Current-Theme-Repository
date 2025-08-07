@@ -1,0 +1,109 @@
+{% assign product_type = product.type | handleize %}
+
+{% if product.type == 'House Hoodie' %}
+  {% assign product_type = 'House Hoodies' | handleize %}
+{% endif %}
+{% if product.type == 'JamTee' %}
+  {% assign product_type = 'JamTees' | handleize %}
+{% endif %}
+{% assign has_product_switcher = false %}
+{% if product.type == 'Double Cozy Cloak' or product.type == 'Cozy Cloak' %}
+  {% assign has_product_switcher = true %}
+{% endif %}
+{% assign diagram_title = collections[product_type].metafields.diagram.collection_diagram_title %}
+
+
+{%- unless section.settings.color_bg == blank -%}
+  {%- style -%}
+     .section-id-{{ section.id }} {
+        background-color: {{ section.settings.color_bg }};
+     }
+    {%- unless section.settings.mobile_color_bg == blank -%}
+      @media(max-width: 767px){
+       .section-id-{{ section.id }} {
+          background-color: {{ section.settings.mobile_color_bg }};
+       }
+      }
+    {% endunless %}
+   {%- endstyle -%}
+{%- endunless -%}
+
+{%- if section.settings.wave != "none" -%}
+  {%- render 'wave-styles', 
+              wave_position: section.settings.wave, 
+              section_id: section.id
+              fill_color: section.settings.color_bg,
+              mobile_fill_color: section.settings.mobile_color_bg -%}
+{%- endif -%}
+
+{%- style -%}
+  .section-id-{{ section.id }} {
+    position: relative;
+    padding-bottom:50px;
+  }
+{%- endstyle -%}
+
+<div class="section-id-{{ section.id }}">
+  {% if diagram_title %}
+  <div class="section-spacing container" data-cc-animate="" ecl="true">
+    <h2 style="font-family: sofia-pro,Avenir,sans-serif;font-size: 1.5rem;line-height: 2rem; font-weight: 600;">
+        {{ diagram_title }}
+    </h2>
+  </div>
+  {% endif %}
+  
+  
+  {% if collections[product_type].metafields.diagram.collection_diagram_mobile.value.src and collections[product_type].metafields.diagram.product_type.value.src %}
+    <picture>
+      <source srcset="{{ collections[product_type].metafields.diagram.collection_diagram_mobile.value.src | img_url: '720x', scale: 2 }}" media="(max-width: 767px)">
+      <img loading="lazy" src="{{ collections[product_type].metafields.diagram.product_type.value.src | img_url: '720x', scale: 2 }}">
+    </picture>
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Product Diagram",
+  "class": "product-diagram",
+    "settings": [
+      {
+        "type": "select",
+        "id": "wave",
+        "label": "Wave",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          },
+          {
+            "value": "both",
+            "label": "Both"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Desktop background color"
+      },
+      {
+        "type": "color",
+        "id": "mobile_color_bg",
+        "label": "Mobile background color"
+      }
+    ],
+  "presets": [
+    {
+        "name": "Product Diagram"
+    }
+  ]
+}
+{% endschema %}

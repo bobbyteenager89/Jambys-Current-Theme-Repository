@@ -1,0 +1,33 @@
+{% comment %}
+This template is to render the product metafields with json
+append ?view=metafields
+https://www.shopify.com/partners/blog/shopify-alternate-templates
+{% endcomment %}
+{% layout none %}
+{
+  "metafields": {
+  {% for metafield in product.metafields.related_products %}
+   "{{ metafield | first  }}" :  "{{ metafield | last }}"{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  },
+  "global_metafields": {
+     {% for metafield in product.metafields.global %}
+     {% assign metafield_name = metafield | first %}
+     {% assign metafield_value = metafield | last %}
+     {% if metafield_name == 'size_chart' %}
+      "{{ metafield | first  }}" :  {{ pages[metafield_value].content | json }}{% unless forloop.last %},{% endunless %}
+     {% else %}
+      "{{ metafield | first  }}" :  "{{ metafield | last }}"{% unless forloop.last %},{% endunless %}
+     {% endif %}
+     {% endfor %}
+  },
+  "badge_metafields": {
+     {% for metafield in product.metafields.badge %}
+      "{{ metafield | first  }}" :  "{{ metafield | last }}"{% unless forloop.last %},{% endunless %}
+     {% endfor %}
+  },
+  "backorder_metafields": {
+     "backorder_message" :  "{{ product.metafields.custom.backorder_message }}"
+  }
+}
+{{ product.metafields[0].id }}
