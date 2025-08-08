@@ -13,12 +13,7 @@
     <link rel="preload" href="{{ 'algolia_config.js' | asset_url }}" as="script">
     <link rel="preload" href="{{ 'algolia_init.js' | asset_url }}" as="script">
 
-    <link rel="preload" href="{{ '_proteus-utils.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-treatments.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-housefit.js' | asset_url }}" as="script">
-
     <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'proteus-treatments.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
 
     <link rel="preload" href="{{ 'dtc-free-gift.css' | asset_url }}" as="style">
@@ -74,9 +69,6 @@
       <link rel="preload" href="{{ 'dtc-collection-slider.css' | asset_url }}" as="style">
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style">
     {% endif %}
-    {{ '_proteus-utils.js' | asset_url | script_tag }}
-    {{ '_proteus-treatments.js' | asset_url | script_tag }}
-    {{ '_proteus-housefit.js' | asset_url | script_tag }}
     {% if template contains 'collection' %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
       {{ 'dtc-collection-slider.css' | asset_url | stylesheet_tag }}
@@ -183,7 +175,6 @@
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {{ 'proteus-treatments.css' | asset_url | stylesheet_tag }}
 
     {% if template contains 'collection' %}
       {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
