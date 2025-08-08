@@ -22,8 +22,6 @@
     <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
 
     <link rel="preload" href="{{ 'dtc-free-gift.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'cart.js' | asset_url }}" as="script">
-
 
 
     {% render 'replo-head' %}
@@ -793,11 +791,26 @@
     theme.calc100vh();
     </script>
 
-    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'critical.js' | asset_url }}" defer></script>
+
+    {% if template contains 'product' %}
+      <script src="{{ 'product-features.js' | asset_url }}" defer></script>
+      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}" async></script>
+    {% endif %}
+
+    {% if template contains 'collection' %}
+      <script src="{{ 'collection-features.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    {% if template contains 'cart' or template contains 'checkout' %}
+      <script src="{{ 'cart-checkout.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    <script src="{{ 'app-integrations.js' | asset_url }}" defer></script>
+    <script src="{{ 'non-critical.js' | asset_url }}" defer></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" async></script>
 
     {% render 'body-end-tag' %}
 
@@ -906,11 +919,6 @@
       script.src = 'https://xp2023-pix.s3.amazonaws.com/px_jPebb.js';
             document.getElementsByTagName('head')[0].appendChild(script);
     </script>
-    {% if template contains 'product' %}
-      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}"></script>
-    {% endif %}
-
-    <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% render 'smart-cart-template' %}
   </body>
 </html>
