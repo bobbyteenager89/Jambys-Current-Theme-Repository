@@ -1,0 +1,54 @@
+<div id="klaviyo-footer-signup" class="signup-form">
+  <div class="klaviyo-form-TqwXDs"></div>
+</div>
+{% style %}
+.klaviyo-form-TqwXDs form button { height: 26px; font-weight: 400; }
+.klaviyo-form-TqwXDs form input { border-radius: 4px; }
+{% endstyle %}
+<script>
+(function() {
+  var container = document.getElementById('klaviyo-footer-signup');
+  if (!container) return;
+  var hasLoaded = false;
+  function loadScript() {
+    if (hasLoaded) return;
+    hasLoaded = true;
+    if (!window._klaviyoPromise) {
+      window._klaviyoPromise = new Promise(function(resolve) {
+        if (window.klaviyo) {
+          return resolve(window.klaviyo);
+        }
+        var existing = document.querySelector('script[src*="klaviyo.com/media/js/onsite/onsite.js"]');
+        if (existing) {
+          existing.addEventListener('load', function() { resolve(window.klaviyo); });
+          return;
+        }
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://a.klaviyo.com/media/js/onsite/onsite.js';
+        script.onload = function() {
+          if (window.klaviyo && typeof window.klaviyo.init === 'function') {
+            window.klaviyo.init({ account: 'NMZKLp', platform: 'shopify' });
+          }
+          resolve(window.klaviyo);
+        };
+        document.head.appendChild(script);
+      });
+    }
+  }
+  function onIntersect(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        observer.disconnect();
+        loadScript();
+      }
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(onIntersect);
+    observer.observe(container);
+  } else {
+    loadScript();
+  }
+})();
+</script>
