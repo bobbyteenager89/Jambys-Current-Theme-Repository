@@ -257,6 +257,7 @@
         animationEnabledMobile: {{ settings.animation_enabled_mobile | json }}
       };
 
+      // Detects when the first section overlaps the header to toggle header-section-overlap
       theme.checkViewportFillers = function() {
         var toggleState = false;
         var elPageContent = document.getElementById('page-content');
@@ -274,6 +275,7 @@
         }
       };
 
+      // Swaps to an alternate logo when .needs-alt-logo elements intersect the header midpoint
       theme.assessAltLogo = function() {
         var elsOverlappers = document.querySelectorAll('.needs-alt-logo');
         var useAltLogo = false;
