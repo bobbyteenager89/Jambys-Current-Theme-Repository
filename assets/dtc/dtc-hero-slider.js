@@ -1,3 +1,9 @@
+/**
+ * Initialize Swiper instances for hero sliders.
+ * Expected DOM: .dtc-hero-slider elements with sibling .swiper-button-next and .swiper-button-prev controls.
+ * Dependencies: Swiper library.
+ */
+
 document.addEventListener('DOMContentLoaded', function(){
   var sliders = document.querySelectorAll('.dtc-hero-slider');
   sliders.forEach(function(slider) {

@@ -1,3 +1,9 @@
+/**
+ * Builds Housefit upsell forms based on related products.
+ * Expected DOM: .product-detail__tab-container.go-test and .product-detail__upsell-container sections.
+ * Dependencies: Fetch API and Proteus utilities (waitUntil, getParam, waitForElement).
+ */
+
 waitUntil(() => {
   return (
     window.sessionStorage.getItem("JMBY-48") || getParam("qa") == "JMBY-48"

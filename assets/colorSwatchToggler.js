@@ -1,3 +1,8 @@
+/**
+ * Swap product details when a collection swatch is clicked.
+ * Expected DOM: .dtc-collection-swatch elements inside .alternative-product-swatches wrappers.
+ * Dependencies: Fetch API and Swiper library.
+ */
 window.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("dtc-collection-swatch")) {
     const { jsProductHandle } = evt.target.dataset;

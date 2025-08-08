@@ -1,3 +1,9 @@
+/**
+ * Implements Proteus marketing treatments and site overrides.
+ * Expected DOM: elements such as .cc-announcement and .cart-subtotal-currency.
+ * Dependencies: utilities from proteus/_proteus-utils.js (getParam, waitUntil, waitForElement).
+ */
+
 console.log("init Proteus treatments - v1.08");
 
 window.sessionStorage.setItem("disable_discount_threshold", true);

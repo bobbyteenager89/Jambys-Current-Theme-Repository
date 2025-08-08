@@ -1,3 +1,9 @@
+/**
+ * Builds dynamic upsell content and variant selectors for recommended products.
+ * Expected DOM: .dtc-product-wrapper containing .dtc-variant and .dtc-atc-button elements.
+ * Dependencies: MutationObserver, Fetch API, and global helpers (updateCartCounts, toggleCart, initSwatches, initSwatches2).
+ */
+
 // Custom function to observe mutations in the DOM
 document.querySelectorEver = (selector, callback) => {
     const targetNode = document.querySelector(selector);

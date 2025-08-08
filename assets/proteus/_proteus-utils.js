@@ -1,5 +1,11 @@
 "use strict";
 
+/**
+ * Utility helpers for Proteus experiments (variation tagging, DOM observers, timing utilities).
+ * Expected DOM: applies globally without specific selectors.
+ * Dependencies: sessionStorage, MutationObserver, requestAnimationFrame.
+ */
+
 console.log("init Proteus utils - v1.05");
 
 let variation;

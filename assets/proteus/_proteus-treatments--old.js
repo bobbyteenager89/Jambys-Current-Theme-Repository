@@ -1,3 +1,9 @@
+/**
+ * Legacy Proteus treatments script kept for historical reference.
+ * Expected DOM: .cc-announcement and other legacy selectors.
+ * Dependencies: Proteus utilities such as getParam and waitForElement.
+ */
+
 // 2 + 19
 
 if(window.location.pathname === '/collections' || window.location.pathname === '/collections/'){

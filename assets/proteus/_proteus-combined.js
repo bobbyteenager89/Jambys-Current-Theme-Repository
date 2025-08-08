@@ -1,5 +1,11 @@
 "use strict";
 
+/**
+ * Combined Proteus utilities and treatments for single inclusion.
+ * Expected DOM: varies per included feature.
+ * Dependencies: Proteus utilities and treatments modules.
+ */
+
 console.log("init Proteus utils - v1.05");
 
 let variation;
@@ -334,15 +340,15 @@ if (window.location.pathname === '/collections' || window.location.pathname === 
 START announcement bar override for promos
 */
 
-let announcement_overrides = {};{% if settings.utm_1 != "" and settings.utm_1 != null %}announcement_overrides["{{settings.utm_1}}"] = "{{settings.message_1}}";{% endif %}
+let announcement_overrides = {};
 
-{% if settings.utm_2 != "" and settings.utm_2 != null %}announcement_overrides["{{settings.utm_2}}"] = "{{settings.message_2}}";{% endif %}
 
-{% if settings.utm_3 != "" and settings.utm_3 != null %}announcement_overrides["{{settings.utm_3}}"] = "{{settings.message_3}}";{% endif %}
 
-{% if settings.utm_4 != "" and settings.utm_4 != null %}announcement_overrides["{{settings.utm_4}}"] = "{{settings.message_4}}";{% endif %}
 
-{% if settings.utm_5 != "" and settings.utm_5 != null %}announcement_overrides["{{settings.utm_5}}"] = "{{settings.message_5}}";{% endif %}
+
+
+
+
 
 
 console.log("announcement_overrides", announcement_overrides);
