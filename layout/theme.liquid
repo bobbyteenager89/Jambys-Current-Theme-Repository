@@ -301,6 +301,10 @@
     </script>
 
     <script type="text/javascript">
+      // Build window.related so JavaScript can consume upsell/related product
+      // metadata including variant availability. Expected keys include:
+      // prod_id, prod_price, prod_title, prod_url, prod_thumb, and size
+      // variant handles (xxsm, xsm, sm, md, lg, xlg, x2lg, x3lg).
       window.related = {
       pdp_products:{
       {% for upsell_product in product.metafields.custom.related_products.value %}
