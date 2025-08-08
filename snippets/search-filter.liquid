@@ -159,14 +159,6 @@
       </div>
 
       <div class="cc-product-filter cc-product-filter--sticky-{{ section.settings.sticky_sidebar }} {% if section.settings.sticky_sidebar %}cc-sticky-scroll-direction{% endif %}">
-        {% if quick_links.size > 0 %}
-          <div class="proteus-quicklinks quicklinks-desktop">
-          <div class="quicklinks_title">Product Quicklinks</div>
-            {% for quick_link in quick_links %}
-              <a href="{{ quick_link.settings.link }}" class="proteus-quicklinks-item"><img src="{{ quick_link.settings.image | img_url: "100x" }}"><p>{{ quick_link.settings.title }}</p></a>
-            {% endfor %}
-          </div>
-        {% endif %}
         <form id="FacetsForm">
           {%- for filter in results.filters -%}
             {% if filter.label == "Color" %}

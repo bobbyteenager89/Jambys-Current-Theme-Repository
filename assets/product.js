@@ -563,25 +563,6 @@ async function clickHandler(e) {
     sizingTab.removeAttribute('hidden');
   }
   
-  if('value' in elementData || 'colorSwatch' in elementData ){
-    waitForElement('.klaviyo-bis-trigger').then(bis_trigger => {
-      bis_trigger.classList.value = "btn klaviyo-bis-trigger js-hide-bis";
-
-      setTimeout(() => {
-        if (document.querySelector('button[type="submit"][name="add"]').disabled) {
-          // if(newProduct.tags.indexOf("Not-Available-For-Back-in-Stock") > -1){
-          if (new_product_tags.indexOf("Not-Available-For-Back-in-Stock") > -1) {
-            bis_trigger.classList.value = "btn klaviyo-bis-trigger js-hide-bis";
-          } else {
-            bis_trigger.classList.value = "btn klaviyo-bis-trigger js-show-bis";
-          }
-        } else {
-          bis_trigger.classList.value = "btn klaviyo-bis-trigger js-hide-bis";
-        }
-      }, 500);
-
-    }).catch();
-  }
 }
 
 async function renderGallery(newHandle) {
@@ -661,16 +642,5 @@ function smarthSlideButtonActive(buttonTarget, buttonsGender) {
 
 setupGenderButtons();
 
-
-// disable BIS on initial load if tag(s) exist
-fetch(window.location.pathname + ".js").then((response) => response.json()).then(data => {
-  // console.log(data.tags);
-  new_product_tags = data.tags;
-  if (data.tags.indexOf("Not-Available-For-Back-in-Stock") > -1) {
-    waitForElement('.klaviyo-bis-trigger').then(bis_trigger => {
-      bis_trigger.classList.value = "btn klaviyo-bis-trigger js-hide-bis";
-    }).catch();
-  }
-}).catch();
 
 window.addEventListener('click', clickHandler, true);

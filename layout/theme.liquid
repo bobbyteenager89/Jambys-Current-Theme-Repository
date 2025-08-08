@@ -10,16 +10,8 @@
     <link rel="preconnect dns-prefetch" href="https://conf.config-security.com/" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://cdn.intelligems.io/" crossorigin>
 
-    <link rel="preload" href="{{ 'algolia_config.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ 'algolia_init.js' | asset_url }}" as="script">
 
-    <link rel="preload" href="{{ '_proteus-utils.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-treatments.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-housefit.js' | asset_url }}" as="script">
-
-    <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'proteus-treatments.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
+    
 
     <link rel="preload" href="{{ 'dtc-free-gift.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'cart.js' | asset_url }}" as="script">
@@ -74,9 +66,6 @@
       <link rel="preload" href="{{ 'dtc-collection-slider.css' | asset_url }}" as="style">
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style">
     {% endif %}
-    {{ '_proteus-utils.js' | asset_url | script_tag }}
-    {{ '_proteus-treatments.js' | asset_url | script_tag }}
-    {{ '_proteus-housefit.js' | asset_url | script_tag }}
     {% if template contains 'collection' %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
       {{ 'dtc-collection-slider.css' | asset_url | stylesheet_tag }}
@@ -182,20 +171,10 @@
     {%- endif -%}
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
-    {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {{ 'proteus-treatments.css' | asset_url | stylesheet_tag }}
-
     {% if template contains 'collection' %}
       {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
     {% endif %}
     {{ 'dtc-hero-slider.css' | asset_url | stylesheet_tag }}
-    {%- capture content_for_header -%}
-    {%- if tinyscript -%}
-      {{ content_for_header }}
-    {%- else -%}
-      {% render 'tiny-script-control' %}{%- endif -%}
-  {%- endcapture -%}
-
     {%- capture content_for_header -%}
     {% render 'header-content-app-filter', content_for_header: content_for_header %}
   {%- endcapture -%}
@@ -467,60 +446,11 @@
       }
     </script>
     {%- assign time_now = 'now' | date: '%s' %}
-    <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/Iu8jRehd6LJUVkSAMldHHw" async></script>
 
     {%- if template contains 'replo' -%}
       <link rel="stylesheet" href="https://use.typekit.net/pmy6wae.css">
     {%- endif -%}
 
-    <!-- Algolia head -->
-    {{ 'algolia_config.js' | asset_url | script_tag }}
-
-    <script type="text/template" id="template_algolia_money_format">
-      {% include 'algolia_money_format' %}
-    </script>
-    <script type="text/template" id="template_algolia_current_collection_id">
-      {% include 'algolia_current_collection_id' %}
-    </script>
-    <script type="text/template" id="template_algolia_autocomplete.css">
-      {% include 'algolia_autocomplete.css' %}
-    </script>
-    <script type="text/template" id="template_algolia_instant_search.css">
-      {% include 'algolia_instant_search.css' %}
-    </script>
-    {{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url | stylesheet_tag }}
-    {% include 'algolia_markets_init' %}
-    <script src="{{ 'algolia_externals.js' | asset_url }}" defer></script>
-    {{ 'algolia_init.js' | asset_url | script_tag }}
-    <script src="{{ 'algolia_translations.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_helpers.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_suggestions_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_product_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_collections_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_articles_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_pages_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_facets.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_sort_orders.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_instant_search.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_analytics.js' | asset_url }}" defer></script>
-    {% include 'algolia_autocomplete' %}
-    {% include 'algolia_autocomplete_main_products_only' %}
-    {% include 'algolia_autocomplete_page' %}
-    {% include 'algolia_autocomplete_collection' %}
-    {% include 'algolia_autocomplete_article' %}
-    {% include 'algolia_autocomplete_product' %}
-    {% include 'algolia_autocomplete_suggestion' %}
-    {% include 'algolia_autocomplete_header' %}
-    {% include 'algolia_autocomplete_footer' %}
-    {% include 'algolia_autocomplete_no_results' %}
-    {% include 'algolia_instant_search' %}
-    {% include 'algolia_instant_search_stats' %}
-    {% include 'algolia_instant_search_facet_show_more' %}
-    {% include 'algolia_instant_search_facet_item' %}
-    {% include 'algolia_instant_search_product' %}
-    {% include 'algolia_instant_search_no_result' %}
-    <!-- /Algolia head -->
 
     {{ 'dtc-free-gift.css' | asset_url | stylesheet_tag }}
 
@@ -801,45 +731,6 @@
 
     {% render 'body-end-tag' %}
 
-    {% comment %} Accessibe {% endcomment %}
-    <script>
-      (function() {
-        var s = document.createElement('script'),
-          e = !document.body
-            ? document.querySelector('head')
-            : document.body;
-        s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
-        s.async = true;
-        s.onload = function() {
-          acsbJS.init({
-            statementLink: '',
-            footerHtml: '',
-            hideMobile: false,
-            hideTrigger: true,
-            language: 'en',
-            position: 'left',
-            leadColor: '#36409a',
-            triggerColor: '#36409a',
-            triggerRadius: '50%',
-            triggerPositionX: 'right',
-            triggerPositionY: 'bottom',
-            triggerIcon: 'people',
-            triggerSize: 'medium',
-            triggerOffsetX: 20,
-            triggerOffsetY: 20,
-            mobile: {
-              triggerSize: 'small',
-              triggerPositionX: 'right',
-              triggerPositionY: 'center',
-              triggerOffsetX: 10,
-              triggerOffsetY: 0,
-              triggerRadius: '50%'
-            }
-          });
-        };
-        e.appendChild(s);
-      })();
-    </script>
 
     <script>
       (() => {
@@ -848,58 +739,7 @@
     </script>
     {% render 'junip-store-key' %}
 
-    {%- if template.name == 'product' -%}
-      {% comment %}
-        Only load back-in-stock widget on PDPs. Klaviyo Onsite JS is already installed
-        through App embeds menu in Theme Editor
-      {% endcomment %}
-      <script>
-        loadAsyncScript('https://a.klaviyo.com/media/js/onsite/onsite.js', function() {
-          var klaviyo = window.klaviyo || [];
-          klaviyo.init({account: 'NMZKLp', platform: 'shopify'});
-          klaviyo.enable('backinstock', {
-            trigger: {
-              product_page_text: 'Notify Me When Available',
-              product_page_class: 'btn',
-              product_page_text_align: 'center',
-              product_page_margin: '0px',
-              replace_anchor: false
-            },
-            modal: {
-              headline: '{product_name} is Out of Stock',
-              body_content: 'Register to receive a notification when this item comes back in stock.',
-              email_field_label: 'Email',
-              button_label: 'Notify me when available',
-              subscription_success_label: "You're in! We'll let you know when it's back.",
-              footer_content: '',
-              additional_styles: '.btn{font-size: 16px;font-weight: 600;font-family: sofia-pro, Avenir, sans-serif;border-radius: 40px;}.btn:hover{opacity:0.9}.modal-title{text-align: center;color: #36409a;font-family: kansasnew, sans-serif;font-weight: 600;margin-top: 15px;}.input-lg{font-family: sofia-pro, Avenir, sans-serif;font-size: 16px;font-weight: 600;color: #36409a;}.form-control{border-color: #36409a;} #container p{    color: #36409a;font-family: sofia-pro, Avenir, sans-serif;font-size: 18px;font-style: normal;text-align: center;} #container{background-color:#f3f4f9!important;} .input-lg:focus-visible{outline-color: #36409a;}@media(max-width: 768px){#container{margin-top: 25vh;}}.close{color: black;opacity: 0.5;}.close:hover{opacity:1;}',
-              drop_background_color: '#000',
-              background_color: '#fff',
-              text_color: '#222',
-              button_text_color: '#fff',
-              button_background_color: '#36409a',
-              close_button_color: '#ccc',
-              error_background_color: '#fcd6d7',
-              error_text_color: '#C72E2F',
-              success_background_color: '#d3efcd',
-              success_text_color: '#1B9500'
-            }
-          });
-        });
-      </script>
-    {%- endif -%}
 
-    {%- if template.directory == 'customers' or page.handle == 'rewards' -%}
-      <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/Iu8jRehd6LJUVkSAMldHHw" async></script>
-    {%- else -%}
-      <script>
-        (function loadYotpoAsync() {
-          if (/(sref_id|loyalty|referral_program)/.test(window.location.search)) {
-            loadAsyncScript('https://cdn-widgetsrepository.yotpo.com/v1/loader/Iu8jRehd6LJUVkSAMldHHw');
-          }
-        })();
-      </script>
-    {%- endif -%}
 
     <script type="text/javascript">
       var script = document.createElement('script');
@@ -909,8 +749,7 @@
     {% if template contains 'product' %}
       <script src="{{ 'dtc-upsell-feature.js' | asset_url }}"></script>
     {% endif %}
-
-    <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
+    <script src="{{ 'non-critical.js' | asset_url }}" defer></script>
     {% render 'smart-cart-template' %}
   </body>
 </html>
