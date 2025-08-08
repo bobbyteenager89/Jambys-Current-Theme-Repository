@@ -170,11 +170,24 @@ display:flex;
   flex-wrap:nowrap;
 }
 .product-color-swatches {
-  max-width: 100%; 
+  max-width: 100%;
 }
 .product-color-swatches li {
   padding: 0;
   margin-bottom: 4px;
+}
+
+.cc-swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cc-swatches li {
+  padding: 0;
+  margin: 0 4px 4px 0;
 }
 .product-detail__form__options .color-swatch {
   width:2.5rem;
