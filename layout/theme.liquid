@@ -300,6 +300,9 @@
     {% render 'builder-head' %}
 
     <script type="text/javascript">
+      // Build a map of upsell/related products for client-side use, including
+      // product metadata (prod_id, prod_price, prod_title, prod_url, prod_thumb)
+      // and size variant availability via keys like xxsm, xsm, sm, md, lg, xlg, x2lg, x3lg.
       window.related = {
       pdp_products:{
       {% for upsell_product in product.metafields.custom.related_products.value %}
