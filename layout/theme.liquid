@@ -928,14 +928,12 @@
       script.src = 'https://xp2023-pix.s3.amazonaws.com/px_jPebb.js';
             document.getElementsByTagName('head')[0].appendChild(script);
     </script>
+
+    {% if template contains 'product' %}
+      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}"></script>
+      <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
+    {% endif %}
+
     {% render 'smart-cart-template' %}
   </body>
 </html>
-
-{% if content_for_header contains 'kimonix_void_script' %}
-  <script
-    async
-    id="kimonix_elements_script"
-    src="https://api.kimonix.com/kimonix_elements.js?shop=jambys-chillwear.myshopify.com"
-  ></script>
-{% endif %}

@@ -648,6 +648,9 @@
         "show_vendor": false,
         "grid": 4
       }
+    },
+    "color-swatches": {
+      "type": "color-swatches"
     }
   },
   "order": [
@@ -659,6 +662,7 @@
     "1645216836c2399369",
     "164521688270b6ec0f",
     "1645216863f651ccbb",
-    "product-recommendations"
+    "product-recommendations",
+    "color-swatches"
   ]
 }

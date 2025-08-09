@@ -117,10 +117,14 @@
         "wave": "none",
         "color_bg": "#ffffff"
       }
+    },
+    "color-swatches": {
+      "type": "color-swatches"
     }
   },
   "order": [
     "main",
-    "1648477724b889d466"
+    "1648477724b889d466",
+    "color-swatches"
   ]
 }
