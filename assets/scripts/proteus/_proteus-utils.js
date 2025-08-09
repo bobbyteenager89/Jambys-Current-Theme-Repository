@@ -1,3 +1,4 @@
+// Shared utilities for Proteus experiments
 "use strict";
 
 console.log("init Proteus utils - v1.05");

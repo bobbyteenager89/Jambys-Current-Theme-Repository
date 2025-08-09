@@ -1,3 +1,4 @@
+// Proteus treatments experiment script
 console.log("init Proteus treatments - v1.08");
 
 window.sessionStorage.setItem("disable_discount_threshold", true);

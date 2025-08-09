@@ -1,14 +1,9 @@
 {
-  "name": "jambys-current-theme-repository",
+  "name": "jambys-theme",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "node build.js",
-    "test": "echo \"No tests\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+    "test": "echo \"No tests\" && exit 0"
+  }
 }
