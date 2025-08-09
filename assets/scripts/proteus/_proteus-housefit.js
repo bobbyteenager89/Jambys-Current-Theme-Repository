@@ -1,3 +1,4 @@
+// Proteus housefit experiment script
 waitUntil(() => {
   return (
     window.sessionStorage.getItem("JMBY-48") || getParam("qa") == "JMBY-48"

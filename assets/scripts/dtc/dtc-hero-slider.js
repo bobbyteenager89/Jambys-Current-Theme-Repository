@@ -1,3 +1,4 @@
+// Initializes DTC hero slider components
 document.addEventListener('DOMContentLoaded', function(){
   var sliders = document.querySelectorAll('.dtc-hero-slider');
   sliders.forEach(function(slider) {

@@ -16,14 +16,14 @@
       <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
     {% endif %}
 
-    <link rel="preload" href="{{ '_proteus-utils.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-treatments.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ '_proteus-housefit.js' | asset_url }}" as="script">
+    <link rel="preload" href="{{ 'scripts/proteus/_proteus-utils.js' | asset_url }}" as="script">
+    <link rel="preload" href="{{ 'scripts/proteus/_proteus-treatments.js' | asset_url }}" as="script">
+    <link rel="preload" href="{{ 'scripts/proteus/_proteus-housefit.js' | asset_url }}" as="script">
 
     <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'proteus-treatments.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'styles/proteus/proteus-treatments.css' | asset_url }}" as="style">
 
-    <link rel="preload" href="{{ 'dtc-free-gift.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'styles/dtc/dtc-free-gift.css' | asset_url }}" as="style">
 
 
     {% render 'replo-head' %}
@@ -71,15 +71,15 @@
 
     {% if template contains 'collection' %}
       <link rel="preload" href="{{ 'top-filter-collection.css' | asset_url }}" as="style">
-      <link rel="preload" href="{{ 'dtc-collection-slider.css' | asset_url }}" as="style">
+      <link rel="preload" href="{{ 'styles/dtc/dtc-collection-slider.css' | asset_url }}" as="style">
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style">
     {% endif %}
-    {{ '_proteus-utils.js' | asset_url | script_tag }}
-    {{ '_proteus-treatments.js' | asset_url | script_tag }}
-    {{ '_proteus-housefit.js' | asset_url | script_tag }}
+    {{ 'scripts/proteus/_proteus-utils.js' | asset_url | script_tag }}
+    {{ 'scripts/proteus/_proteus-treatments.js' | asset_url | script_tag }}
+    {{ 'scripts/proteus/_proteus-housefit.js' | asset_url | script_tag }}
     {% if template contains 'collection' %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-      {{ 'dtc-collection-slider.css' | asset_url | stylesheet_tag }}
+      {{ 'styles/dtc/dtc-collection-slider.css' | asset_url | stylesheet_tag }}
     {% endif %}
 
     <meta name="google-site-verification" content="sB4YVjrMTVA3cn7Th91xY8uSx5pn07OcLt7u8LueKd4">
@@ -183,12 +183,12 @@
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {{ 'proteus-treatments.css' | asset_url | stylesheet_tag }}
+    {{ 'styles/proteus/proteus-treatments.css' | asset_url | stylesheet_tag }}
 
     {% if template contains 'collection' %}
       {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
     {% endif %}
-    {{ 'dtc-hero-slider.css' | asset_url | stylesheet_tag }}
+    {{ 'styles/dtc/dtc-hero-slider.css' | asset_url | stylesheet_tag }}
     {%- capture content_for_header -%}
     {%- if tinyscript -%}
       {{ content_for_header }}
@@ -200,7 +200,7 @@
     {% render 'header-content-app-filter', content_for_header: content_for_header %}
   {%- endcapture -%}
     {{ content_for_header }}
-    {{ 'dtc-hero-slider.js' | asset_url | script_tag }}
+    {{ 'scripts/dtc/dtc-hero-slider.js' | asset_url | script_tag }}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       window.theme = window.theme || {};{% if settings.currency_code_enabled %}
@@ -531,7 +531,7 @@
       <!-- /Algolia head -->
     {% endif %}
 
-    {{ 'dtc-free-gift.css' | asset_url | stylesheet_tag }}
+    {{ 'styles/dtc/dtc-free-gift.css' | asset_url | stylesheet_tag }}
 
     <script src="{{ 'cart.js' | asset_url }}"></script>
 
@@ -806,7 +806,7 @@
 
     {% if template contains 'product' %}
       <script src="{{ 'product-features.js' | asset_url }}" defer></script>
-      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}" async></script>
+      <script src="{{ 'scripts/dtc/dtc-upsell-feature.js' | asset_url }}" async></script>
     {% endif %}
 
     {% if template contains 'collection' %}
@@ -932,7 +932,7 @@
     </script>
 
     {% if template contains 'product' %}
-      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}"></script>
+      <script src="{{ 'scripts/dtc/dtc-upsell-feature.js' | asset_url }}"></script>
       <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% endif %}
 
