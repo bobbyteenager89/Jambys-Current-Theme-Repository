@@ -94,12 +94,7 @@
 
 
 
-              <div class="signup-form">
-                
-                <style>
-                .klaviyo-form-TqwXDs form button { height: 26px; font-weight: 400; }
-                .klaviyo-form-TqwXDs form input { border-radius: 4px; }</style>
-                <div class="klaviyo-form-TqwXDs"></div>
+              {% render 'klaviyo-footer-signup' %}
                 {% comment %}
                 {% form 'customer', id: 'footer_newsletter_signup' %}
                   {% if form.posted_successfully? %}

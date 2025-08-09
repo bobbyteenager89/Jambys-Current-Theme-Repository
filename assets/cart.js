@@ -92,6 +92,8 @@ function ajaxCartrequest(method, query, url) {
   }).then(response => response.json());
 }
 
+// Fetches the current cart, enriches items with product data, and sums
+// line-item discounts to populate `cart.line_items_total_discount`.
 function getCart() {
   let products = [];
   let line_items_discounts_total = 0;
@@ -114,14 +116,19 @@ function getCart() {
         const selectedVariant = products[index].variants.filter(
           (variant) => variant.id == item.id
         );
+        const variant = selectedVariant[0];
 
-        if(selectedVariant[0]?.compare_at_price > selectedVariant[0]?.price){
-          line_items_discounts_total = parseInt(line_items_discounts_total) + parseInt((selectedVariant[0].compare_at_price*item.quantity) - (selectedVariant[0].price*item.quantity));
+        if (variant?.compare_at_price > variant?.price) {
+          const compareAtTotal = variant.compare_at_price * item.quantity;
+          const priceTotal = variant.price * item.quantity;
+          const lineDiscount = compareAtTotal - priceTotal;
+          line_items_discounts_total =
+            parseInt(line_items_discounts_total) + parseInt(lineDiscount);
         }
 
         item.compare_at_price =
-          selectedVariant[0]?.compare_at_price > selectedVariant[0]?.price
-            ? selectedVariant[0]?.compare_at_price
+          variant?.compare_at_price > variant?.price
+            ? variant?.compare_at_price
             : false;
       });
 
