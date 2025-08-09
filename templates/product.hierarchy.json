@@ -764,6 +764,9 @@
         "no_margins": false,
         "custom_liquid": "<script type=\"text/javascript\">\nvar _learnq = _learnq || [];\n  var classname = document.getElementsByClassName(\"button hover-grow\");\nvar addToCart = function() {\n_learnq.push(['track', 'Added to Cart', item]);\n}; for (var i = 0; i < classname.length; i++) {\nclassname[i].addEventListener('click', addToCart, false);\n}\n</script>"
       }
+    },
+    "color-swatches": {
+      "type": "color-swatches"
     }
   },
   "order": [
@@ -780,6 +783,7 @@
     "1645216863f651ccbb",
     "product-recommendations",
     "1648567536a943befb",
-    "1648567523d42bb851"
+    "1648567523d42bb851",
+    "color-swatches"
   ]
 }

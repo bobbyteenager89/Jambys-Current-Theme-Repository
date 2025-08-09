@@ -57,10 +57,9 @@ function replaceContentViaSelector(source, destination, selector) {
   }
 }
 
-// Reloads the product section for a newly selected variant to refresh gallery and breadcrumb content
 async function renderUpdatedProduct(element, productHandle) {
   try {
-    // Fetch the rendered section HTML for the incoming product handle
+    // Render current section in context of new product's handle
     const productContainer = element.closest(".product-container");
     const sectionId = productContainer.dataset.sectionId;
     const splitProductUrl =
@@ -70,27 +69,28 @@ async function renderUpdatedProduct(element, productHandle) {
       splitProductUrl.join("/products/")
     ).then((res) => res.text());
 
-    // Turn the returned HTML string into a DOM tree
+
+    // Parse new section HTML
     const sourceEl = new DOMParser().parseFromString(
       sectionRenderResponse,
       "text/html"
     );
 
-    // Prepare any new gallery images to lazy-load automatically
+    // Prepare new gallery to lazy-load automatically
     sourceEl
       .querySelectorAll(".rimage_custom.lazyload--manual")
       .forEach((customImg) => {
         customImg.classList.remove("lazyload--manual");
         customImg.classList.add("lazyload");
       });
-
-    // Replace existing gallery and breadcrumb fragments with the new content
+    // Replace current section's content with new product gallery + breadcrumbs
     replaceContentViaSelector(sourceEl, productContainer, ".left_Section");
     replaceContentViaSelector(
       sourceEl,
       productContainer,
       ".product-breadcrumbs-wrapper"
     );
+
   } catch (error) { }
 }
 
@@ -674,3 +674,46 @@ fetch(window.location.pathname + ".js").then((response) => response.json()).then
 }).catch();
 
 window.addEventListener('click', clickHandler, true);
+
+window.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("dtc-collection-swatch")) {
+    const { jsProductHandle } = evt.target.dataset;
+    const clickedElement = evt.target;
+
+    fetch("/products/" + jsProductHandle + "?view=swatches-info")
+      .then((response) => response.text())
+      .then((data) => {
+        let div = document.createElement("div");
+        let productWrapper = evt.target.closest(
+          ".alternative-product-swatches"
+        );
+        let productContainer = productWrapper.querySelector(
+          ".product-block__container"
+        );
+
+        productContainer.innerHTML = "";
+        div.innerHTML = data;
+
+        let newProduct = div.querySelector(".product-block__inner");
+        productContainer.append(newProduct);
+
+        let swatches = [...clickedElement.parentElement.children];
+        swatches.forEach((swatch) => {
+          swatch.classList.remove("selected-swatch");
+        });
+        clickedElement.classList.add("selected-swatch");
+      })
+      .then(() => {
+        new Swiper(".slider-images", {
+          allowTouchMove: true,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: ".swiper-pagination",
+          },
+        });
+      });
+  }
+});

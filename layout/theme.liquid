@@ -10,8 +10,11 @@
     <link rel="preconnect dns-prefetch" href="https://conf.config-security.com/" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://cdn.intelligems.io/" crossorigin>
 
-    <link rel="preload" href="{{ 'algolia_config.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ 'algolia_init.js' | asset_url }}" as="script">
+    {% if template.name contains 'search' %}
+      <link rel="preload" href="{{ 'algolia_config.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'algolia_init.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
+    {% endif %}
 
     <link rel="preload" href="{{ '_proteus-utils.js' | asset_url }}" as="script">
     <link rel="preload" href="{{ '_proteus-treatments.js' | asset_url }}" as="script">
@@ -19,11 +22,8 @@
 
     <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'proteus-treatments.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
 
     <link rel="preload" href="{{ 'dtc-free-gift.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'cart.js' | asset_url }}" as="script">
-
 
 
     {% render 'replo-head' %}
@@ -257,6 +257,7 @@
         animationEnabledMobile: {{ settings.animation_enabled_mobile | json }}
       };
 
+      // Detects when the first section overlaps the header to toggle header-section-overlap
       theme.checkViewportFillers = function() {
         var toggleState = false;
         var elPageContent = document.getElementById('page-content');
@@ -274,6 +275,7 @@
         }
       };
 
+      // Swaps to an alternate logo when .needs-alt-logo elements intersect the header midpoint
       theme.assessAltLogo = function() {
         var elsOverlappers = document.querySelectorAll('.needs-alt-logo');
         var useAltLogo = false;
@@ -297,9 +299,12 @@
         }
       };
     </script>
-    {% render 'builder-head' %}
 
     <script type="text/javascript">
+      // Build window.related so JavaScript can consume upsell/related product
+      // metadata including variant availability. Expected keys include:
+      // prod_id, prod_price, prod_title, prod_url, prod_thumb, and size
+      // variant handles (xxsm, xsm, sm, md, lg, xlg, x2lg, x3lg).
       window.related = {
       pdp_products:{
       {% for upsell_product in product.metafields.custom.related_products.value %}
@@ -473,54 +478,56 @@
       <link rel="stylesheet" href="https://use.typekit.net/pmy6wae.css">
     {%- endif -%}
 
-    <!-- Algolia head -->
-    {{ 'algolia_config.js' | asset_url | script_tag }}
+    {% if template.name contains 'search' %}
+      <!-- Algolia head -->
+      {{ 'algolia_config.js' | asset_url | script_tag }}
 
-    <script type="text/template" id="template_algolia_money_format">
-      {% include 'algolia_money_format' %}
-    </script>
-    <script type="text/template" id="template_algolia_current_collection_id">
-      {% include 'algolia_current_collection_id' %}
-    </script>
-    <script type="text/template" id="template_algolia_autocomplete.css">
-      {% include 'algolia_autocomplete.css' %}
-    </script>
-    <script type="text/template" id="template_algolia_instant_search.css">
-      {% include 'algolia_instant_search.css' %}
-    </script>
-    {{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url | stylesheet_tag }}
-    {% include 'algolia_markets_init' %}
-    <script src="{{ 'algolia_externals.js' | asset_url }}" defer></script>
-    {{ 'algolia_init.js' | asset_url | script_tag }}
-    <script src="{{ 'algolia_translations.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_helpers.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_suggestions_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_product_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_collections_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_articles_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete_pages_plugin.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_autocomplete.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_facets.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_sort_orders.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_instant_search.js' | asset_url }}" defer></script>
-    <script src="{{ 'algolia_analytics.js' | asset_url }}" defer></script>
-    {% include 'algolia_autocomplete' %}
-    {% include 'algolia_autocomplete_main_products_only' %}
-    {% include 'algolia_autocomplete_page' %}
-    {% include 'algolia_autocomplete_collection' %}
-    {% include 'algolia_autocomplete_article' %}
-    {% include 'algolia_autocomplete_product' %}
-    {% include 'algolia_autocomplete_suggestion' %}
-    {% include 'algolia_autocomplete_header' %}
-    {% include 'algolia_autocomplete_footer' %}
-    {% include 'algolia_autocomplete_no_results' %}
-    {% include 'algolia_instant_search' %}
-    {% include 'algolia_instant_search_stats' %}
-    {% include 'algolia_instant_search_facet_show_more' %}
-    {% include 'algolia_instant_search_facet_item' %}
-    {% include 'algolia_instant_search_product' %}
-    {% include 'algolia_instant_search_no_result' %}
-    <!-- /Algolia head -->
+      <script type="text/template" id="template_algolia_money_format">
+        {% include 'algolia_money_format' %}
+      </script>
+      <script type="text/template" id="template_algolia_current_collection_id">
+        {% include 'algolia_current_collection_id' %}
+      </script>
+      <script type="text/template" id="template_algolia_autocomplete.css">
+        {% include 'algolia_autocomplete.css' %}
+      </script>
+      <script type="text/template" id="template_algolia_instant_search.css">
+        {% include 'algolia_instant_search.css' %}
+      </script>
+      {{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url | stylesheet_tag }}
+      {% include 'algolia_markets_init' %}
+      <script src="{{ 'algolia_externals.js' | asset_url }}" defer></script>
+      {{ 'algolia_init.js' | asset_url | script_tag }}
+      <script src="{{ 'algolia_translations.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_helpers.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete_suggestions_plugin.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete_product_plugin.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete_collections_plugin.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete_articles_plugin.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete_pages_plugin.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_autocomplete.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_facets.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_sort_orders.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_instant_search.js' | asset_url }}" defer></script>
+      <script src="{{ 'algolia_analytics.js' | asset_url }}" defer></script>
+      {% include 'algolia_autocomplete' %}
+      {% include 'algolia_autocomplete_main_products_only' %}
+      {% include 'algolia_autocomplete_page' %}
+      {% include 'algolia_autocomplete_collection' %}
+      {% include 'algolia_autocomplete_article' %}
+      {% include 'algolia_autocomplete_product' %}
+      {% include 'algolia_autocomplete_suggestion' %}
+      {% include 'algolia_autocomplete_header' %}
+      {% include 'algolia_autocomplete_footer' %}
+      {% include 'algolia_autocomplete_no_results' %}
+      {% include 'algolia_instant_search' %}
+      {% include 'algolia_instant_search_stats' %}
+      {% include 'algolia_instant_search_facet_show_more' %}
+      {% include 'algolia_instant_search_facet_item' %}
+      {% include 'algolia_instant_search_product' %}
+      {% include 'algolia_instant_search_no_result' %}
+      <!-- /Algolia head -->
+    {% endif %}
 
     {{ 'dtc-free-gift.css' | asset_url | stylesheet_tag }}
 
@@ -793,11 +800,26 @@
     theme.calc100vh();
     </script>
 
-    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'critical.js' | asset_url }}" defer></script>
+
+    {% if template contains 'product' %}
+      <script src="{{ 'product-features.js' | asset_url }}" defer></script>
+      <script src="{{ 'dtc-upsell-feature.js' | asset_url }}" async></script>
+    {% endif %}
+
+    {% if template contains 'collection' %}
+      <script src="{{ 'collection-features.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    {% if template contains 'cart' or template contains 'checkout' %}
+      <script src="{{ 'cart-checkout.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    <script src="{{ 'app-integrations.js' | asset_url }}" defer></script>
+    <script src="{{ 'non-critical.js' | asset_url }}" defer></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" async></script>
 
     {% render 'body-end-tag' %}
 
@@ -906,19 +928,12 @@
       script.src = 'https://xp2023-pix.s3.amazonaws.com/px_jPebb.js';
             document.getElementsByTagName('head')[0].appendChild(script);
     </script>
+
     {% if template contains 'product' %}
       <script src="{{ 'dtc-upsell-feature.js' | asset_url }}"></script>
+      <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% endif %}
 
-    <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% render 'smart-cart-template' %}
   </body>
 </html>
-
-{% if content_for_header contains 'kimonix_void_script' %}
-  <script
-    async
-    id="kimonix_elements_script"
-    src="https://api.kimonix.com/kimonix_elements.js?shop=jambys-chillwear.myshopify.com"
-  ></script>
-{% endif %}
