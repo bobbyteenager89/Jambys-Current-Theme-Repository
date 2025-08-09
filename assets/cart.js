@@ -94,6 +94,7 @@ function ajaxCartrequest(method, query, url) {
 
 // Fetches the current cart, enriches items with product data, and sums
 // line-item discounts to populate `cart.line_items_total_discount`.
+
 function getCart() {
   let products = [];
   let line_items_discounts_total = 0;
@@ -116,14 +117,14 @@ function getCart() {
         const selectedVariant = products[index].variants.filter(
           (variant) => variant.id == item.id
         );
-        const variant = selectedVariant[0];
 
-        if (variant?.compare_at_price > variant?.price) {
-          const compareAtTotal = variant.compare_at_price * item.quantity;
-          const priceTotal = variant.price * item.quantity;
-          const lineDiscount = compareAtTotal - priceTotal;
+
+        if (selectedVariant[0]?.compare_at_price > selectedVariant[0]?.price) {
+          const compareAtTotal = selectedVariant[0].compare_at_price * item.quantity;
+          const priceTotal = selectedVariant[0].price * item.quantity;
+          const discount = parseInt(compareAtTotal - priceTotal);
           line_items_discounts_total =
-            parseInt(line_items_discounts_total) + parseInt(lineDiscount);
+            parseInt(line_items_discounts_total) + discount;
         }
 
         item.compare_at_price =
