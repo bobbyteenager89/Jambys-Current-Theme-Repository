@@ -12,16 +12,34 @@ File structure:
 [Assign settings variables in liquid]
 [Assign conditional variables in liquid]
 [Assign variables in scss]
-*//* Typography sizes */
-/* Font imports */Liquid error: font_face can only be used with a font drop
+*/
+/* Typography sizes */
+/* Font imports */
+{%- liquid
+  assign base_font = settings.type_base_font
+  assign heading_font = settings.type_heading_font
+  assign nav_font = settings.type_nav_font
+  assign logo_font = settings.type_logo_font
 
-
-
-
-
-Liquid error: font_face can only be used with a font drop
-Liquid error: font_face can only be used with a font drop
-Liquid error: font_face can only be used with a font drop
+  assign base_font_bold = base_font | font_modify: 'weight', 'bolder'
+  assign base_font_italic = base_font | font_modify: 'style', 'italic'
+  assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic'
+-%}
+{%- unless base_font.system? -%}
+  {{ base_font | font_face: font_display: 'swap' }}
+  {%- if base_font_bold -%}{{ base_font_bold | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- if base_font_italic -%}{{ base_font_italic | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- if base_font_bold_italic -%}{{ base_font_bold_italic | font_face: font_display: 'swap' }}{%- endif -%}
+{%- endunless -%}
+{%- unless nav_font.system? -%}
+  {{ nav_font | font_face: font_display: 'swap' }}
+{%- endunless -%}
+{%- unless heading_font.system? -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+{%- endunless -%}
+{%- unless logo_font.system? -%}
+  {{ logo_font | font_face: font_display: 'swap' }}
+{%- endunless -%}
 /* Store availability variables */
 /* Tabs variables */
 /* Price slider variables */

@@ -1,15 +1,15 @@
 {%- style -%}
   {% assign header_font = section.settings.header_font %}
 
-  {{ header_font | font_face }}
+  {{ header_font | font_face: font_display: 'swap' }}
 
   {% assign header_font_bold = header_font | font_modify: 'weight', 'bolder' %}
   {% assign header_font_italic = header_font | font_modify: 'style', 'italic' %}
   {% assign header_font_bold_and_italic = header_font_bold | font_modify: 'style', 'italic' %}
 
-  {{ header_font_bold | font_face }}
-  {{ header_font_italic | font_face }}
-  {{ header_font_bold_and_italic | font_face }}
+  {{ header_font_bold | font_face: font_display: 'swap' }}
+  {{ header_font_italic | font_face: font_display: 'swap' }}
+  {{ header_font_bold_and_italic | font_face: font_display: 'swap' }}
 
   .malomo-banner {
     {%- if section.settings.background_color != blank -%}

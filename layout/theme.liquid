@@ -119,17 +119,6 @@
 
     {% render 'head-tag' %}
 
-    {% comment %}
-      {%- assign base_font = settings.type_base_font -%}
-      {%- assign base_font_medium = base_font | font_modify: 'weight', '500' -%}
-      {%- assign base_font_semibold = base_font | font_modify: 'weight', '600' -%}
-      {%- if base_font_medium -%}
-      <link rel="preload" as="font" href="{{ base_font_medium | font_url }}" type="font/woff2" crossorigin>
-      {%- endif -%}
-      {%- if base_font_semibold -%}
-      <link rel="preload" as="font" href="{{ base_font_semibold | font_url }}" type="font/woff2" crossorigin>
-      {%- endif -%}
-    {% endcomment %}
 
     <meta name="theme-color" content="{{ settings.col_btn_bg }}">
 
