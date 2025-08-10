@@ -15235,7 +15235,8 @@ div.dtc-collection-name > h1 {
   align-items: end;
 }
 
-.dtc-collection-results .proteus-quicklinks.quicklinks-desktop {
+/* Proteus experiment quicklinks */
+.dtc-collection-results .experiment-quicklinks.quicklinks-desktop {
   width: 80%;
   display: flex;
   gap: 0;
@@ -15245,7 +15246,7 @@ div.dtc-collection-name > h1 {
   justify-content: center;
 }
 
-.dtc-collection-results .proteus-quicklinks-item {
+.dtc-collection-results .experiment-quicklinks-item {
   white-space: unset;
   display: flex;
   width: auto;
@@ -15255,7 +15256,7 @@ div.dtc-collection-name > h1 {
   text-wrap: wrap;
 }
 
-.dtc-collection-results .proteus-quicklinks-item > p {
+.dtc-collection-results .experiment-quicklinks-item > p {
   text-align: center;
   padding: 0!important;
   font-size: 18px;
@@ -15304,13 +15305,13 @@ div.dtc-collection-name > h1 {
 }
 
 @media (min-width: 1404px) {
-  .dtc-collection-results .proteus-quicklinks.quicklinks-desktop {
+  .dtc-collection-results .experiment-quicklinks.quicklinks-desktop {
     gap: 45px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1403px) {
-  .dtc-collection-results .proteus-quicklinks.quicklinks-desktop {
+  .dtc-collection-results .experiment-quicklinks.quicklinks-desktop {
     justify-content: space-between;
   }
 }
@@ -15320,11 +15321,11 @@ div.dtc-collection-name > h1 {
     width: 100% !important;
   }
 
-  .dtc-collection-results .proteus-quicklinks.quicklinks-desktop {
+  .dtc-collection-results .experiment-quicklinks.quicklinks-desktop {
     gap: 0;
   }
 
-  .dtc-collection-results .proteus-quicklinks-item {
+  .dtc-collection-results .experiment-quicklinks-item {
     max-width: 20%;
     flex-wrap: wrap;
     text-wrap: wrap;
