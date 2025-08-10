@@ -845,5 +845,28 @@
         "label": "Destination Name."
       }
     ]
+  },
+  {
+    "name": "Tracking",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_heatmap_tracking",
+        "label": "Enable Heatmap.com tracking",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_intelligems_tracking",
+        "label": "Enable Intelligems tracking",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ef_tracking",
+        "label": "Enable EF affiliate tracking",
+        "default": false
+      }
+    ]
   }
 ]

@@ -1,14 +1,24 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-    <script>
-      /* >> Heatmap.com :: Snippet << */(function (h,e,a,t,m,ap) { (h._heatmap_paq = []).push([ 'setTrackerUrl', (h.heatUrl = e) + a]); h.hErrorLogs=h.hErrorLogs || []; ap=t.createElement('script');  ap.src=h.heatUrl+'preprocessor.min.js?sid='+m;  ap.defer=true; t.head.appendChild(ap); ['error', 'unhandledrejection'].forEach(function (ty) {     h.addEventListener(ty, function (et) { h.hErrorLogs.push({ type: ty, event: et }); }); });})(window,'https://dashboard.heatmap.com/','heatmap.php',document,600);
-    </script>
+    {% comment %}
+      Heatmap.com tracking integration. Toggle via "Enable Heatmap.com tracking" in
+      theme settings.
+    {% endcomment %}
+    {% if settings.enable_heatmap_tracking %}
+      {% render 'tracking-heatmap' %}
+    {% endif %}
 
-    
     <link rel="preconnect dns-prefetch" href="https://api.config-security.com/" crossorigin>
     <link rel="preconnect dns-prefetch" href="https://conf.config-security.com/" crossorigin>
-    <link rel="preconnect dns-prefetch" href="https://cdn.intelligems.io/" crossorigin>
+
+    {% comment %}
+      Intelligems experimentation script. Toggle via "Enable Intelligems tracking" in
+      theme settings.
+    {% endcomment %}
+    {% if settings.enable_intelligems_tracking %}
+      {% render 'tracking-intelligems' %}
+    {% endif %}
 
     {% if template.name contains 'search' %}
       <link rel="preload" href="{{ 'algolia_config.js' | asset_url }}" as="script">
@@ -61,13 +71,7 @@
           suffix: "{{ template.suffix }}"
       };
     </script>
-    <script
-      type="module"
-      blocking="render"
-      fetchpriority="high"
-      src="https://cdn.intelligems.io/esm/ff782cb0b775/bundle.js"
-      async
-    ></script>
+    
 
     {% if template contains 'collection' %}
       <link rel="preload" href="{{ 'top-filter-collection.css' | asset_url }}" as="style">
@@ -154,23 +158,13 @@
       };
     </script>
 
-    <script type="text/javascript" id="">
-      waitUntil(() => {
-      return typeof EF !== 'undefined';
-              }).then(() => {
-                EF.click({
-                  offer_id: EF.urlParameter('oid'),
-                  affiliate_id: EF.urlParameter('affid'),
-                  sub1: EF.urlParameter('sub1'),
-                  sub2: EF.urlParameter('sub2'),
-                  sub3: EF.urlParameter('sub3'),
-                  sub4: EF.urlParameter('sub4'),
-                  sub5: EF.urlParameter('sub5'),
-                  uid: EF.urlParameter('uid'),
-                  transaction_id: EF.urlParameter('utm_term'),
-                });
-              }).catch();
-    </script>
+    {% comment %}
+      EF affiliate click tracking. Disable by unchecking "Enable EF affiliate tracking" in
+      theme settings.
+    {% endcomment %}
+    {% if settings.enable_ef_tracking %}
+      {% render 'tracking-ef' %}
+    {% endif %}
 
     {%- if settings.typekit_embed_file != blank -%}
       <link rel="stylesheet" href="{{ settings.typekit_embed_file }}">
