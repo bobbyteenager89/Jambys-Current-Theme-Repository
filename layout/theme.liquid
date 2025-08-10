@@ -94,10 +94,9 @@
       <link rel="preload" href="{{ 'top-filter-collection.css' | asset_url }}" as="style">
       <link rel="preload" href="{{ 'styles/dtc/dtc-collection-slider.css' | asset_url }}" as="style">
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style">
-    {% endif %}
-    {% if template contains 'collection' %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
       {{ 'styles/dtc/dtc-collection-slider.css' | asset_url | stylesheet_tag }}
+      {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
     {% endif %}
 
     <meta name="google-site-verification" content="sB4YVjrMTVA3cn7Th91xY8uSx5pn07OcLt7u8LueKd4">
@@ -202,22 +201,7 @@
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {% if settings.enable_proteus_experiments %}
-      {% comment %} Proteus experiment styles and scripts {% endcomment %}
-      {{ 'styles/proteus/proteus-treatments.css' | asset_url | stylesheet_tag }}
-      {{ 'scripts/experiments/proteus-utils.js' | asset_url | script_tag }}
-      {{ 'scripts/experiments/proteus-treatments.js' | asset_url | script_tag }}
-      {{ 'scripts/experiments/proteus-housefit.js' | asset_url | script_tag }}
-    {% endif %}
-
-    {% if template contains 'collection' %}
-      {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
-    {% endif %}
-    {% if settings.enable_dtc_experiments %}
-      {% comment %} DTC experiment assets {% endcomment %}
-      {{ 'styles/dtc/dtc-hero-slider.css' | asset_url | stylesheet_tag }}
-      {{ 'experiments/dtc/dtc-hero-slider.js' | asset_url | script_tag }}
-    {% endif %}
+    {% render 'experiment-assets' %}
     {%- capture content_for_header -%}
     {%- if tinyscript -%}
       {{ content_for_header }}
