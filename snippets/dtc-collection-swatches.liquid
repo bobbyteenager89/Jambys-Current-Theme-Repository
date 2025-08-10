@@ -11,119 +11,61 @@
 {%- assign product_type_collection = collections[product_type] -%}
 {% assign color_collection = product_type_collection.products | where: 'type', product.type %}
 
-{% assign swatches = '' %}
-
-{%- if product.type == 'Cozy Cloak' -%}
-  {% assign swatches = 'Black, Lavender / Gray, Gray / Black, Hunter Green, Cabernet, Clouds, Leopard' | split: ', ' %}
-{%- elsif product.type == 'House Hoodie' -%}
-  {% assign swatches = 'Gray / Lavender, Navy / Mint, Black, Black / Flaming, Lavender / Mint, Flamingo/Taffy, Gray / Black' | split: ', ' %}
-{%- elsif product.type == 'House Socks' -%}
-  {% assign swatches = 'Navy/ Mint, Black, White' | split: ', ' %}
-{%- elsif product.type == 'Jambys' -%}
-  {% assign swatches = 'Black, Navy / Mint, Lavender / Mint, Gray / Black, Gray / Lavender, Navy' | split: ', ' %}
-{%- elsif product.type == 'JamTee' -%}
-  {% assign swatches = 'Lavender / Mint, Black, Navy / Mint, Flamingo/Taffy, Gray / Lavender, Navy' | split: ', ' %}
-{%- elsif product.type == 'Long Jambys' -%}
-  {% assign swatches = 'Black, Navy / Mint, Gray / Lavender, Gray / Black, Lavender / Mint, Navy' | split: ', ' %}
-{%- elsif product.type == 'Long-Sleeve JamTee'%}
-  {% assign swatches = 'Navy / Mint, Gray / Lavender, Lavender / Mint, Black, Navy, Flamingo/Taffy, Black/Flamingo ' | split: ', ' %}
-{%- elsif product.type == 'Pajambys Bottom' -%}
-  {% assign swatches = 'Black, Navy/Black, Gray / Black, Lavender, Flamingo' | split: ', ' %}
-{%- elsif product.type == 'Pajambys Top' -%}
-  {% assign swatches = 'Black, Lavender, Gray / Black, Flamingo, Navy/Black' | split: ', ' %}
-{%- elsif product.type == 'Soffle Robe' -%}
-  {% assign swatches = 'Black, Flamingo, Lavender, Gray / Black, Navy/Black' | split: ', ' %}
-{%- elsif product.type == 'Soffle Shorts' -%}
-  {% assign swatches = 'Black, Navy/Black, Gray / Black, Lavender, Flamingo' | split: ', ' %}
-{%- elsif product.type == 'Chilluxe Crew' -%}
-  {% assign swatches = 'Black, Salt + Pepper, Charcoal, Lavender, Navy/Black, Flamingo' | split: ', ' %}
-{%- elsif product.type == 'Chilluxe Hoodie' -%}
-  {% assign swatches = 'Salt + Pepper, Black, Lavender, Charcoal, Navy/Black, Flamingo, Navy ' | split: ', ' %}
-{%- elsif product.type == 'Basketball Shorts' -%}
-  {% assign swatches = 'Black, Cabernet/Black, Hunter Green / Cream, Ice Cube, Nouveau, Black Leopard, Centre Court' | split: ', ' %}
-{%- elsif product.type == 'Air Short Short' -%}
-  {% assign swatches = 'Black, Black/Flamingo, Flamingo/Taffy, HeatherGray, Mint/Jade, Centre Court, Hotter Pink/Mint' | split: ', ' %}
-{%- elsif product.type == 'Chilluxe Jogger' -%}
-  {% assign swatches = 'Salt + Pepper, Black, Charcoal, Navy/Black, Lavender, Flamingo' | split: ', ' %}
-{%- elsif product.type == 'Air JamTank' -%}
-  {% assign swatches = 'Black, Centre Court, Mint/Jade, Hotter Pink/Mint, Gray / Black' | split: ', ' %}
-{%- elsif product.type == 'Air JamTee' -%}
-  {% assign swatches = 'Centre Court, Mint / Jade, Hotter Pink/Mint, Black, Gray / Black ' | split: ', ' %}
-{%- elsif product.type == 'Floof Jogger' -%}
-  {% assign swatches = 'Black, Neon Blur, Cabernet/Black, Clouds, Lavender Leopard' | split: ', ' %}
-{%- elsif product.type == 'Floof Short' -%}
-  {% assign swatches = 'Black, Neon Blur, Cabernet/Black, Clouds, Lavender Leopard' | split: ', ' %}
-{%- elsif product.type == 'Chilluxe Quilted Pant' -%}
-  {% assign swatches = 'Black, Salt + Pepper, Charcoal' | split: ', ' %}
-{%- elsif product.type == 'Flight Suit Onesie' -%}
-  {% assign swatches = 'Black, Navy, Gray / Lavender' | split: ', ' %}
-{%- elsif product.type == 'Floof Crew' -%}
-  {% assign swatches = 'Black, Neon Blur, Clouds, Cabernet, Lavender Leopard' | split: ', ' %} 
-{%- elsif product.type == 'Hugby Rugby' -%}
-  {% assign swatches = 'Black, Navy, Gray / Lavender, Navy/White/Lavender' | split: ', ' %} 
-{%- elsif product.type == 'Tie JamTee' -%}
-  {% assign swatches = 'Black, Navy' | split: ', ' %} 
-{%- endif -%}
+{% comment %}Determine the color for the current product{% endcomment %}
+{% assign root_color = product.metafields.product.color %}
+{% if root_color == blank %}
+  {% for option in product.options_with_values %}
+    {% if option.name == 'Color' %}
+      {% assign root_color = option.values[0] %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
 <div class="dtc-collection-swatches dtc-collection-swatches__container dtc-{{product_type}}">
-  {% comment %}Create an inline swatches with available product variants and their images, limited by 6 elements{% endcomment %}
+  {% comment %}Create an inline swatch list from sibling products and their images{% endcomment %}
   {% assign limit = 6 %}
   {% assign limit_mobile = 3 %}
-  {% assign count = 0 %}
   {% assign more = 0 %}
 
   {% if color_collection and product.handle != 'jambys-gift-card' %}
     <div class="selector-wrapper">
       <ul class="product-color-swatches cc-swatches">
         <li
-        class="
-          dtc-collection-swatch root-product selected-swatch
-          {% if swatches.size != 0 and collection_product.metafields.product.color == swatches[4] or collection_product.metafields.product.color == swatches[5] %}
-              sm-hidden
-          {% endif %}
-        "
-        data-color-swatch="{{ product.metafields.product.color }}"
-        data-product-id-swatch="{{ product.id }}"
-        data-js-product-handle="{{ product.handle }}"
-        data-js-product-id="{{ product.id }}"
-        data-js-product-type="{{ product.type }}"
-        data-js-product-title="{{ product.title }}"
-        data-js-product-feat-img="{{ product.featured_image | img_url: '600x600' }}"
-        data-js-product-url="{{ product.url }}"
-      ></li>
+          class="dtc-collection-swatch root-product selected-swatch"
+          data-color-swatch="{{ root_color }}"
+          data-product-id-swatch="{{ product.id }}"
+          data-js-product-handle="{{ product.handle }}"
+          data-js-product-id="{{ product.id }}"
+          data-js-product-type="{{ product.type }}"
+          data-js-product-title="{{ product.title }}"
+          data-js-product-feat-img="{{ product.featured_image | img_url: '600x600' }}"
+          data-js-product-url="{{ product.url }}"
+        ></li>
         {% for collection_product in color_collection %}
-          {% unless swatches contains product.metafields.product.color %}
-            {% assign extraColor = true %}
-          {% endunless %}
-          {% assign more = more | plus: 1 %}
-          {%- if swatches.size != 0 and swatches contains collection_product.metafields.product.color -%}
-            {% assign count = count | plus: 1 %}
-            {% for swatch in swatches %}
-              {% if swatch == collection_product.metafields.product.color and swatch != product.metafields.product.color %}
-                {% if count <= limit %}
-                  <li
-                    style="{% if forloop.last and extraColor %} display: none; {% endif %}"
-                    class="
-                      dtc-collection-swatch
-                      {% if swatches.size != 0 and collection_product.metafields.product.color == swatches[4] or collection_product.metafields.product.color == swatches[5] %}
-                          sm-hidden
-                      {% endif %}
-                    {% if extraColor and forloop.index > 3 %} sm-hidden {% endif %}
-                    "
-                    data-color-swatch="{{ collection_product.metafields.product.color }}"
-                    data-product-id-swatch="{{ collection_product.id }}"
-                    data-js-product-handle="{{ collection_product.handle }}"
-                    data-js-product-id="{{ collection_product.id }}"
-                    data-js-product-type="{{ collection_product.type }}"
-                    data-js-product-title="{{ collection_product.title }}"
-                    data-js-product-feat-img="{{ collection_product.featured_image | img_url: '600x600' }}"
-                    data-js-product-url="{{ collection_product.url }}"
-                    data-order="{{ forloop.index }}"
-                  ></li>
+          {% unless collection_product.id == product.id %}
+            {% assign color = collection_product.metafields.product.color %}
+            {% if color == blank %}
+              {% for option in collection_product.options_with_values %}
+                {% if option.name == 'Color' %}
+                  {% assign color = option.values[0] %}
                 {% endif %}
-              {% endif %}
-            {% endfor %}
-          {%- endif -%}
+              {% endfor %}
+            {% endif %}
+            {% assign more = more | plus: 1 %}
+            {% if more <= limit %}
+              <li
+                class="dtc-collection-swatch{% if more > limit_mobile %} sm-hidden{% endif %}"
+                data-color-swatch="{{ color }}"
+                data-product-id-swatch="{{ collection_product.id }}"
+                data-js-product-handle="{{ collection_product.handle }}"
+                data-js-product-id="{{ collection_product.id }}"
+                data-js-product-type="{{ collection_product.type }}"
+                data-js-product-title="{{ collection_product.title }}"
+                data-js-product-feat-img="{{ collection_product.featured_image | img_url: '600x600' }}"
+                data-js-product-url="{{ collection_product.url }}"
+              ></li>
+            {% endif %}
+          {% endunless %}
         {% endfor %}
       </ul>
     </div>
@@ -144,3 +86,4 @@
     </div>
   {% endif %}
 </div>
+
