@@ -838,6 +838,7 @@
         {% comment %} DTC upsell experiment script {% endcomment %}
         <script src="{{ 'experiments/dtc/dtc-upsell-feature.js' | asset_url }}" async></script>
       {% endif %}
+      <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% endif %}
 
     {% if template contains 'cart' or template contains 'checkout' %}
@@ -954,15 +955,6 @@
       script.src = 'https://xp2023-pix.s3.amazonaws.com/px_jPebb.js';
             document.getElementsByTagName('head')[0].appendChild(script);
     </script>
-
-    {% if template contains 'product' %}
-        codex/move-experiment-scripts-to-assets-directory
-      {% if settings.enable_dtc_experiments %}
-        <script src="{{ 'experiments/dtc/dtc-upsell-feature.js' | asset_url }}"></script>
-      {% endif %}
-
-      <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
-    {% endif %}
 
     {% render 'smart-cart-template' %}
   </body>
