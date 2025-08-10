@@ -178,7 +178,7 @@
           <div class='overlay__content'>
     {% endif %}
 
-    {% render 'dtc-product-type-compare' %}
+    {% render 'product-type-compare' %}
 
     {% if collection.metafields.collection.video != blank %}
       </div>
@@ -967,7 +967,7 @@
                   </div>
                 {% endif %}
                 {% if forloop.index == 4 %}
-                  {% render 'dtc-product-type-compare', view: 'mobile' %}
+                  {% render 'product-type-compare' %}
                 {% endif %}
               {% endfor %}
             {% elsif 'collection' == 'collection' %}
@@ -1010,7 +1010,7 @@
                 %}
 
                 {% if forloop.index == 4 %}
-                  {% render 'dtc-product-type-compare-mobile' %}
+                  {% render 'product-type-compare' %}
                 {% endif %}
               {% endfor %}
             {% endif %}

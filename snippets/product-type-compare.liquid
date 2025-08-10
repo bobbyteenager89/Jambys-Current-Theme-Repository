@@ -1,0 +1,62 @@
+{% assign product_type_compare_label = collection.metafields.dtc.product_type_compare %}
+{% if product_type_compare_label != blank %}
+  <div class="wide-container product-type-compare">
+    <div class="img-content desktop-only" style="background-image: url({{ collection.metafields.dtc.product_type_compare_image | img_url: '560x' }})">
+      <div class="label">
+        <p>{{ product_type_compare_label }}</p>
+      </div>
+    </div>
+
+    <div class="slider-content swiper-container">
+      <div class="swiper-wrapper">
+        {% for object in collection.metafields.dtc.product_type_compare_products.value %}
+          {% render "product-type-compare-block",
+            product_url: object.link,
+            product_img: object.image,
+            product_heading: object.headline,
+            product_content: object.upper_content,
+            product_benefits: object.benefits.value %}
+        {% endfor %}
+      </div>
+
+      <div class="swiper-button-next desktop-only"></div>
+      <div class="swiper-button-prev desktop-only"></div>
+
+      <div class="controls mobile-only">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <script>
+      var ptcNext = document.querySelectorAll('.product-type-compare .swiper-button-next');
+      var ptcPrev = document.querySelectorAll('.product-type-compare .swiper-button-prev');
+      var productTypeCompareSwiper = new Swiper('.product-type-compare .swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 12,
+        width: 310,
+        navigation: {
+          nextEl: ptcNext,
+          prevEl: ptcPrev,
+          clickable: true
+        },
+        pagination: {
+          el: '.product-type-compare .swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 16,
+            width: null
+          },
+          1920: {
+            slidesPerView: 5,
+            spaceBetween: 50
+          }
+        }
+      });
+    </script>
+  </div>
+{% endif %}
