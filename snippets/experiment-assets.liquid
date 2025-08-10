@@ -1,12 +1,12 @@
 {% if settings.enable_experiments %}
   {% comment %} Experiment styles and scripts {% endcomment %}
   {{ 'styles/experiments/experiments-treatments.css' | asset_url | stylesheet_tag }}
-  {{ 'scripts/experiments/experiments-utils.js' | asset_url | script_tag }}
-  {{ 'scripts/experiments/experiments-treatments.js' | asset_url | script_tag }}
-  {{ 'scripts/experiments/experiments-housefit.js' | asset_url | script_tag }}
+  {{ 'scripts/experiments/experiments-utils.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
+  {{ 'scripts/experiments/experiments-treatments.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
+  {{ 'scripts/experiments/experiments-housefit.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
 {% endif %}
 {% if settings.enable_dtc_experiments %}
   {% comment %} DTC experiment assets {% endcomment %}
   {{ 'styles/dtc/dtc-hero-slider.css' | asset_url | stylesheet_tag }}
-  {{ 'experiments/dtc/dtc-hero-slider.js' | asset_url | script_tag }}
+  {{ 'experiments/dtc/dtc-hero-slider.js' | asset_url | script_tag | replace: '<script', '<script defer' }}
 {% endif %}

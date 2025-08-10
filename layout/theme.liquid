@@ -37,10 +37,10 @@
 
     {% if settings.enable_experiments %}
       <!-- Preload experiment assets -->
-      <link rel="preload" href="{{ 'scripts/experiments/experiments-utils.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'scripts/experiments/experiments-treatments.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'scripts/experiments/experiments-housefit.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'styles/experiments/experiments-treatments.css' | asset_url }}" as="style">
+      <!-- <link rel="preload" href="{{ 'scripts/experiments/experiments-utils.js' | asset_url }}" as="script"> -->
+      <!-- <link rel="preload" href="{{ 'scripts/experiments/experiments-treatments.js' | asset_url }}" as="script"> -->
+      <!-- <link rel="preload" href="{{ 'scripts/experiments/experiments-housefit.js' | asset_url }}" as="script"> -->
+      <!-- <link rel="preload" href="{{ 'styles/experiments/experiments-treatments.css' | asset_url }}" as="style"> -->
     {% endif %}
 
     <!-- Preload core theme styles -->
@@ -207,7 +207,6 @@
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {% render 'experiment-assets' %}
     {%- capture content_for_header -%}
     {%- if tinyscript -%}
       {{ content_for_header }}
@@ -841,6 +840,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" async></script>
 
     {% render 'body-end-tag' %}
+
+    {% render 'experiment-assets' %}
 
     {% comment %} Accessibe {% endcomment %}
     <script>
