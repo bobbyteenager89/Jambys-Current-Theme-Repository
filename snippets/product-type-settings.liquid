@@ -1,0 +1,16 @@
+{% comment %}
+  Helper snippet to normalize product type variables for Horizon.
+  Accepts:
+  - product: product object
+  Outputs:
+  - product_type_handle: handleized product type used for collection lookup
+  - has_product_switcher: boolean indicating if product has variant switcher
+{% endcomment %}
+
+{% assign product_type_handle = product.type | handleize %}
+{% if product.type == 'House Hoodie' %}
+  {% assign product_type_handle = 'House Hoodies' | handleize %}
+{% elsif product.type == 'JamTee' %}
+  {% assign product_type_handle = 'JamTees' | handleize %}
+{% endif %}
+{% assign has_product_switcher = product.type == 'Double Cozy Cloak' or product.type == 'Cozy Cloak' %}
