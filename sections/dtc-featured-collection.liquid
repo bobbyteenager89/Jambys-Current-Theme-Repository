@@ -151,7 +151,7 @@
         {%- if use_related_products_metafield -%}
           <div class="dtc-product-wrapper">
             {% for related_product in product.metafields.custom.related_products.value limit: 1 %}
-              {% render 'dtc-block' with related_product: related_product %}
+              {% render 'upsell-product-block' with product: related_product %}
             {% endfor %}
           </div>
         {% elsif section.settings.collection != blank %}
