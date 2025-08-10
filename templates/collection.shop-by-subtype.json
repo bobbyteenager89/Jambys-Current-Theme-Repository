@@ -83,7 +83,7 @@
       "settings": {}
     },
     "main": {
-      "type": "depict-patched-main-collection",
+      "type": "main-collection",
       "blocks": {
         "d8892184-9856-4c1e-a324-fb8f4ef1b357": {
           "type": "filter_icon",
