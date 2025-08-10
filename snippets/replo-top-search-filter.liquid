@@ -663,7 +663,7 @@ results.filters : {{ results.filters | json }}
               </div>
             {% endif %}
              {% if forloop.index == 4 %}
-              {% render "dtc-product-type-compare", view: "mobile" %}
+              {% render "product-type-compare", view: "mobile" %}
             {% endif %}
           {% endfor %}
         {% elsif mode == "collection" %}
@@ -711,7 +711,7 @@ results.filters : {{ results.filters | json }}
             %}
 
             {% if forloop.index == 4 %}
-              {% render "dtc-product-type-compare-mobile" %}
+              {% render "product-type-compare-mobile" %}
             {% endif %}
           {% endfor %}
         {% endif %}

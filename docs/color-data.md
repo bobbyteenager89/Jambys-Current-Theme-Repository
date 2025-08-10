@@ -3,7 +3,7 @@
 ## Color data sourcing
 
 Color information for each product is stored in the `product.color` metafield. The swatch
-snippet (`snippets/dtc-collection-swatches.liquid`) gathers all sibling products of the same
+snippet (`snippets/collection-swatches.liquid`) gathers all sibling products of the same
 type and reads their color from this metafield. If a product does not have the metafield
 defined, the snippet falls back to the first value of an option named “Color.”
 

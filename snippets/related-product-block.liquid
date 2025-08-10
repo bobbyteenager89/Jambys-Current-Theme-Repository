@@ -101,7 +101,7 @@ endfor
         {% for option in related_product.options_with_values %}
           <label>{{ option.name }}</label>
           <div class="dtc-variants-wrapper">
-            {% render 'dtc-variant-button', option: option, related_product: related_product, current_variant: current_variant %}
+            {% render 'variant-button', option: option, related_product: related_product, current_variant: current_variant %}
           </div>
         {% endfor %}
       {% endif %}
@@ -114,7 +114,7 @@ endfor
           class="dtc-button-dropdown"
           data-content="dtc-swatches">
           <span class="dtc-test-button"></span>
-          <span class="dtc-chevron-down">{% render 'dtc-chevron-down' %}</span>
+          <span class="dtc-chevron-down">{% render 'chevron-down' %}</span>
         </button>
       </div>
       <div class="dtc-variant-wrapper">
@@ -133,7 +133,7 @@ endfor
               type="button"
               data-content="dtc-variants">
               <span class="dtc-variant-current-value">{{ option.name }}</span>
-              <span class="dtc-chevron-down">{% render 'dtc-chevron-down' %}</span>
+              <span class="dtc-chevron-down">{% render 'chevron-down' %}</span>
             </button>
           {% endfor %}
         {% endif %}

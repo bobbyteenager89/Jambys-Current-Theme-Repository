@@ -12,7 +12,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="XXS">{% render 'dtc-done-icon' %}XXS</button>
+          data-value="XXS">{% render 'done-icon' %}XXS</button>
         {% when 'extra small' %}
         <button
           type="button"
@@ -20,7 +20,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="XS">{% render 'dtc-done-icon' %}XS</button>
+          data-value="XS">{% render 'done-icon' %}XS</button>
 
         {% when 'small' %}
         <button
@@ -29,7 +29,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="S">{% render 'dtc-done-icon' %}S</button>
+          data-value="S">{% render 'done-icon' %}S</button>
 
         {% when 'medium' %}
         <button
@@ -38,7 +38,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="M">{% render 'dtc-done-icon' %}M</button>
+          data-value="M">{% render 'done-icon' %}M</button>
 
         {% when 'large' %}
         <button
@@ -47,7 +47,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="L">{% render 'dtc-done-icon' %}L</button>
+          data-value="L">{% render 'done-icon' %}L</button>
 
         {% when 'extra large' %}
         <button
@@ -56,7 +56,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="XL">{% render 'dtc-done-icon' %}XL</button>
+          data-value="XL">{% render 'done-icon' %}XL</button>
 
         {% when 'extra extra large' %}
         <button
@@ -65,7 +65,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="XXL">{% render 'dtc-done-icon' %}XXL</button>
+          data-value="XXL">{% render 'done-icon' %}XXL</button>
 
       {% else %}
         <button
@@ -74,7 +74,7 @@
           data-id="{{ variant.id }}"
           data-price="{{ variant.price }}"
           data-compare-at-price="{{ variant.compare_at_price | default:variant.price }}"
-          data-value="{{ variant.title }}">{% render 'dtc-done-icon' %}{{ variant.title }}</button>
+          data-value="{{ variant.title }}">{% render 'done-icon' %}{{ variant.title }}</button>
       {% endcase %}
     {% endif %}
   {% endfor %}
