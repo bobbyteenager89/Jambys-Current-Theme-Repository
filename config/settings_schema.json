@@ -847,22 +847,19 @@
     ]
   },
   {
-    "name": "Analytics and Experiments",
-
     "name": "Tracking",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_heatmap_tracking",
-        "label": "Enable Heatmap.com tracking",
-    "name": "Experiments",
     "settings": [
       {
         "type": "checkbox",
         "id": "enable_heatmap_tracking",
         "label": "Enable heatmap tracking",
         "default": false
-      },
+      }
+    ]
+  },
+  {
+    "name": "Experiments",
+    "settings": [
       {
         "type": "checkbox",
         "id": "enable_intelligems_tracking",
@@ -883,14 +880,6 @@
       },
       {
         "type": "checkbox",
-        "id": "enable_intelligems_tracking",
-        "label": "Enable Intelligems tracking",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_ef_tracking",
-        "label": "Enable EF affiliate tracking",
         "id": "enable_dtc_experiments",
         "label": "Enable DTC experiments",
         "default": false
