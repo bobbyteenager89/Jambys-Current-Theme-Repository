@@ -1,4 +1,4 @@
-{{ 'section-main-product.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'styles/section-main-product.css' | asset_url | stylesheet_tag: preload: true }}
 {%- assign is_featured_product = false -%}
 
 {%- liquid
@@ -140,7 +140,7 @@
   }
 {%- endif -%}
 {%- endstyle -%}
-<script defer="defer" src="{{ 'product-slider.js' | asset_url }}"></script>
+<script defer="defer" src="{{ 'scripts/product-slider.js' | asset_url }}"></script>
 <!-- kp code for 4 images -->
 
 {%- assign breadcrumbs_block = section.blocks | where: 'type', 'breadcrumbs' | first -%}
@@ -1743,7 +1743,7 @@
   </div>
 </section>
 
-<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'scripts/product.js' | asset_url }}" defer="defer"></script>
   
 <script>
   let array_variants = []

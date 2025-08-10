@@ -4,7 +4,7 @@
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 >
 
-{{ 'best-seller.css' | asset_url | stylesheet_tag }}
+{{ 'styles/best-seller.css' | asset_url | stylesheet_tag }}
 
 {% assign announcement_block = section.blocks | where: 'type', 'announcement' | first %}
 {% assign show_new_annoucement = false %}

@@ -1,7 +1,7 @@
 {% comment %}
   styles from the old theme, this should be tree shaken
 {% endcomment %}
-{{ 'reviews-marquee.css' | asset_url | stylesheet_tag }}
+{{ 'styles/reviews-marquee.css' | asset_url | stylesheet_tag }}
 
 {%- unless section.settings.color_bg == '#ffffff' -%}
   {%- style -%}

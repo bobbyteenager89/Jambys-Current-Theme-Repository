@@ -13,9 +13,9 @@ function bundle(output, files) {
   fs.writeFileSync(path.join(assetsDir, output), content);
 }
 
-bundle('critical.js', ['vendor.js', 'theme.js']);
-bundle('product-features.js', ['product.js', 'colorSwatchToggler.js']);
-bundle('collection-features.js', []);
-bundle('cart-checkout.js', ['cart.js']);
-bundle('app-integrations.js', []);
-bundle('non-critical.js', []);
+bundle('scripts/critical.js', ['scripts/vendor.js', 'scripts/theme.js']);
+bundle('scripts/product-features.js', ['scripts/product.js', 'scripts/colorSwatchToggler.js']);
+bundle('scripts/collection-features.js', []);
+bundle('scripts/cart-checkout.js', ['scripts/cart.js']);
+bundle('scripts/app-integrations.js', []);
+bundle('scripts/non-critical.js', []);

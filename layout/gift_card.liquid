@@ -23,10 +23,10 @@
 
   <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
 
-  {{ 'styles.css' | asset_url | stylesheet_tag }}
+  {{ 'styles/styles.css' | asset_url | stylesheet_tag }}
 
   <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer="defer"></script>
-  <script src="{{ 'giftcard.v.1.0.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'scripts/giftcard.v.1.0.js' | asset_url }}" defer="defer"></script>
 
   {{ content_for_header }}
 

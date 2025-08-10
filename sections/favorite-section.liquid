@@ -1,4 +1,4 @@
-{{ 'favorite-section.css' | asset_url | stylesheet_tag }}
+{{ 'styles/favorite-section.css' | asset_url | stylesheet_tag }}
 
 <div class="favorites__container">
   <h1 class="favorites__title">{{ section.settings.title }}</h1>
@@ -267,7 +267,7 @@
   
 </div>
 
-<script src="{{ 'favorite-section.js' | asset_url }}" defer></script>
+<script src="{{ 'scripts/favorite-section.js' | asset_url }}" defer></script>
 
 
 {% schema %}

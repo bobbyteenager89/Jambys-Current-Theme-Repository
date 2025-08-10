@@ -37,8 +37,8 @@
   <link rel="preload" as="font" href="{{ logo_font | font_url }}" type="font/woff2" crossorigin>
 {%- endunless -%}
 
-<link rel="preload" href="{{ 'vendor.js' | asset_url }}" as="script">
-<link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
+<link rel="preload" href="{{ 'scripts/vendor.js' | asset_url }}" as="script">
+<link rel="preload" href="{{ 'scripts/theme.js' | asset_url }}" as="script">
 
 {%- if canonical_url != blank  -%}
   <link rel="canonical" href="{{ canonical_url }}" />
