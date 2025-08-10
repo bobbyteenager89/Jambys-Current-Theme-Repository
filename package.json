@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node build.js",
+    "bundle": "node build.js",
+    "build": "npm run bundle",
     "test": "echo \"No tests\" && exit 0"
   }
 }
