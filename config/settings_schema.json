@@ -845,5 +845,22 @@
         "label": "Destination Name."
       }
     ]
+  },
+  {
+    "name": "Experiments",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_proteus_experiments",
+        "label": "Enable Proteus experiments",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_dtc_experiments",
+        "label": "Enable DTC experiments",
+        "default": false
+      }
+    ]
   }
 ]
