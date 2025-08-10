@@ -1024,8 +1024,9 @@ input[type=submit].hover-grow:not([disabled=disabled]):hover,
 
 /* Intelligems Progress Bar */
 
-.shipping-progress-bar, .shipping-progress-bar-label {
-  display: none !important;
+.shipping-progress-bar,
+.shipping-progress-bar-label {
+  display: block !important;
 }
 
 @media screen and (max-width: 768px) {
