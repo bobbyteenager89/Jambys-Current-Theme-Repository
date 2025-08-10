@@ -1,16 +1,13 @@
-{% assign product_type = product.type | handleize %}
+{% comment %}
+  Section: Product Diagram
+  Purpose: Displays product-specific diagram images using collection metafields.
+  Key variables:
+  - product_type_handle: handleized product type for collection lookup
+  - has_product_switcher: true when product supports switching between variants
+{% endcomment %}
 
-{% if product.type == 'House Hoodie' %}
-  {% assign product_type = 'House Hoodies' | handleize %}
-{% endif %}
-{% if product.type == 'JamTee' %}
-  {% assign product_type = 'JamTees' | handleize %}
-{% endif %}
-{% assign has_product_switcher = false %}
-{% if product.type == 'Double Cozy Cloak' or product.type == 'Cozy Cloak' %}
-  {% assign has_product_switcher = true %}
-{% endif %}
-{% assign diagram_title = collections[product_type].metafields.diagram.collection_diagram_title %}
+{% include 'product-type-settings', product: product %}
+{% assign diagram_title = collections[product_type_handle].metafields.diagram.collection_diagram_title %}
 
 
 {%- unless section.settings.color_bg == blank -%}
@@ -53,10 +50,10 @@
   {% endif %}
   
   
-  {% if collections[product_type].metafields.diagram.collection_diagram_mobile.value.src and collections[product_type].metafields.diagram.product_type.value.src %}
+  {% if collections[product_type_handle].metafields.diagram.collection_diagram_mobile.value.src and collections[product_type_handle].metafields.diagram.product_type.value.src %}
     <picture>
-      <source srcset="{{ collections[product_type].metafields.diagram.collection_diagram_mobile.value.src | img_url: '720x', scale: 2 }}" media="(max-width: 767px)">
-      <img loading="lazy" src="{{ collections[product_type].metafields.diagram.product_type.value.src | img_url: '720x', scale: 2 }}">
+      <source srcset="{{ collections[product_type_handle].metafields.diagram.collection_diagram_mobile.value.src | img_url: '720x', scale: 2 }}" media="(max-width: 767px)">
+      <img loading="lazy" src="{{ collections[product_type_handle].metafields.diagram.product_type.value.src | img_url: '720x', scale: 2 }}">
     </picture>
   {% endif %}
 </div>
