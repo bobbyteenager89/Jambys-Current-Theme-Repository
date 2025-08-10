@@ -1,4 +1,5 @@
 // Shared utilities for Proteus experiments
+// Loaded only when the "Enable Proteus experiments" theme setting is active.
 "use strict";
 
 console.log("init Proteus utils - v1.05");

@@ -1,4 +1,5 @@
 // Initializes DTC hero slider components
+// Only loads when the "Enable DTC experiments" theme setting is enabled.
 document.addEventListener('DOMContentLoaded', function(){
   var sliders = document.querySelectorAll('.dtc-hero-slider');
   sliders.forEach(function(slider) {

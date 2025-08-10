@@ -16,13 +16,15 @@
       <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
     {% endif %}
 
-    <link rel="preload" href="{{ 'scripts/proteus/_proteus-utils.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ 'scripts/proteus/_proteus-treatments.js' | asset_url }}" as="script">
-    <link rel="preload" href="{{ 'scripts/proteus/_proteus-housefit.js' | asset_url }}" as="script">
+    {% if settings.enable_proteus_experiments %}
+      {% comment %} Preload Proteus experiment assets when enabled {% endcomment %}
+      <link rel="preload" href="{{ 'experiments/proteus/_proteus-utils.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'experiments/proteus/_proteus-treatments.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'experiments/proteus/_proteus-housefit.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'styles/proteus/proteus-treatments.css' | asset_url }}" as="style">
+    {% endif %}
 
     <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'styles/proteus/proteus-treatments.css' | asset_url }}" as="style">
-
     <link rel="preload" href="{{ 'styles/dtc/dtc-free-gift.css' | asset_url }}" as="style">
 
 
@@ -74,9 +76,6 @@
       <link rel="preload" href="{{ 'styles/dtc/dtc-collection-slider.css' | asset_url }}" as="style">
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style">
     {% endif %}
-    {{ 'scripts/proteus/_proteus-utils.js' | asset_url | script_tag }}
-    {{ 'scripts/proteus/_proteus-treatments.js' | asset_url | script_tag }}
-    {{ 'scripts/proteus/_proteus-housefit.js' | asset_url | script_tag }}
     {% if template contains 'collection' %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
       {{ 'styles/dtc/dtc-collection-slider.css' | asset_url | stylesheet_tag }}
@@ -183,12 +182,22 @@
 
     {{ 'styles.css' | asset_url | stylesheet_tag }}
     {{ 'creative-judgement.css' | asset_url | stylesheet_tag }}
-    {{ 'styles/proteus/proteus-treatments.css' | asset_url | stylesheet_tag }}
+    {% if settings.enable_proteus_experiments %}
+      {% comment %} Proteus experiment styles and scripts {% endcomment %}
+      {{ 'styles/proteus/proteus-treatments.css' | asset_url | stylesheet_tag }}
+      {{ 'experiments/proteus/_proteus-utils.js' | asset_url | script_tag }}
+      {{ 'experiments/proteus/_proteus-treatments.js' | asset_url | script_tag }}
+      {{ 'experiments/proteus/_proteus-housefit.js' | asset_url | script_tag }}
+    {% endif %}
 
     {% if template contains 'collection' %}
       {{ 'top-filter-collection.css' | asset_url | stylesheet_tag }}
     {% endif %}
-    {{ 'styles/dtc/dtc-hero-slider.css' | asset_url | stylesheet_tag }}
+    {% if settings.enable_dtc_experiments %}
+      {% comment %} DTC experiment assets {% endcomment %}
+      {{ 'styles/dtc/dtc-hero-slider.css' | asset_url | stylesheet_tag }}
+      {{ 'experiments/dtc/dtc-hero-slider.js' | asset_url | script_tag }}
+    {% endif %}
     {%- capture content_for_header -%}
     {%- if tinyscript -%}
       {{ content_for_header }}
@@ -200,7 +209,6 @@
     {% render 'header-content-app-filter', content_for_header: content_for_header %}
   {%- endcapture -%}
     {{ content_for_header }}
-    {{ 'scripts/dtc/dtc-hero-slider.js' | asset_url | script_tag }}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       window.theme = window.theme || {};{% if settings.currency_code_enabled %}
@@ -806,7 +814,10 @@
 
     {% if template contains 'product' %}
       <script src="{{ 'product-features.js' | asset_url }}" defer></script>
-      <script src="{{ 'scripts/dtc/dtc-upsell-feature.js' | asset_url }}" async></script>
+      {% if settings.enable_dtc_experiments %}
+        {% comment %} DTC upsell experiment script {% endcomment %}
+        <script src="{{ 'experiments/dtc/dtc-upsell-feature.js' | asset_url }}" async></script>
+      {% endif %}
     {% endif %}
 
     {% if template contains 'collection' %}
@@ -932,6 +943,11 @@
     </script>
 
     {% if template contains 'product' %}
+        codex/move-experiment-scripts-to-assets-directory
+      {% if settings.enable_dtc_experiments %}
+        <script src="{{ 'experiments/dtc/dtc-upsell-feature.js' | asset_url }}"></script>
+      {% endif %}
+
       <script src="{{ 'colorSwatchToggler.js' | asset_url }}"></script>
     {% endif %}
 

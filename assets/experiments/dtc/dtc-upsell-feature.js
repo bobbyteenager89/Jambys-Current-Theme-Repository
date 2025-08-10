@@ -1,4 +1,5 @@
 // Handles DTC upsell feature interactions
+// Loaded conditionally when "Enable DTC experiments" setting is active.
 // Custom function to observe mutations in the DOM
 document.querySelectorEver = (selector, callback) => {
     const targetNode = document.querySelector(selector);
