@@ -658,7 +658,7 @@
               </div>
             {% endif %}
              {% if forloop.index == 4 %}
-              {% render "dtc-product-type-compare", view: "mobile" %}
+              {% render "product-type-compare" %}
             {% endif %}
           {% endfor %}
         {% elsif mode == "collection" %}
@@ -706,7 +706,7 @@
             %}
 
             {% if forloop.index == 4 %}
-              {% render "dtc-product-type-compare-mobile" %}
+              {% render "product-type-compare" %}
             {% endif %}
           {% endfor %}
         {% endif %}
