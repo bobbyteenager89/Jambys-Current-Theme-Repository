@@ -57,9 +57,10 @@ function replaceContentViaSelector(source, destination, selector) {
   }
 }
 
+// Reloads the product section for a newly selected variant to refresh gallery and breadcrumb content
 async function renderUpdatedProduct(element, productHandle) {
   try {
-    // Render current section in context of new product's handle
+    // Fetch the rendered section HTML for the incoming product handle
     const productContainer = element.closest(".product-container");
     const sectionId = productContainer.dataset.sectionId;
     const splitProductUrl =
@@ -69,28 +70,27 @@ async function renderUpdatedProduct(element, productHandle) {
       splitProductUrl.join("/products/")
     ).then((res) => res.text());
 
-
-    // Parse new section HTML
+    // Turn the returned HTML string into a DOM tree
     const sourceEl = new DOMParser().parseFromString(
       sectionRenderResponse,
       "text/html"
     );
 
-    // Prepare new gallery to lazy-load automatically
+    // Prepare any new gallery images to lazy-load automatically
     sourceEl
       .querySelectorAll(".rimage_custom.lazyload--manual")
       .forEach((customImg) => {
         customImg.classList.remove("lazyload--manual");
         customImg.classList.add("lazyload");
       });
-    // Replace current section's content with new product gallery + breadcrumbs
+
+    // Replace existing gallery and breadcrumb fragments with the new content
     replaceContentViaSelector(sourceEl, productContainer, ".left_Section");
     replaceContentViaSelector(
       sourceEl,
       productContainer,
       ".product-breadcrumbs-wrapper"
     );
-
   } catch (error) { }
 }
 
