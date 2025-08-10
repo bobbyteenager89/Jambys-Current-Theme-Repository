@@ -1,5 +1,5 @@
-// Proteus housefit experiment script
-// Enabled when the "Enable Proteus experiments" setting is turned on.
+// Housefit experiment script
+// Enabled when the "Enable experiments" setting is turned on.
 waitUntil(() => {
   return (
     window.sessionStorage.getItem("JMBY-48") || getParam("qa") == "JMBY-48"

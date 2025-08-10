@@ -33,12 +33,12 @@
       <link rel="preload" href="{{ 'algolia_dependency_font-awesome-4-4-0.min.css' | asset_url }}" as="style">
     {% endif %}
 
-    {% if settings.enable_proteus_experiments %}
-      {% comment %} Preload Proteus experiment assets when enabled {% endcomment %}
-      <link rel="preload" href="{{ 'scripts/experiments/proteus-utils.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'scripts/experiments/proteus-treatments.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'scripts/experiments/proteus-housefit.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'styles/proteus/proteus-treatments.css' | asset_url }}" as="style">
+    {% if settings.enable_experiments %}
+      {% comment %} Preload experiment assets when enabled {% endcomment %}
+      <link rel="preload" href="{{ 'scripts/experiments/experiments-utils.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'scripts/experiments/experiments-treatments.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'scripts/experiments/experiments-housefit.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'styles/experiments/experiments-treatments.css' | asset_url }}" as="style">
     {% endif %}
 
     <link rel="preload" href="{{ 'creative-judgement.css' | asset_url }}" as="style">

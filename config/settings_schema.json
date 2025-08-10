@@ -877,8 +877,8 @@
       },
       {
         "type": "checkbox",
-        "id": "enable_proteus_experiments",
-        "label": "Enable Proteus experiments",
+        "id": "enable_experiments",
+        "label": "Enable experiments",
         "default": false
       },
       {
