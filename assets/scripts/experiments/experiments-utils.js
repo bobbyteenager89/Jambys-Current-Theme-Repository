@@ -1,8 +1,8 @@
-// Shared utilities for Proteus experiments
-// Loaded only when the "Enable Proteus experiments" theme setting is active.
+// Shared utilities for experiments
+// Loaded only when the "Enable experiments" theme setting is active.
 "use strict";
 
-console.log("init Proteus utils - v1.05");
+console.log("init experiment utils - v1.05");
 
 let variation;
 

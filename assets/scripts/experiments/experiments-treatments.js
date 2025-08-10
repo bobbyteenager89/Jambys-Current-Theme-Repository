@@ -1,6 +1,6 @@
-// Proteus treatments experiment script
-// Activated via the "Enable Proteus experiments" theme setting.
-console.log("init Proteus treatments - v1.08");
+// Treatments experiment script
+// Activated via the "Enable experiments" theme setting.
+console.log("init experiment treatments - v1.08");
 
 window.sessionStorage.setItem("disable_discount_threshold", true);
 

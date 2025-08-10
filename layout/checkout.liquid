@@ -9,6 +9,13 @@
   
       <title>{{ page_title }}
       </title>
+      {% if settings.enable_experiments %}
+        {% comment %} Preload experiment assets when enabled {% endcomment %}
+        <link rel="preload" href="{{ 'scripts/experiments/experiments-utils.js' | asset_url }}" as="script">
+        <link rel="preload" href="{{ 'scripts/experiments/experiments-treatments.js' | asset_url }}" as="script">
+        <link rel="preload" href="{{ 'scripts/experiments/experiments-housefit.js' | asset_url }}" as="script">
+        <link rel="preload" href="{{ 'styles/experiments/experiments-treatments.css' | asset_url }}" as="style">
+      {% endif %}
       {% render 'experiment-assets' %}
     </head>
     <body>
