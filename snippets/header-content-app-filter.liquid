@@ -8,7 +8,14 @@
 {%- assign lines = content_for_header | newline_to_br | split: '<br />' -%}
 {%- for line in lines -%}
   {%- if line contains 'var urls' -%}
-    {% assign url_string = line | remove: 'var urls = [' | remove: '];' | strip %}
+    {% comment %}
+      Extract comma-separated URLs from JavaScript array declaration.
+    {% endcomment %}
+    {% assign url_string = line
+      | split: 'var urls = [' | last
+      | split: '];' | first
+      | strip
+    %}
     {% assign url_array = url_string | split: ',' | uniq %}
     {%- assign filtered_urls = '' -%}
     {%- for url in url_array -%}
