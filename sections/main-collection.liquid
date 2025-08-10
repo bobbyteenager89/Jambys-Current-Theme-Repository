@@ -53,58 +53,59 @@
 
 {% if quick_links.size > 0 %}
   <style>
+  /* Proteus experiment quicklinks */
   .quicklinks_title {
     font-weight: 600;
     margin-bottom: 14px;
   }
-  .proteus-quicklinks {
+  .experiment-quicklinks {
     overflow-x : scroll;
     margin-top : 10px;
     white-space : nowrap;
     padding-bottom : 0px !important;
   }
-  
-  .proteus-quicklinks-item {
+
+  .experiment-quicklinks-item {
     display : inline-block;
     margin : 0px 10px;
     width : 16vw;
     white-space : break-spaces;
     vertical-align : top;
   }
-  
-  .proteus-quicklinks img {
+
+  .experiment-quicklinks img {
     width : 16vw;
     border-radius : 50%;
     border : 2px solid rgb(54, 64, 154);
   }
-  
-  .proteus-quicklinks p {
+
+  .experiment-quicklinks p {
     text-align : center;
     font-size : 12px;
     line-height : 1.2;
     margin : 2px -5px 0px -5px;
   }
-  
-  .proteus-quicklinks::-webkit-scrollbar {
+
+  .experiment-quicklinks::-webkit-scrollbar {
     display : none !important;
   }
 
-  .proteus-quicklinks.quicklinks-desktop .proteus-quicklinks-item img {
+  .experiment-quicklinks.quicklinks-desktop .experiment-quicklinks-item img {
     float : left;
     margin-bottom : 10px;
     width : 64px !important;
   }
 
   @media screen and (max-width: 768px) {
-    .proteus-quicklinks.quicklinks-desktop {
+    .experiment-quicklinks.quicklinks-desktop {
       display : none;
     }
-    .proteus-quicklinks p {
+    .experiment-quicklinks p {
       font-size : 14px !important;
     }
   }
   @media screen and (min-width: 769px) {
-    .proteus-quicklinks.quicklinks-mobile {
+    .experiment-quicklinks.quicklinks-mobile {
       display : none;
     }
   }

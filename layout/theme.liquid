@@ -18,9 +18,9 @@
 
     {% if settings.enable_proteus_experiments %}
       {% comment %} Preload Proteus experiment assets when enabled {% endcomment %}
-      <link rel="preload" href="{{ 'experiments/proteus/_proteus-utils.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'experiments/proteus/_proteus-treatments.js' | asset_url }}" as="script">
-      <link rel="preload" href="{{ 'experiments/proteus/_proteus-housefit.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'scripts/experiments/proteus-utils.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'scripts/experiments/proteus-treatments.js' | asset_url }}" as="script">
+      <link rel="preload" href="{{ 'scripts/experiments/proteus-housefit.js' | asset_url }}" as="script">
       <link rel="preload" href="{{ 'styles/proteus/proteus-treatments.css' | asset_url }}" as="style">
     {% endif %}
 
@@ -185,9 +185,9 @@
     {% if settings.enable_proteus_experiments %}
       {% comment %} Proteus experiment styles and scripts {% endcomment %}
       {{ 'styles/proteus/proteus-treatments.css' | asset_url | stylesheet_tag }}
-      {{ 'experiments/proteus/_proteus-utils.js' | asset_url | script_tag }}
-      {{ 'experiments/proteus/_proteus-treatments.js' | asset_url | script_tag }}
-      {{ 'experiments/proteus/_proteus-housefit.js' | asset_url | script_tag }}
+      {{ 'scripts/experiments/proteus-utils.js' | asset_url | script_tag }}
+      {{ 'scripts/experiments/proteus-treatments.js' | asset_url | script_tag }}
+      {{ 'scripts/experiments/proteus-housefit.js' | asset_url | script_tag }}
     {% endif %}
 
     {% if template contains 'collection' %}
