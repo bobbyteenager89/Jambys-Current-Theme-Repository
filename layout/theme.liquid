@@ -809,16 +809,9 @@
       <script src="{{ 'scripts/dtc/dtc-upsell-feature.js' | asset_url }}" async></script>
     {% endif %}
 
-    {% if template contains 'collection' %}
-      <script src="{{ 'collection-features.js' | asset_url }}" defer></script>
-    {% endif %}
-
     {% if template contains 'cart' or template contains 'checkout' %}
       <script src="{{ 'cart-checkout.js' | asset_url }}" defer></script>
     {% endif %}
-
-    <script src="{{ 'app-integrations.js' | asset_url }}" defer></script>
-    <script src="{{ 'non-critical.js' | asset_url }}" defer></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" async></script>
