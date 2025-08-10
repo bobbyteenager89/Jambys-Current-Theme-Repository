@@ -847,6 +847,7 @@
     ]
   },
   {
+    "name": "Analytics and Experiments",
 
     "name": "Tracking",
     "settings": [
@@ -856,6 +857,24 @@
         "label": "Enable Heatmap.com tracking",
     "name": "Experiments",
     "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_heatmap_tracking",
+        "label": "Enable heatmap tracking",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_intelligems_tracking",
+        "label": "Enable Intelligems tracking",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ef_tracking",
+        "label": "Enable EF tracking",
+        "default": false
+      },
       {
         "type": "checkbox",
         "id": "enable_proteus_experiments",
